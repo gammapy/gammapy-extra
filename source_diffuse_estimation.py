@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from astropy.io import fits
 from gammapy.image.utils import binary_dilation_circle
+import gc
 
 # Parameters
 TOTAL_COUNTS = 1e6
@@ -10,7 +11,7 @@ SOURCE_FRACTION = 0.2
 
 CORRELATION_RADIUS = 0.1 # deg
 SIGNIFICANCE_THRESHOLD = 4.
-MASK_DILATION_RADIUS = 0.2 # deg
+MASK_DILATION_RADIUS = 5 # deg
 NUMBER_OF_ITERATIONS = 1
 
 # Derived parameters
@@ -113,6 +114,8 @@ class IterativeBackgroundEstimator(object):
         self.mask_dilation_radius = mask_dilation_radius
         
         self.delete_intermediate_results = delete_intermediate_results
+        
+        gc.collect()
     
     def run(self, n_iterations):
         """Run N iterations."""
@@ -122,6 +125,7 @@ class IterativeBackgroundEstimator(object):
             if self.delete_intermediate_results:
                 # Remove results from previous iteration
                 del self._data[0]
+                gc.collect()
 
     def run_iteration(self):
         """Run one iteration."""
@@ -144,7 +148,8 @@ class IterativeBackgroundEstimator(object):
         # Convolve old background estimate with background kernel,
         # excluding sources via the old mask.
         background_corr = convolve(images.mask * images.counts, self.background_kernel)
-        mask_corr = convolve(images.mask, background_corr)
+        #import IPython; IPython.embed()
+        mask_corr = (images.mask * background_corr).sum()
         background = background_corr / mask_corr
         
         # Store new images
@@ -161,28 +166,6 @@ class IterativeBackgroundEstimator(object):
             reference_hdu.data = images
             reference_hdu.save(filename)
 
-    def make_reference_survey_image(self, xpix, ypix):
-        import datetime
-        import numpy as np
-        today = datetime.date.today().strftime("%B %d, %Y")
-
-        pars = {'SIMPLE': 'T', 'BITPIX':-32, 'NAXIS': 2,
-                'NAXIS1': xpix,
-                'NAXIS2': ypix, 'EXTEND': 'T', 'DATE': today , 'COMMENT': 0, 'COMMENT': 0, 'CTYPE1': 'GLON-CAR', 'CTYPE2': 'GLAT-CAR',
-                'EQUINOX': 2000.00, 'CDELT1':-1, 'CDELT2': 1 , 'CROTA2': 0, 'CRPIX1': 50.5,
-                'CRPIX2': 5.5, 'CRVAL1': 0, 'CRVAL2': 0 , 'LONPOLE': 180.000000000, 'LATPOLE': 90.0000000000,
-                'PV2_1': 0.00000000000, 'PV2_2': 0.00000000000, 'BUNIT': 'ph/cm2/s/sr' , 'PEDVAL': 0, 'POWER': 0,
-                'NORM': 0, 'FLUX': 0, 'CLIP': 'False    ' , 'CLIPRA': 0, 'CLIPDE': 0, 'CLIPRM': 0, 'CLIPRX': 0,
-                }
-
-        header = fits.Header()
-        header.update(pars)
-                       
-        shape = (header['NAXIS2'], header['NAXIS1'])
-        data = np.zeros(shape)
-
-        return fits.PrimaryHDU(data, header)
-
 if __name__ == '__main__':
     # Start with flat background estimate
     background=np.ones_like(counts, dtype=float)
@@ -191,7 +174,7 @@ if __name__ == '__main__':
     # CORRELATION_RADIUS
     source_kernel = (np.ones((5, 5)))/(np.ones((5, 5)).sum())
 
-    background_kernel = np.ones((100, 10))#Probably need to change this...
+    background_kernel = np.ones((100, 10))
 
     ibe = IterativeBackgroundEstimator(
                                        images=images,
@@ -207,12 +190,10 @@ if __name__ == '__main__':
     #import IPython; IPython.embed()
     #ibe.save('test')
     
-    counts_hdu = ibe.make_reference_survey_image(100, 10)
+    counts_hdu = background_hdu = mask_hdu = fits.open('sources.fits.gz')[1]
     counts_hdu.data = images.counts
     counts_hdu.writeto('testcounts.fits', clobber=True)
-    background_hdu = ibe.make_reference_survey_image(100, 10)
     background_hdu.data = images.counts
     background_hdu.writeto('testbackground.fits', clobber=True)
-    mask_hdu = ibe.make_reference_survey_image(100, 10)
     mask_hdu.data = images.mask.astype(int)
     mask_hdu.writeto('testmask.fits', clobber=True)
