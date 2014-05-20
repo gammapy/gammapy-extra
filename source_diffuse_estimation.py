@@ -10,9 +10,9 @@ TOTAL_COUNTS = 1e6
 SOURCE_FRACTION = 0.2
 
 CORRELATION_RADIUS = 0.1 # deg
-SIGNIFICANCE_THRESHOLD = 4.
+SIGNIFICANCE_THRESHOLD = 1.
 MASK_DILATION_RADIUS = 5 # deg
-NUMBER_OF_ITERATIONS = 1
+NUMBER_OF_ITERATIONS = 3
 
 # Derived parameters
 DIFFUSE_FRACTION = 1. - SOURCE_FRACTION
@@ -117,11 +117,22 @@ class IterativeBackgroundEstimator(object):
         
         gc.collect()
     
-    def run(self, n_iterations):
+    def run(self, n_iterations, filebase):
         """Run N iterations."""
+        reference_hdu = fits.open('sources.fits.gz')[1]
+        logging.info('Writing {0}'.format(filebase))
         for ii in range(n_iterations):
             logging.info('Running iteration #{0}'.format(ii))
             self.run_iteration()
+            filename = filebase + '{0:02d}counts'.format(ii) + '.fits'
+            reference_hdu.data = images.counts
+            reference_hdu.writeto(filename, clobber=True)
+            filename = filebase + '{0:02d}background'.format(ii) + '.fits'
+            reference_hdu.data = images.background
+            reference_hdu.writeto(filename, clobber=True)
+            filename = filebase + '{0:02d}mask'.format(ii) + '.fits'
+            reference_hdu.data = images.mask.astype(int)
+            reference_hdu.writeto(filename, clobber=True)
             if self.delete_intermediate_results:
                 # Remove results from previous iteration
                 del self._data[0]
@@ -148,9 +159,10 @@ class IterativeBackgroundEstimator(object):
         # Convolve old background estimate with background kernel,
         # excluding sources via the old mask.
         background_corr = convolve(images.mask * images.counts, self.background_kernel)
+        denom = convolve(images.mask, self.background_kernel)
+        #denom = background.mean()/background.size
+        background = background_corr / denom.astype(int).mean()
         #import IPython; IPython.embed()
-        mask_corr = (images.mask * background_corr).sum()
-        background = background_corr / mask_corr
         
         # Store new images
         images = GammaImages(counts, background, mask)
@@ -158,13 +170,10 @@ class IterativeBackgroundEstimator(object):
         images.print_info()
         self._data.append(images)
     
-    def save(self, filebase):
-        reference_hdu = self.make_reference_survey_image(100, 10)
-        logging.info('Writing {0}'.format(filebase))
-        for ii, images in enumerate(self._data):
-            filename = filebase + '{0:02d}'.format(ii) + '.fits'
-            reference_hdu.data = images
-            reference_hdu.save(filename)
+    #def save(self, filebase):
+        
+        #for ii, images in enumerate(self._data):
+            
 
 if __name__ == '__main__':
     # Start with flat background estimate
@@ -184,16 +193,16 @@ if __name__ == '__main__':
                                        mask_dilation_radius=MASK_DILATION_RADIUS
                                        )
 
-    ibe.run(n_iterations=1)
+    ibe.run(n_iterations=4, filebase='test')
 
     ibe.run_iteration()
     #import IPython; IPython.embed()
     #ibe.save('test')
     
-    counts_hdu = background_hdu = mask_hdu = fits.open('sources.fits.gz')[1]
-    counts_hdu.data = images.counts
-    counts_hdu.writeto('testcounts.fits', clobber=True)
-    background_hdu.data = images.counts
-    background_hdu.writeto('testbackground.fits', clobber=True)
-    mask_hdu.data = images.mask.astype(int)
-    mask_hdu.writeto('testmask.fits', clobber=True)
+    #counts_hdu = background_hdu = mask_hdu = fits.open('sources.fits.gz')[1]
+    #counts_hdu.data = images.counts
+    #counts_hdu.writeto('testcounts.fits', clobber=True)
+    #background_hdu.data = images.counts
+    #background_hdu.writeto('testbackground.fits', clobber=True)
+    #mask_hdu.data = images.mask.astype(int)
+    #mask_hdu.writeto('testmask.fits', clobber=True)
