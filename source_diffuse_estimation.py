@@ -1,3 +1,5 @@
+"""Estimate a diffuse emission model from Fermi LAT data.
+"""
 #%matplotlib inline
 import numpy as np
 import matplotlib.pyplot as plt
@@ -6,7 +8,7 @@ from gammapy.image.utils import binary_dilation_circle
 import gc
 
 # Parameters
-TOTAL_COUNTS = 1e6
+TOTAL_COUNTS = 1e5
 SOURCE_FRACTION = 0.2
 
 CORRELATION_RADIUS = 0.1 # deg
@@ -77,7 +79,7 @@ class GammaImages(object):
     def print_info(self):
         logging.info('Counts sum: {0}'.format(self.counts.sum()))
         logging.info('Background sum: {0}'.format(self.background.sum()))
-        background_fraction = 100. * self.background.sum() / self.background.sum()
+        background_fraction = 100. * self.background.sum() / self.counts.sum()
         logging.info('Background fraction: {0}'.format(background_fraction))
         excluded_fraction = 100. * np.mean(self.mask)
         logging.info('Mask fraction: {0}%'.format(excluded_fraction))
@@ -119,20 +121,15 @@ class IterativeBackgroundEstimator(object):
     
     def run(self, n_iterations, filebase):
         """Run N iterations."""
-        reference_hdu = fits.open('sources.fits.gz')[1]
-        logging.info('Writing {0}'.format(filebase))
-        for ii in range(n_iterations):
+
+        self.save_files(filebase, index=0)
+
+        for ii in range(1, n_iterations + 1):
             logging.info('Running iteration #{0}'.format(ii))
             self.run_iteration()
-            filename = filebase + '{0:02d}counts'.format(ii) + '.fits'
-            reference_hdu.data = images.counts
-            reference_hdu.writeto(filename, clobber=True)
-            filename = filebase + '{0:02d}background'.format(ii) + '.fits'
-            reference_hdu.data = images.background
-            reference_hdu.writeto(filename, clobber=True)
-            filename = filebase + '{0:02d}mask'.format(ii) + '.fits'
-            reference_hdu.data = images.mask.astype(int)
-            reference_hdu.writeto(filename, clobber=True)
+
+            self.save_files(filebase, index=ii)
+
             if self.delete_intermediate_results:
                 # Remove results from previous iteration
                 del self._data[0]
@@ -170,9 +167,23 @@ class IterativeBackgroundEstimator(object):
         images.print_info()
         self._data.append(images)
     
-    #def save(self, filebase):
-        
-        #for ii, images in enumerate(self._data):
+    def save_files(self, filebase, index):
+
+        # TODO: header should be stored as class member instead
+        # This is a hack:
+        header = fits.getheader('sources.fits.gz', 1)
+
+        images = self._data[-1]
+
+        filename = filebase + '{0:02d}_mask'.format(index) + '.fits'
+        logging.info('Writing {0}'.format(filename))
+        hdu = fits.ImageHDU(data=images.mask.astype(np.uint8), header=header)
+        hdu.writeto(filename, clobber=True)
+
+        filename = filebase + '{0:02d}_background'.format(index) + '.fits'
+        logging.info('Writing {0}'.format(filename))
+        hdu = fits.ImageHDU(data=images.background, header=header)
+        hdu.writeto(filename, clobber=True)
             
 
 if __name__ == '__main__':
@@ -181,9 +192,10 @@ if __name__ == '__main__':
     images = GammaImages(counts=counts, background=background)
 
     # CORRELATION_RADIUS
-    source_kernel = (np.ones((5, 5)))/(np.ones((5, 5)).sum())
+    source_kernel = np.ones((5, 5))
+    source_kernel /= source_kernel.sum()
 
-    background_kernel = np.ones((100, 10))
+    background_kernel = np.ones((10, 100))
 
     ibe = IterativeBackgroundEstimator(
                                        images=images,
