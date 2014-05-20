@@ -8,7 +8,7 @@ from gammapy.image.utils import binary_dilation_circle
 import gc
 
 # Parameters
-TOTAL_COUNTS = 1e5
+TOTAL_COUNTS = 1e6
 SOURCE_FRACTION = 0.2
 
 CORRELATION_RADIUS = 0.1 # deg
@@ -81,8 +81,8 @@ class GammaImages(object):
         logging.info('Background sum: {0}'.format(self.background.sum()))
         background_fraction = 100. * self.background.sum() / self.counts.sum()
         logging.info('Background fraction: {0}'.format(background_fraction))
-        excluded_fraction = 100. * np.mean(self.mask)
-        logging.info('Mask fraction: {0}%'.format(excluded_fraction))
+        excluded_fraction = 100. * (1 - np.mean(self.mask))
+        logging.info('Excluded fraction: {0}%'.format(excluded_fraction))
     
     def save(self, filename):
         logging.info('Writing {0}'.format(filename))
@@ -122,11 +122,19 @@ class IterativeBackgroundEstimator(object):
     def run(self, n_iterations, filebase):
         """Run N iterations."""
 
+        self._data[-1].compute_correlated_maps(self.source_kernel)
         self.save_files(filebase, index=0)
 
         for ii in range(1, n_iterations + 1):
             logging.info('Running iteration #{0}'.format(ii))
-            self.run_iteration()
+            if ii == 1:
+                # This is needed to avoid excluding the whole Galactic plane
+                # in case the initial background estimate is much too low.
+                update_mask = False
+            else:
+                update_mask = True
+            
+            self.run_iteration(update_mask)
 
             self.save_files(filebase, index=ii)
 
@@ -135,7 +143,7 @@ class IterativeBackgroundEstimator(object):
                 del self._data[0]
                 gc.collect()
 
-    def run_iteration(self):
+    def run_iteration(self, update_mask=True):
         """Run one iteration."""
         # Start with images from the last iteration
         images = self._data[-1]
@@ -145,12 +153,17 @@ class IterativeBackgroundEstimator(object):
 
         # Compute new exclusion mask:
         # Threshold and dilate old significance image
-        logging.info('Computing source kernel correlated images.')
-        images = images.compute_correlated_maps(self.source_kernel)
+        #try:
+        #    images.significance
+        #except AttributeError:
+        #    images = images.compute_correlated_maps(self.source_kernel)
 
-        logging.info('Computing new exclusion mask')
-        mask = np.where(images.significance > self.significance_threshold, 0, 1)#.astype(int)
-        mask = binary_dilation_circle(mask, radius=self.mask_dilation_radius)
+        if update_mask:
+            logging.info('Computing new exclusion mask')
+            mask = np.where(images.significance > self.significance_threshold, 0, 1)#.astype(int)
+            mask = binary_dilation_circle(mask, radius=self.mask_dilation_radius)
+        else:
+            mask = images.mask.copy()
         
         # Compute new background estimate:
         # Convolve old background estimate with background kernel,
@@ -163,6 +176,9 @@ class IterativeBackgroundEstimator(object):
         
         # Store new images
         images = GammaImages(counts, background, mask)
+        logging.info('Computing source kernel correlated images.')
+        images.compute_correlated_maps(self.source_kernel)
+
         logging.info('*** OUTPUT IMAGES ***')
         images.print_info()
         self._data.append(images)
@@ -183,6 +199,11 @@ class IterativeBackgroundEstimator(object):
         filename = filebase + '{0:02d}_background'.format(index) + '.fits'
         logging.info('Writing {0}'.format(filename))
         hdu = fits.ImageHDU(data=images.background, header=header)
+        hdu.writeto(filename, clobber=True)
+
+        filename = filebase + '{0:02d}_significance'.format(index) + '.fits'
+        logging.info('Writing {0}'.format(filename))
+        hdu = fits.ImageHDU(data=images.significance, header=header)
         hdu.writeto(filename, clobber=True)
             
 
