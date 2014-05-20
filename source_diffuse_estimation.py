@@ -1,20 +1,19 @@
 """Estimate a diffuse emission model from Fermi LAT data.
 """
-#%matplotlib inline
+import gc
 import numpy as np
 import matplotlib.pyplot as plt
 from astropy.io import fits
-from gammapy.image.utils import binary_dilation_circle
-import gc
+from gammapy.image.utils import binary_dilation_circle, binary_disk
 
 # Parameters
 TOTAL_COUNTS = 1e6
 SOURCE_FRACTION = 0.2
 
-CORRELATION_RADIUS = 0.1 # deg
-SIGNIFICANCE_THRESHOLD = 1.
-MASK_DILATION_RADIUS = 5 # deg
-NUMBER_OF_ITERATIONS = 3
+CORRELATION_RADIUS = 3
+SIGNIFICANCE_THRESHOLD = 3
+MASK_DILATION_RADIUS = 3 # pix
+NUMBER_OF_ITERATIONS = 4
 
 # Derived parameters
 DIFFUSE_FRACTION = 1. - SOURCE_FRACTION
@@ -70,9 +69,9 @@ class GammaImages(object):
     def compute_correlated_maps(self, kernel):
         """Compute significance image for a given kernel.
         """
-        self.counts_corr = convolve(self.mask * self.counts, kernel)
-        self.background_corr = convolve(self.mask * self.background, kernel)#/convolve(self.background, self.mask)
-        self.significance = significance(self.counts_corr, self.background_corr)#kernal? sk?
+        self.counts_corr = convolve(self.counts, kernel)
+        self.background_corr = convolve(self.background, kernel)
+        self.significance = significance(self.counts_corr, self.background_corr)
 
         return self
 
@@ -152,27 +151,21 @@ class IterativeBackgroundEstimator(object):
         images.print_info()
 
         # Compute new exclusion mask:
-        # Threshold and dilate old significance image
-        #try:
-        #    images.significance
-        #except AttributeError:
-        #    images = images.compute_correlated_maps(self.source_kernel)
-
         if update_mask:
             logging.info('Computing new exclusion mask')
-            mask = np.where(images.significance > self.significance_threshold, 0, 1)#.astype(int)
-            mask = binary_dilation_circle(mask, radius=self.mask_dilation_radius)
+            mask = np.where(images.significance > self.significance_threshold, 0, 1)
+            #print('===', (mask == 0).sum())
+            mask = np.invert(binary_dilation_circle(mask == 0, radius=self.mask_dilation_radius))
+            #print('===', (mask == 0).sum())
         else:
             mask = images.mask.copy()
         
         # Compute new background estimate:
         # Convolve old background estimate with background kernel,
         # excluding sources via the old mask.
-        background_corr = convolve(images.mask * images.counts, self.background_kernel)
-        denom = convolve(images.mask, self.background_kernel)
-        #denom = background.mean()/background.size
-        background = background_corr / denom.astype(int).mean()
-        #import IPython; IPython.embed()
+        weighted_counts = convolve(images.mask * images.counts, self.background_kernel)
+        weighted_counts_normalisation = convolve(images.mask.astype(float), self.background_kernel)
+        background = weighted_counts / weighted_counts_normalisation
         
         # Store new images
         images = GammaImages(counts, background, mask)
@@ -212,8 +205,8 @@ if __name__ == '__main__':
     background=np.ones_like(counts, dtype=float)
     images = GammaImages(counts=counts, background=background)
 
-    # CORRELATION_RADIUS
-    source_kernel = np.ones((5, 5))
+    #source_kernel = np.ones((5, 5))
+    source_kernel = binary_disk(CORRELATION_RADIUS).astype(float)
     source_kernel /= source_kernel.sum()
 
     background_kernel = np.ones((10, 100))
