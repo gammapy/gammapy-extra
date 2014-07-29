@@ -1,8 +1,5 @@
-gammapy-website
-===============
-
-Sources for the gammapy website
-
+Gammapy Logo
+============
 
 The logo and banner was made by Christoph Deil.
 If I ever have to reproduce it, here's the procedure:
