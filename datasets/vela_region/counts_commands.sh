@@ -11,6 +11,6 @@ gtselect infile=$EVENTS_LIST outfile=$EVENTS \
 gtbin algorithm=CCUBE evfile=$EVENTS outfile=$COUNTS \
       scfile=$SPACECRAFT nxpix=50 nypix=50 binsz=0.1 \
       xref=263.05836967702709 yref=3.9298511274632784 axisrot=0 proj=CAR coordsys=GAL \
-      ebinalg=LOG emin=10000 emax=500000 enumbins=3 \
+      ebinalg=LOG emin=10000 emax=500000 enumbins=20 \
 
 
