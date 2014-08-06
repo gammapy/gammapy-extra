@@ -38,5 +38,5 @@ See ``model.xml`` for the background model used to produce ``background_vela.fit
 For create the file ``gll_iem_v05_rev1_cutout.fit``, the following commands were run:
 
 	$ wget http://fermi.gsfc.nasa.gov/ssc/data/analysis/software/aux/gll_iem_v05_rev1.fit
-	$ ftcopy 'gll_iem_v05_rev1.fit[746:806, 722:782]' gll_iem_v05_rev1_cutout.fit
+	$ ftcopy 'gll_iem_v05_rev1.fit[612:772, 696:856]' gll_iem_v05_rev1_cutout.fits
 	$ fchecksum gll_iem_v05_rev1_cutout.fit update+ datasum+
