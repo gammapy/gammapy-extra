@@ -5,15 +5,6 @@
 </spatialModel>
 </source>
 
-<source name="iso_clean_v05" type="DiffuseSource">
-<spectrum file="iso_clean_v05.txt" type="FileFunction">
-<parameter free="1" max="1000" min="1e-05" name="Normalization" scale="1" value="1" />
-</spectrum>
-<spatialModel type="ConstantValue">
-<parameter free="0" max="10.0" min="0.0" name="Value" scale="1.0" value="1.0"/>
-</spatialModel>
-</source>
-
 <source name="gll_iem_v05_rev1_cutout" type="DiffuseSource">
 <spectrum type="ConstantValue">
 <parameter free="1" max="10.0" min="0.0" name="Value" scale="1.0" value= "1.0"/>
