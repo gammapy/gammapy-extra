@@ -8,8 +8,10 @@ Parameters
 
 * 5 years of observation time (2008-08-05 to 2013-08-05)
 * Event class and IRF: P7REP_CLEAN_V15
-* Max zenith angle cut: 105 deg
+* Max zenith angle cut: 100 deg
 * 10 GeV < Energy < 500 GeV
+* Image center: GLAT=-2.78733656284; GLON=263.552038198
+* Search radius: 5 deg
 
 Files
 -----
@@ -33,7 +35,7 @@ This reflects the preparation steps outlined in option 2 of the FSSC page for ex
 
 See ``background_model.xml`` for the background model used to produce ``background_vela.fits``. This uses the Fermi Diffuse Background model, ``gll_iem_v05_rev1_cutout.fits`` (also included here). Additionally ``total_model.xml`` additionally includes a point source model for the Vela Pulsar with the Fermi Diffuse Background to produce ``total_model.fits``.
 
-For create the file ``gll_iem_v05_rev1_cutout.fit``, the following commands were run:
+To create the file ``gll_iem_v05_rev1_cutout.fit``, the following commands were run:
 
 .. code-block:: bash
 	$ wget http://fermi.gsfc.nasa.gov/ssc/data/analysis/software/aux/gll_iem_v05_rev1.fit
