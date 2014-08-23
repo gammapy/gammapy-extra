@@ -51,6 +51,7 @@ docs/api
 .coverage
 
 # Data files and images are usually generated
+*.pdf
 *.png
 *.fits
 *.root
