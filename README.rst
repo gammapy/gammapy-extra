@@ -15,6 +15,7 @@ Currently we have the following folders:
 * `datasets` : Gammapy example datasets
 * `notebooks` : Gammapy IPython notebooks
 * `logo` : Gammapy logo and banner
+* `experiments` : Gammapy experiments
 
 A static, rendered version of the notebooks is available online at
 http://nbviewer.ipython.org/github/gammapy/gammapy-extra/blob/master/notebooks/Index.ipynb

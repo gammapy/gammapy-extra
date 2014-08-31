@@ -46,6 +46,9 @@ improvements should be implemented:
          this could be very nice for the sun or earth
        - `astrorank`_ looking at the sphere from the inside ...
          this could be very nice e.g. for `Fermi allsky`.
+   - Use scenegraph texture visual to transform between (u, v)
+     pixel coordinates in the image and (x, y) coordinate on the screen.
+
 
 Notes
 -----
