@@ -113,7 +113,7 @@ class Canvas(app.Canvas):
         self.positions = positions = np.zeros((stardata.shape[0], 3), np.float32)
         rightascention, declination = stardata.T/180*np.pi
         
-        distance = np.random.random(declination.shape)
+        distance = 1+np.random.random(declination.shape)
         radius = np.random.random(declination.shape)
         
         positions[:,0] = distance * np.cos(declination) * np.sin(rightascention)
@@ -139,22 +139,26 @@ class Canvas(app.Canvas):
                 self.timer.stop()
             else:
                 self.timer.start()
+    def on_mouse_press(self, event):
+        self._lastMousePos = event.pos
     def on_mouse_move(self, event):
-        data = event.pos
-        rx = np.pi*(data[1]-300)/3
-        ry = np.pi*(data[0]-300)/3
-        self.view = self.program['u_view'] = rotate(rotate(np.eye(4), rx, 1,0,0),ry, 0,1,0)
+        dx = event.pos[0] - self._lastMousePos[0]
+        dy = event.pos[1] - self._lastMousePos[1]
+        self._lastMousePos = event.pos
+        if not event.button:
+            return
         
+        self.view = rotate(rotate(self.view, dy*0.1, 1,0,0),dx*0.1, 0,1,0)
         
+        self.program['u_view'] = self.view
  
-        print ('event', self.view)
         self.update()
  
     def on_resize(self, event):
         width, height = event.size
         gloo.set_viewport(0, 0, width, height)
         far = SIZE*(NBLOCKS-2)
-        self.projection = perspective(100.0, width / float(height), 0.1, 10.0)
+        self.projection = perspective(100.0, width / float(height), 0.01, 10.0)
         self.program['u_projection'] = self.projection
  
     def on_draw(self, event):
@@ -176,7 +180,7 @@ if __name__ == '__main__':
     filename = os.path.join(os.path.dirname(__file__), 'hygxyz.csv')
     try:
         data = np.genfromtxt(
-            fname = '/Users/rob/Projecten/python/vispy/examples/demo/gloo/hygxyz.csv',
+            fname = 'hygxyz.csv',
             skip_header = 1,
             delimiter = ',',
             usecols = (10, 11),
