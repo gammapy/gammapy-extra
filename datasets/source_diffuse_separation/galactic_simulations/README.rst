@@ -1,7 +1,7 @@
 Fermi-LAT small data sets
 =========================
 
-We add simulated galactic images including source and diffuse contributions. Additionally, the Fermi-LAT exposure for the galactic plane is included.
+We add simulated galactic images including source and diffuse contributions. Additionally, the Fermi-LAT exposure, counts map and cut out 5-year revised diffuse model for the galactic plane is included.
 
 Parameters
 ----------
