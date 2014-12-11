@@ -1,4 +1,5 @@
 from astropy.io import fits
+import numpy as np
 
 # Load data from files
 counts = fits.getdata('../source_diffuse_separation/galactic_simulations/fermi_counts.fits')
@@ -18,11 +19,14 @@ maps_names = ['On', 'Background', 'Diffuse', 'ExpGammaMap']
 
 hdu_list = fits.HDUList()
 for map_, name in zip(maps, maps_names):
-    hdu = fits.ImageHDU(data=map_, header=header, name=name)
+    if name == 'On':
+	hdu = fits.ImageHDU(data=map_, header=header, name=name)
+    else:
+	hdu = fits.ImageHDU(data=map_, header=header, name=name)
     hdu_list.append(hdu)
-hdu_list.writeto('all.fits')
+hdu_list.writeto('all.fits.gz')
 
 # Convert and write 1FHL model map
 hdu_list = fits.open('../source_diffuse_separation/galactic_simulations/FD_1FHL.fits')
 hdu_list[1].data *= exposure
-hdu_list.writeto('model.fits')
+hdu_list.writeto('model.fits.gz')
