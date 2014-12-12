@@ -1,3 +1,7 @@
+"""
+This script prepares and bundles the input maps into a single 'all.fits' file, that can be
+read by the gammapy-ts-image command line tool.
+"""
 from astropy.io import fits
 import numpy as np
 
