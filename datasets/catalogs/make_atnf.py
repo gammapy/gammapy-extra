@@ -16,7 +16,11 @@ logging.basicConfig(level=logging.INFO)
 import os
 import subprocess
 from astropy.table import Table
+from astropy.coordinates import SkyCoord
 
+
+# http://astropy.readthedocs.org/en/latest/io/ascii/read.html#bad-or-missing-values
+MISSING_DATA_FILL_VALUE = '__ASDF__'
 
 def execute(cmd):
     print('EXECUTING: {}'.format(cmd))
@@ -39,6 +43,9 @@ def _parse_parameter_list_line(line):
     tokens = line[7:].split('\t')
     name = tokens[0]
     description = tokens[-1].strip()
+
+    # TODO: we could extract the unit from the description string here.
+
     return dict(number=number, name=name, description=description)
 
 
@@ -49,60 +56,86 @@ def _parse_parameter_list(infile, outfile):
         if line[0] != ' ':
             continue
 
-        parameters.append(_parse_parameter_list_line(line))
+        parameter = _parse_parameter_list_line(line)
+
+        # We have to remove some parameters to prevent the
+        # tool that extracts the data from segfaulting
+        skipcols = 'ELAT ELONG C1 C2 C3 C4 PAR1 PAR2 PAR3 PAR4'.split()
+
+        if parameter['name'] in skipcols:
+            continue
+        # if parameter['name'] != 'PSRJ':
+        #     continue
+
+        parameters.append(parameter)
 
     table = Table(parameters)
     table = table['number', 'name', 'description']
     table.write(outfile, format='ascii.fixed_width')
 
+
+# TODO: For now we don't extract all columns because it results
+# in a ``psrcat`` segfault.
+# I've reported this via the ATNF feedback form on 2014-02-08.
+# For now we'll use a hand-selected list of useful columns
+def _get_cols(use_all=False):
+    if use_all:
+        cols = Table.read('psrcat.columns', format='ascii.fixed_width')['name']
+        cols = ' '.join(cols)
+    else:
+        cols = 'PSRJ PSRB NAME '
+        cols += 'RAJ DECJ PMRA PMDEC RAJD DECJD GL GB PML PMB '
+        cols += 'DM P0 P1 BINARY DIST_DM DIST_A DIST DIST1 RADDIST '
+        cols += 'SURVEY ASSOC TYPE DATE OSURVEY '
+        cols += 'AGE AGE_I BSURF_I EDOT_I EDOTD2 PMTOT VTRANS BSURF B_LC EDOT'
+
+    return cols.split()
+
+
 def atnf_extract_to_ascii():
     """Extract all catalog info to an ascii file."""
     tool = './psrcat -db_file psrcat.db'
-    # cols = 'PSRJ PSRB NAME '
-    # cols += 'RAJ DECJ PMRA PMDEC RAJD DECJD GL GB PML PMB '
-    # cols += 'DM P0 P1 BINARY DIST_DM DIST_A DIST DIST1 RADDIST '
-    # cols += 'SURVEY ASSOC TYPE DATE OSURVEY '
-    # cols += 'AGE AGE_I BSURF_I EDOT_I EDOTD2 PMTOT VTRANS BSURF B_LC EDOT'
     execute('{} -v > {}'.format(tool, 'psrcat.version'))
     execute('{} -p > {}'.format(tool, 'psrcat.parameters'))
 
     # In order to extract the catalog data we need the column names,
     _parse_parameter_list('psrcat.parameters', 'psrcat.columns')
-    cols = Table.read('psrcat.columns', format='ascii.fixed_width')['name']
-    cols = ' '.join(cols)
+    cols = _get_cols()
 
     # execute('echo "# {}" > {}'.format(cols, 'psrcat.ascii'))
-    cmd = ('{} -o short -c "{}"'
-           # ' -nonumber -nohead'
-           # -null null
-           # ' | egrep -v "unknown survey|---|(hms)"'
-           # ' | egrep -v "unknown survey"'
-           # ' | sed "s/*/null/g"'
-           ' >> {}'
-    )
-    execute(cmd.format(tool, cols, 'psrcat.ascii'))
+    cmd = '{} -o short -c "{}"'.format(tool, ' '.join(cols))
+    cmd += ' -nonumber -nohead'
+    cmd += ' -null {}'.format(MISSING_DATA_FILL_VALUE)
+    cmd += ' > {}'.format('psrcat.ascii')
+    execute(cmd)
 
 
 def _get_versions():
-    lines = open('psrcat_tar/psrcat.version').readlines
+    lines = open('psrcat_tar/psrcat.version').readlines()
     software_version, catalog_version = [_.split()[-1] for _ in lines]
     return software_version, catalog_version
 
 
 def atnf_cleanup():
     """Clean up the catalog and add some useful info."""
-    table = Table.read('psrcat_tar/psrcat.ascii', format='ascii.fixed_width')
-
+    cols = _get_cols()
+    table = Table.read('psrcat_tar/psrcat.ascii', format='ascii.basic',
+               names=cols, guess=False,
+               fill_values=[(MISSING_DATA_FILL_VALUE, '0')],
+    )
     # Add some meta data
     software_version, catalog_version = _get_versions()
     table.meta['version'] = catalog_version
-    table.meta['SW_version'] = software_version
+    table.meta['SW_VERS'] = software_version
 
     # Add useful extra columns
-    # cmd = ['addcol Source_Name "NAME"']
-    # cmd.append('addcol RAJ2000 "radiansToDegrees(hmsToRadians(RAJ))"')
-    # cmd.append('addcol DEJ2000 "radiansToDegrees(dmsToRadians(DECJ))"')
-    # cmd.append('addskycoords icrs galactic RAJ2000 DEJ2000 GLON GLAT')
+    pos = SkyCoord(table['RAJ'], table['DECJ'], unit='deg')
+    table['RAJ2000'] = pos.ra.deg
+    table['DEJ2000'] = pos.dec.deg
+    table['GLON'] = pos.galactic.l.deg
+    table['GLAT'] = pos.galactic.b.deg
+
+    # table.show_in_browser(jsviewer=True)
 
     filename = 'ATNF_v{}.fits.gz'.format(catalog_version)
     print('Writing {}'.format(filename))
@@ -116,7 +149,7 @@ def main():
     atnf_extract_to_ascii()
     os.chdir('..')
 
-    # atnf_cleanup()
+    atnf_cleanup()
 
 
 if __name__ == '__main__':
