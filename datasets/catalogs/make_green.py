@@ -4,9 +4,6 @@ Make a FITS version of Green's SNR catalog.
 What this script does:
 - Download the catalog from Vizier
 - Add some convenient extra columns
-
-and then selecting in the Preferences field "FITS format", "all columns" and clicking "submit",
-which downloaded a file "asu.fit" which I renamed to "Green_2014-05.fits" which looks OK.
 """
 # TODO: remove this once the issue is fixed:
 import sys
