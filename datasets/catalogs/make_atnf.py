@@ -129,11 +129,13 @@ def atnf_cleanup():
     table.meta['SW_VERS'] = software_version
 
     # Add useful extra columns
-    pos = SkyCoord(table['RAJ'], table['DECJ'], unit='deg')
-    table['RAJ2000'] = pos.ra.deg
-    table['DEJ2000'] = pos.dec.deg
-    table['GLON'] = pos.galactic.l.deg
-    table['GLAT'] = pos.galactic.b.deg
+    pos = SkyCoord(table['RAJD'], table['DECJD'], unit='deg')
+    table['RAJ2000'] = pos.ra.to('deg')
+    table['DEJ2000'] = pos.dec.to('deg')
+    table['GLON'] = pos.galactic.l.to('deg')
+    table['GLAT'] = pos.galactic.b.to('deg')
+
+    table.rename_column('NAME', 'Source_Name')
 
     # table.show_in_browser(jsviewer=True)
 

@@ -5,16 +5,19 @@ What this script does:
 - Download the catalog from Vizier
 - Add some convenient extra columns
 """
-# TODO: remove this once the issue is fixed:
-import sys
-if sys.version_info[0] == 3:
-    print("This currently doesn't work on Python 3 ... use Python 2 instead.")
-    print('https://github.com/astropy/astroquery/issues/477')
-    sys.exit(1)
-
 import numpy as np
 from astropy.coordinates import SkyCoord
-from astropy.table import Column
+from astropy.units import Quantity
+
+
+def compute_mean_diameter(d_major, d_minor):
+    """Compute geometric mean diameter (preserves area)"""
+    diameter = np.sqrt(d_major * d_minor)
+    # If no `d_minor` is given, use `d_major` as mean radius
+    with np.errstate(invalid='ignore'):
+        diameter = np.where(d_minor > 0, diameter, d_major)
+
+    return diameter
 
 
 def green_catalog_download():
@@ -48,12 +51,8 @@ def green_catalog_cleanup(table):
     table['MajDiam'].unit = 'arcmin'
     table['MinDiam'].unit = 'arcmin'
 
-    # Add average radius as geometric mean (preserves area)
-    radius = np.sqrt(table['MajDiam'] * table['MinDiam'])
-    # If no `MinDiam` is given, use `MaxDiam` as mean radius
-    with np.errstate(invalid='ignore'):
-        radius = np.where(table['MinDiam'] > 0, radius, table['MajDiam'])
-    table['MeanDiam'] = Column(radius, unit='arcmin')
+    mean_diameter = compute_mean_diameter(table['MajDiam'], table['MinDiam'])
+    table['MeanDiam'] = Quantity(mean_diameter, 'arcmin')
 
     table.rename_column('SNR', 'Source_Name')
 
@@ -79,4 +78,11 @@ def main():
 
 
 if __name__ == '__main__':
+    # TODO: remove this once the issue is fixed:
+    import sys
+    if sys.version_info[0] == 3:
+        print("This currently doesn't work on Python 3 ... use Python 2 instead.")
+        print('https://github.com/astropy/astroquery/issues/477')
+        sys.exit(1)
+
     main()
