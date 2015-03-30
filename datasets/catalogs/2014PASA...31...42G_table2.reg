@@ -1,0 +1,46 @@
+galactic;circle(269.65991,0.03979,0.24875) # color = red width = 2 dash = 0
+galactic;text(269.659913,0.338287) # text = {G269.7+0.0} color = red
+galactic;circle(291.03994,0.09003,0.17480) # color = red width = 2 dash = 0
+galactic;text(291.039940,0.299791) # text = {G291.0+0.1} color = red
+galactic;circle(296.58003,-0.39000,0.09860) # color = red width = 2 dash = 0
+galactic;text(296.580031,-0.271673) # text = {G296.6-0.4} color = red
+galactic;circle(296.66005,-0.93012,0.09860) # color = red width = 2 dash = 0
+galactic;text(296.660052,-0.811801) # text = {G296.7-0.9} color = red
+galactic;circle(299.29006,-1.53020,0.26926) # color = red width = 2 dash = 0
+galactic;text(299.290064,-1.207093) # text = {G299.3-1.5} color = red
+galactic;circle(308.43987,-1.41014,0.07638) # color = red width = 2 dash = 0
+galactic;text(308.439872,-1.318493) # text = {G308.4-1.4} color = red
+galactic;circle(310.69992,-5.43995,0.24986) # color = red width = 2 dash = 0
+galactic;text(310.699919,-5.140115) # text = {G310.7-5.4} color = red
+galactic;circle(310.85996,-0.25011,0.11396) # color = red width = 2 dash = 0
+galactic;text(310.859963,-0.113363) # text = {G310.9-0.3} color = red
+galactic;circle(321.29003,-3.86019,0.69602) # color = red width = 2 dash = 0
+galactic;text(321.290027,-3.024970) # text = {G321.3-3.9} color = red
+galactic;circle(322.69005,0.07998,0.09965) # color = red width = 2 dash = 0
+galactic;text(322.690052,0.199567) # text = {G322.7+0.1} color = red
+galactic;circle(322.89996,-0.01008,0.09574) # color = red width = 2 dash = 0
+galactic;text(322.899956,0.104809) # text = {G322.9-0.0} color = red
+galactic;circle(323.64999,-1.04007,0.36686) # color = red width = 2 dash = 0
+galactic;text(323.649990,-0.599840) # text = {G323.7-1.0} color = red
+galactic;circle(324.10992,0.03987,0.07312) # color = red width = 2 dash = 0
+galactic;text(324.109918,0.127615) # text = {G324.1+0.0} color = red
+galactic;circle(324.99998,-0.32006,0.04082) # color = red width = 2 dash = 0
+galactic;text(324.999981,-0.271075) # text = {G325.0-0.3} color = red
+galactic;circle(330.70013,0.09000,0.07454) # color = red width = 2 dash = 0
+galactic;text(330.700134,0.179447) # text = {G330.7+0.1} color = red
+galactic;circle(333.98001,-0.84001,0.10341) # color = red width = 2 dash = 0
+galactic;text(333.980007,-0.715910) # text = {G334.0-0.8} color = red
+galactic;circle(336.66004,-0.29996,0.03227) # color = red width = 2 dash = 0
+galactic;text(336.660043,-0.261229) # text = {G336.7-0.3} color = red
+galactic;circle(336.84989,-0.53013,0.11180) # color = red width = 2 dash = 0
+galactic;text(336.849888,-0.395965) # text = {G336.9-0.5} color = red
+galactic;circle(345.05021,-0.20017,0.04564) # color = red width = 2 dash = 0
+galactic;text(345.050212,-0.145394) # text = {G345.1-0.2} color = red
+galactic;circle(345.15000,0.22988,0.09167) # color = red width = 2 dash = 0
+galactic;text(345.149997,0.339876) # text = {G345.2+0.2} color = red
+galactic;circle(346.18991,-0.98011,0.05833) # color = red width = 2 dash = 0
+galactic;text(346.189909,-0.910112) # text = {G346.2-1.0} color = red
+galactic;circle(348.86011,1.13994,0.09574) # color = red width = 2 dash = 0
+galactic;text(348.860114,1.254834) # text = {G348.9+1.1} color = red
+galactic;circle(354.08022,0.27983,0.09167) # color = red width = 2 dash = 0
+galactic;text(354.080219,0.389835) # text = {G354.1+0.3} color = red
