@@ -20,13 +20,13 @@ def anne_catalog_cleanup(table):
     table['GLON'] = pos.galactic.l.to('deg')
     table['GLAT'] = pos.galactic.b.to('deg')
 
-    table['MajDiam'].unit = 'arcmin'
-    table['MinDiam'].unit = 'arcmin'
-    table['MeanDiam'] = compute_mean_diameter(table['MajDiam'], table['MinDiam'])
+    table['Dmaj'].unit = 'arcmin'
+    table['Dmin'].unit = 'arcmin'
+    table['Dmean'] = compute_mean_diameter(table['Dmaj'], table['Dmin'])
 
     # Finally, sort and group table columns in a sensible way
     cols = ['Source_Name', 'RAJ2000', 'DEJ2000', 'GLON', 'GLAT',
-            'MeanDiam', 'MajDiam', 'MinDiam']
+            'Dmean', 'Dmaj', 'Dmin']
     table = table[cols]
 
     return table

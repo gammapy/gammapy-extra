@@ -48,19 +48,19 @@ def green_catalog_cleanup(table):
     table['GLON'], table['GLAT'] = skycoord.l, skycoord.b
 
     # The extension unit is `arcm`, which is a bit cryptic ... change to `arcmin`:
-    table['MajDiam'].unit = 'arcmin'
-    table['MinDiam'].unit = 'arcmin'
+    table['Dmaj'].unit = 'arcmin'
+    table['Dmin'].unit = 'arcmin'
 
-    mean_diameter = compute_mean_diameter(table['MajDiam'], table['MinDiam'])
-    table['MeanDiam'] = Quantity(mean_diameter, 'arcmin')
+    mean_diameter = compute_mean_diameter(table['Dmaj'], table['Dmin'])
+    table['Dmean'] = Quantity(mean_diameter, 'arcmin')
 
     table.rename_column('SNR', 'Source_Name')
 
     # Finally, sort and group table columns in a sensible way
     cols = ['Source_Name', 'RAJ2000', 'DEJ2000', 'GLON', 'GLAT',
-            'MeanDiam', 'MajDiam', 'MinDiam', 'u_MinDiam',
+            'Dmean', 'Dmaj', 'Dmin', 'u_Dmin',
             'l_S_1GHz_', 'S_1GHz_', 'u_S_1GHz_',
-            'Sp-Index', 'u_Sp-Index',
+            'alpha', 'u_alpha',
             'type', 'Names']
     # Make sure we don't accidentally remove columns
     assert set(cols) == set(table.colnames)
@@ -72,17 +72,10 @@ def green_catalog_cleanup(table):
 def main():
     table = green_catalog_download()
     table = green_catalog_cleanup(table)
-    filename = 'Green_2014-05.fits'
+    filename = 'Green_2014-05.fits.gz'
     print('Writing {}'.format(filename))
     table.write(filename, overwrite=True)
 
 
 if __name__ == '__main__':
-    # TODO: remove this once the issue is fixed:
-    import sys
-    if sys.version_info[0] == 3:
-        print("This currently doesn't work on Python 3 ... use Python 2 instead.")
-        print('https://github.com/astropy/astroquery/issues/477')
-        sys.exit(1)
-
     main()
