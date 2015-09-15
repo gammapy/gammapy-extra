@@ -9,3 +9,6 @@ generated with the scripts here, it's not HESS data!
 
 https://github.com/gammapy/gammapy-extra/tree/master/datasets/hess_crab
 
+
+The OGIP irf examples files are generated using a non-gammapy exporter (START)
+
