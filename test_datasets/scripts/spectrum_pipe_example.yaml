@@ -3,6 +3,11 @@
 general:
   outdir: crab
   clobber: false
+   
+data:
+  dir: get_path("../test_datasets/scripts/datastore", location='remote')
+  dir_scheme: HESS
+  runs: 23523 
 
 source:
   lon: 83.6332124
