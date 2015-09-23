@@ -3,6 +3,11 @@
 general:
   outdir: crab
   clobber: false
+   
+data:
+  dir: ../test_datasets/scripts/datastore
+  dir_scheme: HESS
+  runs: 23523 
 
 source:
   lon: 83.6332124
