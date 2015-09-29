@@ -2,35 +2,31 @@
 
 general:
   datastore: /home/kingj/Work/HESSData
-#  observations : [23526, 23559]
-  observations : crab_4tel.lis
+  observations : [23526, 23559]
 
 binning:
   equal_log_spacing: true
-  emin: 0.1
-  emax: 10
-  unit: TeV 
+  emin: 0.1 TeV
+  emax: 10 TeV
   nbins: 30
 
 on_region:
   type: circle
-  center_x: 83.633083
-  center_y: 22.014500
-  unit: deg
+  center_x: 83.633083 deg
+  center_y: 22.014500 deg
   system: icrs
-  radius: 0.1
+  radius: 0.1 deg
 
 off_region:
   type: ring
-  inner_radius: 0.5
-  outer_radius: 0.6
+  inner_radius: 0.5 deg
+  outer_radius: 0.6 deg
 
 ogip:
   clobber: true
 
 model:
    type: PWL
-   threshold_low: 0.1
-   threshold_high: 10
-   unit: TeV
+   threshold_low: 0.1 TeV
+   threshold_high: 10 TeV
    
