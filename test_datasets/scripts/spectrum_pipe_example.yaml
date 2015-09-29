@@ -2,8 +2,7 @@
 
 general:
   datastore: /home/kingj/Work/HESSData
-#  observations : [23526, 23559]
-  observations : crab_4tel.lis
+  observations : [23526, 23559]
 
 binning:
   equal_log_spacing: true
