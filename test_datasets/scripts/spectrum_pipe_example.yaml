@@ -2,7 +2,7 @@
 
 general:
   datastore: /home/kingj/Work/HESSData
-  observations : [23526, 23559]
+  observations : [23536, 23559]
 
 binning:
   equal_log_spacing: true
@@ -15,15 +15,16 @@ on_region:
   center_x: 83.633083 deg
   center_y: 22.014500 deg
   system: icrs
-  radius: 0.1 deg
+  radius: 0.3 deg
 
 off_region:
   type: ring
   inner_radius: 0.5 deg
-  outer_radius: 0.6 deg
+  outer_radius: 0.7 deg
 
 ogip:
-  clobber: true
+  outdir: ogip
+  clobber: yes
 
 model:
    type: PL
