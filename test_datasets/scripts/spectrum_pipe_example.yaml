@@ -1,7 +1,7 @@
 # Example Gammapy spectrum analysis pipeline config file
 
 general:
-  datastore: /home/kingj/Work/HESSData
+  datastore: /lfs/l2/hess/users/mimayer/hessfits/latest/pa/Model_Deconvoluted_Prod26/Mpp_Std
   observations : [23536, 23559]
 
 binning:
