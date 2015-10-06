@@ -1,8 +1,11 @@
 # Example Gammapy spectrum analysis pipeline config file
 
 general:
-  datastore: /lfs/l2/hess/users/mimayer/hessfits/latest/pa/Model_Deconvoluted_Prod26/Mpp_Std
-  observations : [23526, 23559]
+  datastore: /home/kingj/Work/HESSData
+  observations : [23536, 23559]
+  outdir : ogip
+  create_ogip : true
+  run_fit : true
 
 binning:
   equal_log_spacing: true
@@ -21,10 +24,6 @@ off_region:
   type: ring
   inner_radius: 0.5 deg
   outer_radius: 0.7 deg
-
-ogip:
-  outdir: ogip
-  clobber: yes
 
 model:
    type: PL
