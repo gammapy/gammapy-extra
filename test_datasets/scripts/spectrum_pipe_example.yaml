@@ -2,7 +2,7 @@
 
 general:
   datastore: /lfs/l2/hess/users/mimayer/hessfits/latest/pa/Model_Deconvoluted_Prod26/Mpp_Std
-  observations : [23536, 23559]
+  observations : [23526, 23559]
 
 binning:
   equal_log_spacing: true
