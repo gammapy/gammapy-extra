@@ -59,8 +59,16 @@ def make_temp_irfs():
     for f in filenames:
         write_file(f, 'ENERGY DISPERSION')
 
+def cleanup():
+    import os
+    os.system("rm *temp*")
+    os.system("mv hess_events_0.fits hess_events_simulated_023523.fits")
+    os.system("mv hess_events_1.fits hess_events_simulated_023559.fits")
+    os.system("mv hess_events_2.fits hess_events_simulated_023526.fits")
+    os.system("mv hess_events_3.fits hess_events_simulated_023592.fits")
+        
 
 if __name__ == '__main__':
-    make_dummy_eventlist()
     make_temp_irfs()
     run_obssim()
+    cleanup()
