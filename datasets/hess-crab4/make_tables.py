@@ -12,7 +12,8 @@ rows = []
 for obs in obs_ids:
     for filetype in file_types:
         name = "hess_" + filetype + "_" + obs + ".fits.gz"
-
+        if filetype == 'events':
+            name = "hess_events_simulated_" + obs + ".fits"
         data = dict()
         data['OBS_ID'] = obs[1:]
         data['TYPE'] = filetype
