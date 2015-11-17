@@ -5,7 +5,7 @@ import gammalib
 import ctools
 from astropy.io import fits
 
-def createobs(ra=86.171648, dec=-1.4774586, rad=5.0,
+def createobs(ra=83.633083, dec=22.014500, rad=5.0,
               emin=0.1, emax=100.0, duration=360000.0, deadc=0.95,
               ):
     obs = gammalib.GCTAObservation()
