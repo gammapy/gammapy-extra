@@ -15,7 +15,7 @@ for obs in obs_ids:
         if filetype == 'events':
             name = "hess_events_simulated_" + obs + ".fits"
         data = dict()
-        data['OBS_ID'] = obs[1:]
+        data['OBS_ID'] = int(obs[1:])
         data['TYPE'] = filetype
         data['NAME'] = name
         data['SIZE'] = ''
