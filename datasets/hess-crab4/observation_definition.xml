@@ -1,0 +1,30 @@
+<observation_list title="observation library">
+    <observation name="Crab" id="023523" instrument="HESS">
+        <parameter name="EventList" file="hess_events_023523_empty.fits"/>
+        <parameter name="EffectiveArea" file="hess_aeff_023523_temp.fits"/>
+        <parameter name="EnergyDispersion" file="hess_edisp_023523_temp.fits"/>
+        <parameter name="PointSpreadFunction" file="hess_psf_023523_temp.fits"/>
+        <parameter name="Background" file="hess_bkg_offruns_023523.fits.gz"/>
+    </observation>
+    <observation name="Crab" id="023559" instrument="HESS">
+        <parameter name="EventList" file="hess_events_023559_empty.fits"/>
+        <parameter name="EffectiveArea" file="hess_aeff_023559_temp.fits"/>
+        <parameter name="EnergyDispersion" file="hess_edisp_023559_temp.fits"/>
+        <parameter name="PointSpreadFunction" file="hess_psf_023559_temp.fits"/>
+        <parameter name="Background" file="hess_bkg_offruns_023559.fits.gz"/>
+    </observation>
+    <observation name="Crab" id="023526" instrument="HESS">
+        <parameter name="EventList" file="hess_events_023526_empty.fits"/>
+        <parameter name="EffectiveArea" file="hess_aeff_023526_temp.fits"/>
+        <parameter name="EnergyDispersion" file="hess_edisp_023526_temp.fits"/>
+        <parameter name="PointSpreadFunction" file="hess_psf_023526_temp.fits"/>
+        <parameter name="Background" file="hess_bkg_offruns_023526.fits.gz"/>
+    </observation>
+    <observation name="Crab" id="023592" instrument="HESS">
+        <parameter name="EventList" file="hess_events_023592_empty.fits"/>
+        <parameter name="EffectiveArea" file="hess_aeff_023592_temp.fits"/>
+        <parameter name="EnergyDispersion" file="hess_edisp_023592_temp.fits"/>
+        <parameter name="PointSpreadFunction" file="hess_psf_023592_temp.fits"/>
+        <parameter name="Background" file="hess_bkg_offruns_023592.fits.gz"/>
+    </observation>
+</observation_list>
