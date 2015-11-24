@@ -1,10 +1,10 @@
 # Example Gammapy spectrum analysis pipeline config file
 
 general:
-  datastore: hess-hap-hd-prod01-std_zeta_fullEnclosure  
-  runlist : [23740, 23741]
+  datastore: $GAMMAPY_EXTRA/datasets/hess-crab4
+  runlist : [23592, 23526]
   nruns : 1
-  outdir : ogip
+  outdir : OVERWRITTE
   create_ogip : true
   run_fit : true
 
@@ -22,10 +22,12 @@ on_region:
   radius: 0.3 deg
 
 off_region:
-  type: reflected
+  type: ring
+  inner_radius: 0.5 deg
+  outer_radius: 0.7 deg
 
 excluded_regions:
-  file: /home/kingj/Software/gammapy-extra/test_datasets/spectrum/dummy_exclusion.fits 
+  file: $GAMMAPY_EXTRA/test_datasets/spectrum/dummy_exclusion.fits 
 
 model:
    type: PL

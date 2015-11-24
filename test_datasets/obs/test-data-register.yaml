@@ -1,0 +1,8 @@
+# Test data register for Gammapy testing
+
+stores:
+  - name: test_store
+    base_dir: ../../datasets/hess-crab4
+    obs_table: observations.fits.gz
+    file_table: files.fits.gz
+
