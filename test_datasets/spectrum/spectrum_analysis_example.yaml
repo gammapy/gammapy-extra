@@ -3,10 +3,10 @@
 general:
   datastore: $GAMMAPY_EXTRA/datasets/hess-crab4
   runlist : [23592, 23526]
-  nruns : 1
-  outdir : OVERWRITTE
+  nruns : 0
+  outdir : test_dir
   create_ogip : true
-  run_fit : true
+  run_fit : sherpa
 
 binning:
   equal_log_spacing: true
@@ -22,9 +22,7 @@ on_region:
   radius: 0.3 deg
 
 off_region:
-  type: ring
-  inner_radius: 0.5 deg
-  outer_radius: 0.7 deg
+  type: reflected
 
 excluded_regions:
   file: $GAMMAPY_EXTRA/test_datasets/spectrum/dummy_exclusion.fits 
