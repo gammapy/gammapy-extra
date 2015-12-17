@@ -10,7 +10,7 @@ general:
 
 binning:
   equal_log_spacing: true
-  emin: 0.1 TeV
+  emin: 500 GeV
   emax: 10 TeV
   nbins: 30
 
@@ -25,10 +25,10 @@ off_region:
   type: reflected
 
 excluded_regions:
-  file: $GAMMAPY_EXTRA/test_datasets/spectrum/dummy_exclusion.fits 
+  file: $GAMMAPY_EXTRA/datasets/exclusion_masks/tevcat_exclusion.fits 
 
 model:
    type: PL
-   threshold_low: 0.1 TeV
+   threshold_low: 500 GeV
    threshold_high: 10 TeV
    
