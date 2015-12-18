@@ -9,15 +9,3 @@ f = gammapy_extra.filename('test_datasets/spectrum/spectrum_analysis_example.yam
 ana = SpectrumAnalysis.from_configfile(f)
 ana.write_ogip_data(outdir='.')
 
-# TODO : Do not hardcode
-#for pha in ['pha_run23526.pha', 'pha_run23592.pha']:
-#    h = fits.open(pha)[1]
-#    for f in ['RESPFILE', 'ANCRFILE', 'BACKFILE']:
-#        temp = h.header[f]
-#        #Replace absolute path with realtive path
-#        ss = 'hess-crab4_pha'
-#        pos = temp.find(ss) + len(ss)
-#        val = temp[pos:]
-#        new = '$GAMMAPY_EXTRA' + val
-#        h.header[f] = val
-#        h.writeto(pha, clobber=True)
