@@ -17,7 +17,7 @@ for pha in ['pha_run23526.pha', 'pha_run23592.pha']:
         #Replace absolute path with env variable
         ss = 'gammapy-extra'
         pos = temp.find(ss) + len(ss)
-        val = temp[pos:-1]
+        val = temp[pos:]
         new = '$GAMMAPY_EXTRA' + val
         h.header[f] = new
         h.writeto(pha, clobber=True)
