@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 from gammapy.spectrum import SpectrumAnalysis
 from gammapy.datasets import gammapy_extra
 from astropy.io import fits
@@ -18,3 +20,4 @@ for pha in ['pha_run23526.pha', 'pha_run23592.pha']:
         val = temp[pos:-1]
         new = '$GAMMAPY_EXTRA' + val
         h.header[f] = new
+        h.writeto(pha, clobber=True)
