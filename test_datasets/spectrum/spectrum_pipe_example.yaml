@@ -23,6 +23,7 @@ base_config:
     radius: 0.3 deg
   off_region:
     type: reflected
+    n_min: 1
   excluded_regions:
     file: $GAMMAPY_EXTRA/datasets/exclusion_masks/tevcat_exclusion.fits
   model:
