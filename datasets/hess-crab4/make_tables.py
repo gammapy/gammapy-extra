@@ -48,7 +48,8 @@ rows = []
 for obs in obs_ids:
 
     data = dict()
-    data['OBS_ID'] = obs
+    #data['OBS_ID'] = obs
+    data['OBS_ID'] = int(obs[1:])
     rows.append(data)
 
 table = Table(rows=rows)
