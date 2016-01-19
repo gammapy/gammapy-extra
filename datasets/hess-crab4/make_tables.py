@@ -4,7 +4,7 @@ from astropy.table import Table
 # Write minimal files and observations table needed for the gammapy data store
 
 obs_ids = ["023523", "023526", "023559", "023592"]
-file_types = ['events', 'aeff', 'edisp', 'psf']
+file_types = ['events', 'aeff', 'edisp', 'psf', 'background']
 
 # FILE TABLE
 
@@ -14,6 +14,8 @@ for obs in obs_ids:
         name = "hess_" + filetype + "_" + obs + ".fits.gz"
         if filetype == 'events':
             name = "hess_events_simulated_" + obs + ".fits"
+        if filetype == 'background':
+            name = "hess_bkg_offruns_" + obs + ".fits.gz"
         data = dict()
         data['OBS_ID'] = int(obs[1:])
         data['TYPE'] = filetype

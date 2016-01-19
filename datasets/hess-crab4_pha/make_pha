@@ -1,0 +1,11 @@
+#! /usr/bin/env python
+
+from gammapy.spectrum import SpectrumAnalysis
+from gammapy.datasets import gammapy_extra
+from astropy.io import fits
+from gammapy.extern.pathlib import Path
+
+f = gammapy_extra.filename('test_datasets/spectrum/spectrum_analysis_example.yaml')
+ana = SpectrumAnalysis.from_configfile(f)
+ana.write_ogip_data(outdir='.')
+
