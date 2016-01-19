@@ -20,7 +20,7 @@ for obs in obs_ids:
         #    name = "hess_bkg_offruns_" + obs + ".fits.gz"
             name = "hess_bkg_offruns_{:06d}.fits.gz".format(obs)
         data = dict()
-        data['OBS_ID'] = obs[1:]
+        data['OBS_ID'] = obs
         data['TYPE'] = filetype
         data['NAME'] = name
         data['SIZE'] = ''
@@ -54,7 +54,7 @@ for obs in obs_ids:
 
     data = dict()
     #data['OBS_ID'] = obs
-    data['OBS_ID'] = obs[1:]
+    data['OBS_ID'] = obs
     rows.append(data)
 
 table = Table(rows=rows)
