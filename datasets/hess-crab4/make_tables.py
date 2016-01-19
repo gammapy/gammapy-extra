@@ -3,7 +3,7 @@ from astropy.table import Table
 
 # Write minimal files and observations table needed for the gammapy data store
 
-obs_ids = ["023523", "023526", "023559", "023592"]
+obs_ids = [23523, 23526, 23559, 23592]
 file_types = ['events', 'aeff', 'edisp', 'psf', 'background']
 
 # FILE TABLE
@@ -11,13 +11,16 @@ file_types = ['events', 'aeff', 'edisp', 'psf', 'background']
 rows = []
 for obs in obs_ids:
     for filetype in file_types:
-        name = "hess_" + filetype + "_" + obs + ".fits.gz"
+        #name = "hess_" + filetype + "_" + obs + ".fits.gz"
+        name = "hess_{}_{:06d}.fits.gz".format(filetype, obs)
         if filetype == 'events':
-            name = "hess_events_simulated_" + obs + ".fits"
+        #    name = "hess_events_simulated_" + obs + ".fits"
+            name = "hess_events_simulated_{:06d}.fits".format(obs)
         if filetype == 'background':
-            name = "hess_bkg_offruns_" + obs + ".fits.gz"
+        #    name = "hess_bkg_offruns_" + obs + ".fits.gz"
+            name = "hess_bkg_offruns_{:06d}.fits.gz".format(obs)
         data = dict()
-        data['OBS_ID'] = int(obs[1:])
+        data['OBS_ID'] = obs[1:]
         data['TYPE'] = filetype
         data['NAME'] = name
         data['SIZE'] = ''
@@ -51,7 +54,7 @@ for obs in obs_ids:
 
     data = dict()
     #data['OBS_ID'] = obs
-    data['OBS_ID'] = int(obs[1:])
+    data['OBS_ID'] = obs[1:]
     rows.append(data)
 
 table = Table(rows=rows)
