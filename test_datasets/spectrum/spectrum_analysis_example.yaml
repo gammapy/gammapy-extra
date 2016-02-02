@@ -10,9 +10,9 @@ general:
 
 binning:
   equal_log_spacing: true
-  emin: 500 GeV
-  emax: 10 TeV
-  nbins: 30
+  emin: 100 GeV
+  emax: 50 TeV
+  nbins: 60
 
 on_region:
   type: circle
