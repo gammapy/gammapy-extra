@@ -29,7 +29,7 @@ def execute(cmd):
 
 def atnf_download():
     """Download ATNF pulsar catalog data and software and compile it."""
-    url = 'http://www.atnf.csiro.au/research/pulsar/psrcat/psrcat_pkg.tar.gz'
+    url = 'www.atnf.csiro.au/people/pulsar/psrcat/downloads/psrcat_pkg.tar.gz'
     execute('wget {}'.format(url))
     execute('tar zxvf psrcat_pkg.tar.gz')
     execute('cd psrcat_tar && source makeit')
@@ -68,7 +68,6 @@ def _parse_parameter_list(infile, outfile):
         #     continue
 
         parameters.append(parameter)
-
     table = Table(parameters)
     table = table['number', 'name', 'description']
     table.write(outfile, format='ascii.fixed_width')
@@ -85,7 +84,8 @@ def _get_cols(use_all=False):
     else:
         cols = 'PSRJ PSRB NAME '
         cols += 'RAJ DECJ PMRA PMDEC RAJD DECJD GL GB PML PMB '
-        cols += 'DM P0 P1 BINARY DIST_DM DIST_A DIST DIST1 RADDIST '
+        cols += 'DM P0 P1 BINARY DIST_DM DIST_DM1 DIST_AMN DIST_AMX '
+        cols += 'DIST_A DIST DIST1 RADDIST '
         cols += 'SURVEY ASSOC TYPE DATE OSURVEY '
         cols += 'AGE AGE_I BSURF_I EDOT_I EDOTD2 PMTOT VTRANS BSURF B_LC EDOT'
 
@@ -139,15 +139,16 @@ def atnf_cleanup():
 
     # table.show_in_browser(jsviewer=True)
 
-    filename = 'ATNF_v{}.fits.gz'.format(catalog_version)
+    filename = 'v{0}/ATNF_v{0}.fits.gz'.format(catalog_version)
     print('Writing {}'.format(filename))
     table.write(filename, overwrite=True)
 
 
 def main():
-    # atnf_download()
+    #atnf_download()
 
     os.chdir('psrcat_tar')
+    execute('source makeit')
     atnf_extract_to_ascii()
     os.chdir('..')
 
