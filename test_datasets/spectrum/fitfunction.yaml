@@ -1,5 +1,5 @@
 fit_result:
-  energy_range:
+  fit_range:
     max: 10.053521792319897
     min: 0.4986732300415719
     unit: TeV
@@ -9,11 +9,11 @@ fit_result:
       unit: ''
       value: 2.1671675239127315
     norm:
-      error: 1.5632158223229564e-21
-      unit: 1 / (cm2 keV s)
-      value: 2.4651907948494884e-20
+      error: 1.5632158223229566e-08
+      unit: 1 / (m2 s TeV)
+      value: 2.465190794849488e-07
     reference:
       error: 0.0
-      unit: keV
-      value: 1000000000.0
+      unit: TeV
+      value: 0.9999999999999999
   spectral_model: PowerLaw
