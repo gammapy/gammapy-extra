@@ -1,0 +1,8 @@
+
+Summary EnergyDispersion2D info
+--------------------------------
+energy         : size =    15, min =  0.125 TeV, max = 80.000 TeV
+offset         : size =     6, min =  0.125 deg, max =  2.500 deg
+migra          : size =   100, min =  0.040, max =  8.040
+dispersion     : size =  9000, min =  0.000, max =  3.512
+Probability to reconstruct a 1.0 TeV photon in the range [ 0.8  1.2] TeV at 0.5 deg offset: 1.23

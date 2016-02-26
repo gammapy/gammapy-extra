@@ -1,8 +1,12 @@
 - aeff2D_reference_file: $GAMMAPY_EXTRA/test_datasets/reference/hap_hd_aeff2D_reference.txt
   chain: HAP-HD
+  edisp2D_reference_file: $GAMMAPY_EXTRA/test_datasets/reference/hap_hd_edisp2D_reference.txt
   obs: 23523
+  psf3gauss_reference_file: $GAMMAPY_EXTRA/test_datasets/reference/hap_hd_psf3gauss_reference.txt
   store: hess-crab4-hd-hap-prod2
 - aeff2D_reference_file: $GAMMAPY_EXTRA/test_datasets/reference/pa_aeff2D_reference.txt
   chain: ParisAnalysis
+  edisp2D_reference_file: $GAMMAPY_EXTRA/test_datasets/reference/pa_edisp2D_reference.txt
   obs: 23523
+  psf3gauss_reference_file: $GAMMAPY_EXTRA/test_datasets/reference/pa_psf3gauss_reference.txt
   store: hess-crab4-pa
