@@ -1,8 +1,9 @@
 
 Summary EffectiveArea2D info
-----------------
-energy         : size =    16, min =  0.099 TeV, max = 101.193 TeV
-offset         : size =     6, min =  0.125 deg, max =  2.500 deg
-effective area : size =    90, min =  0.000 m2, max = 621144.938 m2
+-----------------------------
+Energy         : size =    16, min =  0.099 TeV, max = 101.193 TeV
+Offset         : size =     6, min =  0.125 deg, max =  2.500 deg
+Effective Area : size =    90, min =  0.000 m2, max = 621144.938 m2
 Safe energy threshold lo:  0.542 TeV
 Safe energy threshold hi: 37.883 TeV
+Effective area at 0.5 deg and 1.0 TeV : 206384.250 m2
