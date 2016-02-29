@@ -13,24 +13,18 @@ exposure = fits.getdata('../source_diffuse_separation/galactic_simulations/fermi
 # Multiply with exposure to obtain a background counts image 
 background = (background * exposure)
 
-# Diffuse model is contained in background, so diffuse is set to zero
-diffuse = np.zeros(background.shape)
-
 # Write to fits
 header = fits.getheader('../source_diffuse_separation/galactic_simulations/fermi_counts.fits')
-maps = [counts, background, diffuse, exposure]
-maps_names = ['On', 'Background', 'Diffuse', 'ExpGammaMap']
+maps = [counts, background, exposure]
+maps_names = ['counts', 'background', 'exposure']
 
 hdu_list = fits.HDUList()
 for map_, name in zip(maps, maps_names):
-    if name == 'On':
-	hdu = fits.ImageHDU(data=map_, header=header, name=name)
-    else:
-	hdu = fits.ImageHDU(data=map_, header=header, name=name)
+    hdu = fits.ImageHDU(data=map_, header=header, name=name)
     hdu_list.append(hdu)
-hdu_list.writeto('all.fits.gz')
+hdu_list.writeto('all.fits.gz', clobber=True)
 
 # Convert and write 1FHL model map
 hdu_list = fits.open('../source_diffuse_separation/galactic_simulations/FD_1FHL.fits')
 hdu_list[1].data *= exposure
-hdu_list.writeto('model.fits.gz')
+hdu_list.writeto('model.fits.gz', clobber=True)
