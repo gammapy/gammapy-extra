@@ -2,7 +2,7 @@ spectrum:
   alpha: 0.15508291527313264
   energy_range:
     max: 99.0831944892862
-    min: 0.463448957959267
+    min: 0.603261440456915
     unit: TeV
   excess: 670.8589743589744
   n_off: 736
