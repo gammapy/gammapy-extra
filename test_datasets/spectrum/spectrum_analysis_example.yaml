@@ -3,7 +3,7 @@
 extraction:
   data:
     datastore: $GAMMAPY_EXTRA/datasets/hess-crab4-hd-hap-prod2
-    runlist : [23523, 23526, 23559, 23592, 22222]
+    obstable : $GAMMAPY_EXTRA/datasets/hess-crab4-hd-hap-prod2/obs-index.fits.gz
     nruns : 0
 
   binning:
