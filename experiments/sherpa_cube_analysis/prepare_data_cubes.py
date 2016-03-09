@@ -58,7 +58,7 @@ counts_hdu = bin_events_in_cube(events, refcube, energies)
 counts = SpectralCube(Quantity(counts_hdu.data, 'count'), wcs, energies)
 log.info('Counts cube shape: {}'.format(counts_hdu.shape))
 log.info('Number of events in cube: {}'.format(counts_hdu.data.sum()))
-counts.writeto('counts.fits', clobber=True)
+counts.writeto('counts.fits.gz', clobber=True)
 
 # Exposure cube
 pointing = SkyCoord(events.meta['RA_PNT'], events.meta['DEC_PNT'], "icrs", unit="deg")
@@ -67,7 +67,7 @@ exposure = exposure_cube(pointing, livetime, aeff2d=aeff, ref_cube=counts,
                          offset_max=Quantity(2.5, 'deg'))
 log.info('Exposure cube shape: {}'.format(exposure.data.shape))
 log.info('Exposure unit: {}'.format(exposure.data.unit))
-exposure.writeto('exposure.fits', clobber=True)
+exposure.writeto('exposure.fits.gz', clobber=True)
 
 
 
