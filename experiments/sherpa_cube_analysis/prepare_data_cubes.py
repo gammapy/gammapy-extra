@@ -52,6 +52,8 @@ data = Quantity(np.zeros((len(energies), 200, 200)))
 wcs = WCS(refheader)
 refcube = SpectralCube(data, wcs, energy=energies)
 
+from IPython import embed; embed()
+
 # Counts cube
 log.info('Bin events into cube.')
 counts_hdu = bin_events_in_cube(events, refcube, energies)
