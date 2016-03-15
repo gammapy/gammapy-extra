@@ -9,7 +9,6 @@ from astropy.io import fits
 from astropy.coordinates import SkyCoord
 
 from gammapy.data import DataStore
-from gammapy.image import bin_events_in_cube
 from gammapy.cube import exposure_cube, SpectralCube
 from gammapy.utils.energy import EnergyBounds
 
@@ -23,43 +22,15 @@ log.info('Max. event energy: {}'.format(events['ENERGY'].max()))
 log.info('Min. event energy: {}'.format(events['ENERGY'].min()))
 aeff = data_store.load(obs_id=23523, filetype='aeff')
 
-# Define WCS reference header
-refheader = fits.Header()
-refheader['WCSAXES'] = 3
-refheader['NAXIS'] = 3
-refheader['CRPIX1'] = 100.5
-refheader['CRPIX2'] = 100.5
-refheader['CRPIX3'] = 1.0
-refheader['CDELT1'] = -0.02
-refheader['CDELT2'] = 0.02
+counts = SpectralCube.empty(emin=0.5, emax=80, enbins=8, eunit='TeV',
+                            nxpix=200, nypix=200, xref=events.meta['RA_OBJ'],
+                            yref=events.meta['DEC_OBJ'], dtype='int', 
+                            coordsys='CEL')
 
-# shouldn't matter, but must contain sufficient number of digits,
-# so that CDELT1 and CDELT2 are not truncated, when wcs.to_header() is called
-# seems to be a bug...
-refheader['CDELT3'] = 2.02  
-
-refheader['CTYPE1'] = 'RA---CAR'
-refheader['CTYPE2'] = 'DEC--CAR'
-refheader['CTYPE3'] = 'log_Energy'  # shouldn't matter
-refheader['CUNIT1'] = 'deg'
-refheader['CUNIT2'] = 'deg'
-refheader['CRVAL1'] = events.meta['RA_OBJ']
-refheader['CRVAL2'] = events.meta['DEC_OBJ']
-refheader['CRVAL3'] = 10.0  # shouldn't matter
-
-energies = EnergyBounds.equal_log_spacing(0.5, 80, 8, 'TeV')
-data = Quantity(np.zeros((len(energies), 200, 200)))
-wcs = WCS(refheader)
-refcube = SpectralCube(data, wcs, energy=energies)
-
-from IPython import embed; embed()
-
-# Counts cube
 log.info('Bin events into cube.')
-counts_hdu = bin_events_in_cube(events, refcube, energies)
-counts = SpectralCube(Quantity(counts_hdu.data, 'count'), wcs, energies)
-log.info('Counts cube shape: {}'.format(counts_hdu.shape))
-log.info('Number of events in cube: {}'.format(counts_hdu.data.sum()))
+counts.fill(events)
+log.info('Counts cube shape: {}'.format(counts.data.shape))
+log.info('Number of events in cube: {}'.format(counts.data.sum()))
 counts.writeto('counts.fits.gz', clobber=True)
 
 # Exposure cube
