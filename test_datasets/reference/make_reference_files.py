@@ -45,7 +45,7 @@ for chain in test_args:
 
     filename = make_path(chain['obs_reference_file'])
     f = open(str(filename), 'w')
-    obs.info(file=f)
+    f.write(str(obs))
 
 
     aeff = obs.aeff
