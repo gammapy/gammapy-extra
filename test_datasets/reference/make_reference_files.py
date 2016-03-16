@@ -11,37 +11,59 @@ test_args = list()
 test_args.append(
     dict(chain='HAP-HD',
          store='hess-crab4-hd-hap-prod2',
-         obs=23523,
+         obs=0,
+         obs_id=0,
          aeff2D_reference_file='$GAMMAPY_EXTRA/test_datasets/reference/hap_hd_aeff2D_reference.txt',
          edisp2D_reference_file='$GAMMAPY_EXTRA/test_datasets/reference/hap_hd_edisp2D_reference.txt',
-         psf3gauss_reference_file='$GAMMAPY_EXTRA/test_datasets/reference/hap_hd_psf3gauss_reference.txt')
+         psf_reference_file='$GAMMAPY_EXTRA/test_datasets/reference/hap_hd_psf_reference.txt',
+         obs_reference_file='$GAMMAPY_EXTRA/test_datasets/reference/hap_hd_obs_reference.txt',
+         location_reference_file='$GAMMAPY_EXTRA/test_datasets/reference/hap_hd_location_reference.txt')
 )
 test_args.append(
     dict(chain='ParisAnalysis',
          store='hess-crab4-pa',
-         obs=23523,
+         obs=0,
+         obs_id=0,
          aeff2D_reference_file='$GAMMAPY_EXTRA/test_datasets/reference/pa_aeff2D_reference.txt',
          edisp2D_reference_file='$GAMMAPY_EXTRA/test_datasets/reference/pa_edisp2D_reference.txt',
-         psf3gauss_reference_file='$GAMMAPY_EXTRA/test_datasets/reference/pa_psf3gauss_reference.txt')
+         psf_reference_file='$GAMMAPY_EXTRA/test_datasets/reference/pa_psf_reference.txt',
+         obs_reference_file='$GAMMAPY_EXTRA/test_datasets/reference/pa_obs_reference.txt',
+         location_reference_file='$GAMMAPY_EXTRA/test_datasets/reference/pa_location_reference.txt')
 )
 
-with open('reference_info.yaml', 'w') as outfile:
-    outfile.write(yaml.dump(test_args, default_flow_style=False))
+
 
 dm = data_manager()
 for chain in test_args:
     store = dm[chain['store']]
-    aeff = store.load(chain['obs'], filetype='aeff')
+    chain['obs_id'] = int(store.obs_table['OBS_ID'][chain['obs']])
+    obs = store.obs(obs_id = chain['obs_id'])
+
+    filename = make_path(chain['location_reference_file'])
+    f = open(str(filename), 'w')
+    f.write(str(obs.location(hdu_type='events').path(abs_path=False)))
+
+    filename = make_path(chain['obs_reference_file'])
+    f = open(str(filename), 'w')
+    obs.info(file=f)
+
+
+    aeff = obs.aeff
     filename = make_path(chain['aeff2D_reference_file'])
     f = open(str(filename), 'w')
     f.write(aeff.info())
 
-    edisp = store.load(chain['obs'], filetype='edisp')
+    edisp = obs.edisp
     filename = make_path(chain['edisp2D_reference_file'])
     f = open(str(filename), 'w')
     f.write(edisp.info())
 
-    psf3g = store.load(chain['obs'], filetype='psf')
-    filename = make_path(chain['psf3gauss_reference_file'])
+    psf = obs.psf
+    filename = make_path(chain['psf_reference_file'])
     f = open(str(filename), 'w')
-    f.write(psf3g.info())
+    f.write(psf.info())
+
+
+#Write reference file
+with open('reference_info.yaml', 'w') as outfile:
+    outfile.write(yaml.dump(test_args, default_flow_style=False))

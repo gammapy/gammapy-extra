@@ -1,0 +1,6 @@
+Info for OBS_ID = 23523
+- Start time: 53343.921875 s
+- Pointing pos: <SkyCoord (ICRS): (ra, dec) in deg
+    (83.6333313, 21.51444435)>
+- Observation duration: 1687.0 s
+- Dead-time fraction: 6.240 %
