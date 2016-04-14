@@ -29,7 +29,7 @@ y, x = np.indices(shape)
 w = WCS(naxis=2)
 
 # Set up an Galactic projection
-w.wcs.crpix = [99, 99]
+w.wcs.crpix = [100.5, 100.5]
 w.wcs.cdelt = np.array([0.02, 0.02])
 w.wcs.crval = [0, 0]
 w.wcs.ctype = ['GLON-CAR', 'GLAT-CAR']
