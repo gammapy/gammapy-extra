@@ -5,18 +5,18 @@ fit_result:
     unit: TeV
   fluxes:
     1TeV:
-      error: 1.0430828647191631e-08
+      error: 1.0758147682092862e-08
       unit: 1 / (m2 s TeV)
-      value: 2.214466094970703e-07
+      value: 2.263743209838867e-07
   parameters:
     index:
-      error: 0.04282751617365598
+      error: 0.04314059089941455
       unit: ''
-      value: 2.1949386596679688
+      value: 2.201020050048828
     norm:
-      error: 1.0430828647191631e-08
+      error: 1.0758147682092862e-08
       unit: 1 / (m2 s TeV)
-      value: 2.214466094970703e-07
+      value: 2.263743209838867e-07
     reference:
       error: 0.0
       unit: TeV
