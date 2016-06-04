@@ -1,32 +1,11 @@
 # Example Gammapy spectrum analysis example config file
 
-extraction:
-  data:
-    datastore: $GAMMAPY_EXTRA/datasets/hess-crab4-hd-hap-prod2
-    obstable : $GAMMAPY_EXTRA/datasets/hess-crab4-hd-hap-prod2/obs-index.fits.gz
-    nruns : 0
-
-  binning:
-    equal_log_spacing: true
-    emin: 10 GeV
-    emax: 300 TeV
-    nbins: 100
-
-  on_region:
-    type: circle
-    center_x: 83.633083 deg
-    center_y: 22.014500 deg
-    system: icrs
-    radius: 0.3 deg
-
-  off_region:
-    type: reflected
-    n_min: 1
-    min_distance : 0.02 rad
-
-  excluded_regions:
-    file: $GAMMAPY_EXTRA/datasets/exclusion_masks/tevcat_exclusion.fits 
-
-fit:
-  model: PL
-
+obs: $GAMMAPY_EXTRA/datasets/hess-crab4-hd-hap-prod2/obs-index.fits.gz 
+ra: 83.633
+dec: 22.015 
+on_size: 0.3
+name: Crab Nebula Test Data
+tag: crab_test
+datastore: $GAMMAPY_EXTRA/datasets/hess-crab4-hd-hap-prod2
+background_method: reflected
+exclusion_mask: $GAMMAPY_EXTRA/datasets/exclusion_masks/tevcat_exclusion.fits  
