@@ -1,6 +1,0 @@
-The files in this directory have been produced with the following command
-
-gammapy-spectrum all $GAMMAPY_EXTRA/test_datasets/spectrum/spectrum_analysis_example.yaml
-
-The observation table has been modified to make the PHA file path relative to $GAMMAPY_EXTRA
-using the script update_observation_table.py
