@@ -30,7 +30,7 @@ def make_healpix_image(events, nside, sigma):
 
 
 if __name__ == '__main__':
-    filename = '/Users/deil/code/fhee/data/2fhl_events.fits.gz'
+    filename = '$GAMMAPY_EXTRA/datasets/fermi_2fhl/2fhl_events.fits.gz'
     events = EventList.read(filename)
     events.meta['EUNIT'] = 'GeV'
 
