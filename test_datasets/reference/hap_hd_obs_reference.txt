@@ -1,5 +1,5 @@
 Info for OBS_ID = 23523
-- Start time: 53343.92 
+- Start time: 53343.92
 - Pointing pos: RA 83.63 deg / Dec 21.51 deg
 - Observation duration: 1687.0 s
 - Dead-time fraction: 6.240 %
