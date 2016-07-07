@@ -7,6 +7,7 @@ Source catalog
 The Fermi-LAT 2FHL catalog is in `gll_psch_v08.fit.gz` (downloaded from FSSC)
 
 ::
+    
     Name               Type       Dimensions
     ----               ----       ----------
     HDU 1   Count Map          Image      Int4(3600x1800)               
@@ -22,6 +23,7 @@ The event list corresponding to 2FHL (obtained from Marco Ajello with permission
 to share publicly on November 12, 2015) is in `2fhl_events.fits.gz`.
 
 ::
+    
     Name               Type       Dimensions
     ----               ----       ----------
     HDU 1   Primary Array      Null Array                               
