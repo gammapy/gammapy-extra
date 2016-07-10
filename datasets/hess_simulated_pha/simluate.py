@@ -4,6 +4,8 @@ This script creates on SpecturmObservation of the crab nebula to be used for
 the Gammapy docs or presentations. It uses the Abramowski parametrization for
 the effective area and a gaussian energy dispersion with 20% resolution
 
+TODO: Refactor into proper class in gammapy
+
 """
 
 from gammapy.irf import (
