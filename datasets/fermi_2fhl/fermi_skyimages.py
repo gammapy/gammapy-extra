@@ -1,11 +1,7 @@
 """
-Little script to produce Fermi 2FHL sky images 
+Generate sky images for the Fermi 2FHL dataset.
 """
 import logging
-
-logging.basicConfig(level=logging.INFO)
-log = logging.getLogger(__name__)
-
 from scipy.ndimage import convolve
 from astropy.convolution import Tophat2DKernel, Ring2DKernel, Gaussian2DKernel
 from gammapy.data import EventList
@@ -13,6 +9,9 @@ from gammapy.image import SkyMap, SkyMapCollection
 from gammapy.background import IterativeKernelBackgroundEstimator as IKBE
 from gammapy.background import GammaImages
 from gammapy.detect import compute_lima_map
+
+logging.basicConfig(level=logging.INFO)
+log = logging.getLogger(__name__)
 
 
 def gaussian_smooth(skyimage, width):
@@ -65,7 +64,7 @@ def skyimages_2fhl(**kwargs):
 
     # Background & Exclusion
     exclusion, background = background_skyimage_2fhl(skyimages.counts)
-    skyimages.exlusion = exclusion
+    skyimages.exclusion = exclusion
     skyimages.background = background
 
     # Significance
