@@ -6,9 +6,9 @@ USER main
 
 RUN conda config --add channels astropy --add channels sherpa
 RUN conda install pyyaml
-RUN conda install healpy
 RUN conda install sherpa
 RUN pip install regions
+RUN pip install healpy
 RUN pip install reproject
 RUN pip install photutils
 RUN pip install wcsaxes
