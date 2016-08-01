@@ -1,0 +1,2 @@
+export GAMMAPY_EXTRA=/home/main/notebooks
+OPTS="$OPTS --NotebookApp.default_url=/notebooks/notebooks/index.ipynb "
