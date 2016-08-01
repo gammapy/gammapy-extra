@@ -23,7 +23,7 @@ Binder
 ------
 
 .. image:: http://mybinder.org/badge.svg
-    :target: http://mybinder.org:/repo/gammapy/gammapy-extra
+    :target: http://mybinder.org/repo/gammapy/gammapy-extra
 
 Admin: http://mybinder.org/status/gammapy/gammapy-extra
 
