@@ -22,6 +22,8 @@ http://nbviewer.ipython.org/github/gammapy/gammapy-extra/blob/master/notebooks/i
 Binder
 ------
 
+Try Gammapy online in the browser via http://mybinder.org/ :
+
 .. image:: http://mybinder.org/badge.svg
     :target: http://mybinder.org/repo/gammapy/gammapy-extra
 
