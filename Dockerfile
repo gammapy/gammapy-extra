@@ -7,4 +7,5 @@ USER main
 RUN pip install gammapy regions wcsaxes
 
 # Install requirements for Python 3
-RUN /home/main/anaconda/envs/python3/bin/pip install gammapy regions wcsaxes
+# This doesn't work, that pip isn't available
+#RUN /home/main/anaconda/envs/python3/bin/pip install gammapy regions wcsaxes
