@@ -3,8 +3,20 @@ FROM andrewosh/binder-base
 MAINTAINER adonath <axel.donath@mpi-hd.mpg.com>
 
 USER main
-# Install requirements for Python 2
-RUN pip install gammapy regions wcsaxes
+
+RUN conda config --add channels astropy --add channels sherpa
+RUN conda install pyyaml
+RUN conda install healpy
+RUN conda install sherpa
+RUN pip install regions
+RUN pip install reproject
+RUN pip install photutils
+RUN pip install wcsaxes
+RUN pip install aplpy
+RUN pip install naima
+RUN pip install iminuit
+RUN pip install uncertainties
+RUN pip install git+https://github.com/gammapy/gammapy.git#egg=gammapy
 
 ENV GAMMAPY_EXTRA $HOME/notebooks
 #ENV OPTS= "$OPTS --NotebookApp.default_url=/notebooks/notebooks/index.ipynb "
