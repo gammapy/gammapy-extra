@@ -17,7 +17,7 @@ Currently we have the following folders:
 * `logo` : Gammapy logo and banner
 
 A static, rendered version of the notebooks is available online at
-http://nbviewer.ipython.org/github/gammapy/gammapy-extra/blob/master/notebooks/index.ipynb
+http://nbviewer.jupyter.org/github/gammapy/gammapy-extra/blob/master/index.ipynb
 
 Binder
 ------
