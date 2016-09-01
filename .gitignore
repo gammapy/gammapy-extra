@@ -67,4 +67,4 @@ datasets/source_diffuse_separation/diffuse_integral_flux_reprojected.fits
 datasets/source_diffuse_separation/exposure_10_GeV.fits
 datasets/source_diffuse_separation/gll_iem_v05.fits
 
-notebooks/spectrum_example
+notebooks/crab_analysis
