@@ -110,7 +110,7 @@ def make_ts_image(scale):
     args = ['input_all.fits.gz', filename, "--psf", 'psf.json', "--scales", scale, '--overwrite']
     print('Executing command: gammapy-image-ts {}'.format(' '.join(args)))
     print('Writing {}'.format(filename))
-
+    image_ts_main(args)
 
 if __name__ == '__main__':
     psf_sigma = 3
@@ -119,6 +119,6 @@ if __name__ == '__main__':
     make_images(psf_sigma)
     make_images_grouped()
 
-    # scales = ['0.000', '0.050', '0.100', '0.200']
-    # for scale in scales:
-    #     make_ts_image(scale)
+    scales = ['0.000', '0.050', '0.100', '0.200']
+    for scale in scales:
+        make_ts_image(scale)
