@@ -8,7 +8,7 @@ from astropy.io import fits
 from astropy.wcs import WCS
 from astropy.modeling.models import Gaussian2D, Const2D
 from gammapy.utils.random import get_random_state
-from gammapy.image import SkyImageCollection, SkyImage
+from gammapy.image import SkyImageList, SkyImage
 from gammapy.scripts.image_ts import image_ts_main
 
 
@@ -83,7 +83,7 @@ def make_images(psf_sigma):
 
 
 def make_images_grouped():
-    images = SkyImageCollection([
+    images = SkyImageList([
         SkyImage.read('counts.fits.gz'),
         SkyImage.read('background.fits.gz'),
         SkyImage.read('exposure.fits.gz'),
