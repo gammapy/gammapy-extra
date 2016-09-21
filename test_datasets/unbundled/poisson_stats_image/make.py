@@ -4,9 +4,13 @@
 from __future__ import print_function, division
 import json
 import numpy as np
+from astropy import units as u
 from astropy.io import fits
 from astropy.wcs import WCS
 from astropy.modeling.models import Gaussian2D, Const2D
+from astropy.coordinates import SkyCoord
+from regions import CircleSkyRegion
+
 from gammapy.utils.random import get_random_state
 from gammapy.image import SkyImageList, SkyImage
 from gammapy.scripts.image_ts import image_ts_main
@@ -52,8 +56,19 @@ def make_images(psf_sigma):
     random_state = get_random_state(0)
     data = random_state.poisson(model(x, y))
 
+    # Create exclusion mask
+    center = SkyCoord(0, 0, frame='galactic', unit='deg')
+    circle = CircleSkyRegion(center, 0.5 * u.deg)
+    exclusion = SkyImage(data=x, wcs=wcs).region_mask(circle)
+
     # Save data
     header = wcs.to_header()
+
+    mask = ~exclusion.data
+    hdu = fits.PrimaryHDU(data=mask.astype('int32'), header=header)
+    filename = 'exclusion.fits.gz'
+    print('Writing {}'.format(filename))
+    hdu.writeto(filename, clobber=True)
 
     hdu = fits.PrimaryHDU(data=data.astype('int32'), header=header)
     filename = 'counts.fits.gz'
@@ -87,10 +102,14 @@ def make_images_grouped():
         SkyImage.read('counts.fits.gz'),
         SkyImage.read('background.fits.gz'),
         SkyImage.read('exposure.fits.gz'),
+        SkyImage.read('exclusion.fits.gz'),
+        SkyImage.read('model.fits.gz'),
     ])
     images[0].name = 'counts'
     images[1].name = 'background'
     images[2].name = 'exposure'
+    images[3].name = 'exclusion'
+    images[4].name = 'model'
 
     filename = 'input_all.fits.gz'
     print('Writing {}'.format(filename))
