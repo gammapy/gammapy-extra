@@ -1,0 +1,51 @@
+# This is a list of available notebooks.
+# It's used for automatic testing.
+# Let's keep it alphabetical.
+- name: cube_analysis
+  test: yes
+  requires: scipy
+- name: cwt
+  test: yes
+  requires: 
+- name: data_iact
+  test: yes
+  requires: 
+- name: detect_ts
+  test: yes
+  requires: 
+- name: diffuse_model_computation
+  test: yes
+  requires: 
+- name: fermi_vela_model
+  test: yes
+  requires: 
+- name: first_steps
+  test: yes
+  requires: 
+- name: image_analysis
+  test: yes
+  requires: 
+- name: nddata_demo
+  test: yes
+  requires: 
+- name: plot_results
+  test: yes
+  requires: 
+- name: source_catalogs
+  test: yes
+  requires: 
+- name: source_diffuse_estimation
+  test: yes
+  requires: 
+- name: source_population_model
+  test: yes
+  requires: 
+- name: spectrum_analysis
+  test: yes
+  requires: 
+- name: spiral_arms
+  test: yes
+  requires: 
+- name: time_analysis
+  test: yes
+  requires: 
