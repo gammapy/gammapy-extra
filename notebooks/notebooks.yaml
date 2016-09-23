@@ -2,50 +2,50 @@
 # It's used for automatic testing.
 # Let's keep it alphabetical.
 - name: cube_analysis
-  test: yes
-  requires: scipy
+  test: true
+  requires:
 - name: cwt
-  test: yes
+  test: true
   requires: 
 - name: data_iact
-  test: yes
+  test: true
   requires: 
 - name: detect_ts
-  test: yes
+  test: true
   requires: 
 - name: diffuse_model_computation
-  test: yes
+  test: true
   requires: 
 - name: fermi_vela_model
-  test: yes
+  test: true
   requires: 
 - name: first_steps
-  test: yes
+  test: true
   requires: 
 - name: image_analysis
-  test: yes
-  requires: 
+  test: true
+  requires:
 - name: nddata_demo
-  test: yes
+  test: true
   requires: 
 - name: plot_results
-  test: yes
+  test: true
   requires: 
 - name: source_catalogs
-  test: yes
+  test: true
   requires: 
 - name: source_diffuse_estimation
-  test: yes
+  test: true
   requires: 
 - name: source_population_model
-  test: yes
+  test: true
   requires: 
 - name: spectrum_analysis
-  test: yes
-  requires: 
+  test: true
+  requires: sherpa
 - name: spiral_arms
-  test: yes
+  test: true
   requires: 
 - name: time_analysis
-  test: yes
+  test: true
   requires: 
