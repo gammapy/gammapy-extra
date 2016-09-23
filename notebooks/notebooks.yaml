@@ -14,10 +14,10 @@
   test: true
   requires: 
 - name: diffuse_model_computation
-  test: true
+  test: false
   requires: 
 - name: fermi_vela_model
-  test: true
+  test: false
   requires: 
 - name: first_steps
   test: true
@@ -29,7 +29,7 @@
   test: true
   requires: 
 - name: source_catalogs
-  test: true
+  test: false
   requires: 
 - name: source_diffuse_estimation
   test: false
