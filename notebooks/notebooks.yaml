@@ -28,14 +28,11 @@
 - name: nddata_demo
   test: true
   requires: 
-- name: plot_results
-  test: true
-  requires: 
 - name: source_catalogs
   test: true
   requires: 
 - name: source_diffuse_estimation
-  test: true
+  test: false
   requires: 
 - name: source_population_model
   test: true
