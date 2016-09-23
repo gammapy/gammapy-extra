@@ -43,9 +43,6 @@
 - name: spectrum_analysis
   test: true
   requires: sherpa
-- name: spiral_arms
-  test: true
-  requires: 
 - name: time_analysis
   test: true
   requires: 
