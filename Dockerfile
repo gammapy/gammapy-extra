@@ -4,7 +4,7 @@
 # - TODO: if possible, don't give users the option to
 #   select Python 2 kernel on Binder
 
-FROM andrewosh/binder-base
+FROM andrewosh/binder-python-3.5
 MAINTAINER Gammapy developers <gammapy@googlegroups.com>
 USER main
 
@@ -16,8 +16,8 @@ RUN conda config --add channels conda-forge
 RUN conda config --add channels astropy
 RUN conda config --add channels sherpa
 
-RUN conda create -y --name gammapy-env python=3 anaconda
-RUN /bin/bash -c "source activate gammapy-env"
+# RUN conda create -y --name gammapy-env python=3 anaconda
+# RUN /bin/bash -c "source activate gammapy-env"
 
 # Check if we're using the right Python, pip and conda
 # ENV PIP /home/main/anaconda2/envs/python3/bin/pip
@@ -45,4 +45,11 @@ ENV GAMMAPY_EXTRA $HOME/notebooks
 #ENV OPTS= "$OPTS --NotebookApp.default_url=/notebooks/notebooks/index.ipynb "
 
 # Check if things look OK
+# CMD /bin/bash
+RUN apt-get install -y sudo
+RUN sudo rm /bin/sh
+RUN sudo ln -s /bin/bash /bin/sh
+RUN source activate gammapy-env
+RUN which python
+RUN python --version
 RUN python -c 'import gammapy; print(gammapy.__version__)'
