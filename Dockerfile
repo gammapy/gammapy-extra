@@ -8,10 +8,6 @@ FROM andrewosh/binder-python-3.5
 MAINTAINER Gammapy developers <gammapy@googlegroups.com>
 USER main
 
-# Needed to make `source activate` below work
-# http://stackoverflow.com/a/25423366/498873
-# RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-
 RUN conda config --add channels conda-forge
 RUN conda config --add channels astropy
 RUN conda config --add channels sherpa
@@ -20,7 +16,6 @@ RUN conda config --add channels sherpa
 # RUN /bin/bash -c "source activate gammapy-env"
 
 # Check if we're using the right Python, pip and conda
-# ENV PIP /home/main/anaconda2/envs/python3/bin/pip
 RUN which python
 RUN python --version
 RUN which pip
@@ -45,11 +40,6 @@ ENV GAMMAPY_EXTRA $HOME/notebooks
 #ENV OPTS= "$OPTS --NotebookApp.default_url=/notebooks/notebooks/index.ipynb "
 
 # Check if things look OK
-# CMD /bin/bash
-RUN apt-get install -y sudo
-RUN sudo rm /bin/sh
-RUN sudo ln -s /bin/bash /bin/sh
-RUN source activate gammapy-env
 RUN which python
 RUN python --version
 RUN python -c 'import gammapy; print(gammapy.__version__)'
