@@ -43,3 +43,6 @@
 - name: time_analysis
   test: true
   requires: 
+- name: spectrum_simulation
+  test: true
+  requires: sherpa
