@@ -4,7 +4,7 @@ Fermi-LAT 2FHL dataset
 Source catalog
 --------------
 
-The Fermi-LAT 2FHL catalog is in `gll_psch_v08.fit.gz` (downloaded from FSSC)
+The Fermi-LAT 2FHL catalog is in `catalog/gll_psch_v08.fit.gz` (downloaded from FSSC)
 
 ::
     
