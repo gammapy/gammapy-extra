@@ -13,7 +13,7 @@ EBINALG=LOG
 TMIN=239557702.597728
 TMAX=444440996.314882
 
-# WCS parameters for HGPS region
+# WCS parameters for HGPS region, can be changed later to all sky
 NXPIX=9400
 NYPIX=500
 BINSZ=0.02
@@ -23,12 +23,12 @@ YREF=0
 COORDSYS=GAL
 NEBINS=5
 
-# Raw data files
-PHOTON_FILES=/home/hfm/adonath/Projects/hess_fermi_survey_paper/analysis/data/fermi/raw/photon/
+# Raw data files, to be set by the user
+#PHOTON_FILES=
+#SPACECRAFT=
+
 PHOTON_FILES_LIST=fermi_2fhl_filelist.txt
 find $PHOTON_FILES -name lat_photon_weekly* > $PHOTON_FILES_LIST
-
-SPACECRAFT=/home/hfm/adonath/Projects/hess_fermi_survey_paper/analysis/data/fermi/raw/spacecraft/lat_spacecraft_merged.fits
 
 # Data files
 EVENTS=events/fermi_2fhl_events_all.fits
