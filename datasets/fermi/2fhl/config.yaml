@@ -1,0 +1,48 @@
+# This config file is partly compatible with fermipy see
+# http://fermipy.readthedocs.io/en/latest/config.html
+
+filenames:
+  events_all: events/fermi_2fhl_events_all.fits.gz
+  events_selected: events/fermi_2fhl_events_selected.fits.gz
+  events: events/fermi_2fhl_events.fits.gz
+  exposure: fermi_2fhl_exposure.fits.gz
+  counts: fermi_2fhl_counts.fits.gz
+  psf: fermi_2fhl_psf_gc.fits.gz
+
+data :
+  evfile : fermi_2fhl_filelist.txt
+  scfile : $FERMI_SPACECRAFT
+  ltcube : fermi_2fhl_livetime.fits
+
+selection:
+  emin: 50000
+  emax: 2000000
+  zmax: 105
+  event_class: 128
+  event_type: 3
+  irf: P8R2_SOURCE_V6 # Corresponding to event type 128
+  ebinalg: LOG
+
+  # Time cuts taken from reference event list, another reference is missing.
+  tmin: 239557702.597728
+  tmax: 444440996.314882
+
+  filter : 'DATA_QUAL>0 && LAT_CONFIG==1'
+  roicut : 'no'
+
+binning:
+  # WCS parameters for HGPS region, can be changed later to all sky
+  nxpix: 9400
+  nypix: 500
+  binsz: 0.02
+  proj: CAR
+  xref: 341
+  yref: 0
+  coordys: GAL
+  enumbins: 5
+
+# currently only the background component is supported in gammapy
+model:
+  # Diffuse components
+  galdiff: '$FERMI_DIR/refdata/fermi/galdiffuse/gll_iem_v06.fits'
+  isodiff: '$FERMI_DIR/refdata/fermi/galdiffuse/iso_P8R2_SOURCE_V6_v06.txt'
