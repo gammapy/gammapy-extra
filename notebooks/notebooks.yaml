@@ -46,3 +46,9 @@
 - name: spectrum_simulation
   test: true
   requires: sherpa
+- name: spectrum_simulation_cta
+  test: false
+  requires: sherpa
+- name: time_analysis 
+  test: false
+  requires:
