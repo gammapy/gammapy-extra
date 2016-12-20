@@ -17,5 +17,5 @@ In this repos there are the cube fits file necessary for a spectral 3D analysis:
 
 -excess_cube.fits: excess for all the reco energies in a (50,50) pixel images. One pixel is 0.02deg znd the images is center on the Crab
 
-There is also the script make.py that made these cubes from the dataset in $GAMMAPY_EXTRA/datasets/hess-crab4-hd-hap-prod2. You create a new dataset in /data with an hdu table that contains a link to the acceptance curve to use for each run situated in the directory /background in order to create a FOV bacground model.
+There is also the script make.py that made these cubes from the dataset in $GAMMAPY_EXTRA/datasets/hess-crab4-hd-hap-prod2. You create a copy of the dataset in $GAMMAPY_EXTRA/datasets/hess-crab4-hd-hap-prod2 in /data with a new hdu table that contains a link to the acceptance curve to use for each run situated in the directory /background in order to create a FOV bacground model.
 For the moment you create your acceptance curves based on the 4 test Crab runs from the counts outside the exclusion regions. This is not physical. When the data will be available, the background model will be based on around 8000 AGN runs.
