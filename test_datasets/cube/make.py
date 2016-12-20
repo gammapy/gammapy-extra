@@ -148,8 +148,8 @@ def make_cubes(ereco, etrue, use_etrue):
     center = SkyCoord(83.63, 22.01, unit='deg').galactic
     offset_band = Angle([0, 2.49], 'deg')
 
-    ref_cube_images = make_empty_cube(image_size=250, energy=ereco, center=center)
-    ref_cube_exposure = make_empty_cube(image_size=250, energy=etrue, center=center, data_unit="m2 s")
+    ref_cube_images = make_empty_cube(image_size=50, energy=ereco, center=center)
+    ref_cube_exposure = make_empty_cube(image_size=50, energy=etrue, center=center, data_unit="m2 s")
 
     data_store = DataStore.from_dir(tmpdir)
 
@@ -166,7 +166,7 @@ def make_cubes(ereco, etrue, use_etrue):
     cube_maker.make_cubes(make_background_image=True, radius=10.)
     obslist = [data_store.obs(id) for id in data_store.obs_table["OBS_ID"]]
     ObsList = ObservationList(obslist)
-    mean_psf_cube = make_mean_psf_cube(image_size=250, energy_cube=etrue, center_maps=center, center=center,
+    mean_psf_cube = make_mean_psf_cube(image_size=50, energy_cube=etrue, center_maps=center, center=center,
                                        ObsList=ObsList,
                                        spectral_index=2.3)
     if use_etrue:
@@ -195,7 +195,7 @@ def make_cubes(ereco, etrue, use_etrue):
 
 
 if __name__ == '__main__':
-    energy_true = [Energy(0.1, "TeV"), Energy(120, "TeV"), 80]
+    energy_true = [Energy(0.1, "TeV"), Energy(120, "TeV"), 20]
     energy_reco = [Energy(0.5, "TeV"), Energy(100, "TeV"), 5]
     make_cubes(ereco=energy_reco, etrue=energy_true, use_etrue=True)
     make_cubes(ereco=energy_reco, etrue=energy_reco, use_etrue=False)
