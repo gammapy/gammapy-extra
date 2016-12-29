@@ -163,12 +163,49 @@ def root_to_fits_cta_perf(in_dir, in_file):
 
     edisp_hdus = e_disp.to_hdulist()
 
+    # Sensitivity
+    sens = hist1d_to_table(hist=root_file.Get('DiffSens'))
+    # ENERG_LO
+    sens.rename_column('x_bin_lo', 'ENERG_LO')
+    sens['ENERG_LO'].unit = u.TeV
+    sens['ENERG_LO'].format = 'E'
+    sens.replace_column('ENERG_LO', 10**(sens['ENERG_LO']))
+    # ENERG_HI
+    sens.rename_column('x_bin_hi', 'ENERG_HI')
+    sens['ENERG_HI'].unit = u.TeV
+    sens['ENERG_HI'].format = 'E'
+    sens.replace_column('ENERG_HI', 10**(sens['ENERG_HI']))
+    # BGD
+    sens.rename_column('y', 'SENSITIVITY')
+    sens['SENSITIVITY'].unit = u.erg / (u.cm * u.cm * u.s)
+    sens['SENSITIVITY'].format = 'E'
+
+    sens_hdu = fits.BinTableHDU.from_columns(
+        [fits.Column('ENERG_LO',
+                     sens['ENERG_LO'].format,
+                     unit=sens['ENERG_LO'].unit.to_string(),
+                     array=sens['ENERG_LO']),
+         fits.Column('ENERG_HI',
+                     sens['ENERG_HI'].format,
+                     unit=sens['ENERG_HI'].unit.to_string(),
+                     array=sens['ENERG_HI']),
+         fits.Column('SENSITIVITY',
+                     sens['SENSITIVITY'].format,
+                     unit=sens['SENSITIVITY'].unit.to_string(),
+                     array=sens['SENSITIVITY'])]
+    )
+
+    sens_hdu.header.set("EXTNAME", "SENSITIVITY")
+
+    # Fill HDU
     hdulist = fits.HDUList([edisp_hdus[0],
                             area_hdu,
                             psf_hdu,
                             edisp_hdus[1], edisp_hdus[2],
-                            bg_rate_hdu])
-
+                            bg_rate_hdu,
+                            sens_hdu])
+    
+    # Save file
     name = re.split('.root', str(in_file))[0]
     output_file = in_dir + '/' + name + '.fits'
     hdulist.writeto(output_file, clobber=True)
