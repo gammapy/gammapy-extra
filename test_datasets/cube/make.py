@@ -195,7 +195,7 @@ def make_cubes(ereco, etrue, use_etrue):
 
 
 if __name__ == '__main__':
-    energy_true = [Energy(0.1, "TeV"), Energy(120, "TeV"), 20]
-    energy_reco = [Energy(0.5, "TeV"), Energy(100, "TeV"), 5]
+    energy_true = [Energy(0.1, "TeV"), Energy(100, "TeV"), 20]
+    energy_reco = [Energy(0.5, "TeV"), Energy(40, "TeV"), 5]
     make_cubes(ereco=energy_reco, etrue=energy_true, use_etrue=True)
     make_cubes(ereco=energy_reco, etrue=energy_reco, use_etrue=False)
