@@ -28,11 +28,10 @@ RUN conda install -q -y healpy
 RUN conda install -q -y regions
 RUN conda install -q -y reproject
 RUN conda install -q -y photutils
-RUN conda install -q -y wcsaxes
 RUN conda install -q -y aplpy
 RUN conda install -q -y naima
 
-# RUN pip install --no-deps gammapy regions wcsaxes
+# RUN pip install --no-deps gammapy regions
 RUN pip install --no-deps uncertainties
 RUN pip install --no-deps git+https://github.com/gammapy/gammapy.git#egg=gammapy
 
