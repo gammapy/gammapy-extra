@@ -44,7 +44,7 @@
   test: true
   requires: 
 - name: spectrum_simulation
-  test: true
+  test: false
   requires: sherpa
 - name: spectrum_simulation_cta
   test: false
