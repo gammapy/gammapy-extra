@@ -17,6 +17,7 @@ from gammapy.utils.energy import Energy, EnergyBounds
 from gammapy.irf import TablePSF
 from astropy.units import Quantity
 from gammapy.background import fill_acceptance_image
+from regions import CircleSkyRegion
 import astropy.units as u
 import os
 import shutil
@@ -113,7 +114,7 @@ def make_mean_rmf(energy_true, energy_reco, center, ObsList):
     return rmf
 
 
-def make_cubes(ereco, etrue, use_etrue):
+def make_cubes(ereco, etrue, use_etrue, center):
     tmpdir = os.path.expandvars('$GAMMAPY_EXTRA') + "/test_datasets/cube/data"
     outdir = tmpdir
     outdir2 = os.path.expandvars('$GAMMAPY_EXTRA') + '/test_datasets/cube/background'
@@ -145,7 +146,6 @@ def make_cubes(ereco, etrue, use_etrue):
     fn = outdir + '/hdu-index.fits.gz'
     hdu_index_table.write(fn, overwrite=True)
 
-    center = SkyCoord(83.63, 22.01, unit='deg').galactic
     offset_band = Angle([0, 2.49], 'deg')
 
     ref_cube_images = make_empty_cube(image_size=50, energy=ereco, center=center)
@@ -194,8 +194,38 @@ def make_cubes(ereco, etrue, use_etrue):
     mean_psf_cube.write(filename_psf, format="fermi-counts", clobber=True)
 
 
+def make_skymaskcube(ereco, center, exclusion_region):
+    """
+    Compute a SkyCube mask for the region we want to exclude in the fit.
+
+    Parameters
+    ----------
+    ereco: Tuple for the reconstructed energy axis: (Emin,Emax,nbins)
+    center: SkyCoord of the source
+    exclusion_region: CircleSkyRegion containing the center and the radius of the position to exclude
+
+    """
+    sky_mask_cube = make_empty_cube(image_size=50, energy=ereco, center=center)
+    energies = sky_mask_cube.energies(mode='edges').to("TeV")
+    coord_center_pix = sky_mask_cube.sky_image_ref.coordinates(mode="center").icrs
+    lon = np.tile(coord_center_pix.data.lon.degree, (len(energies) - 1, 1, 1))
+    lat = np.tile(coord_center_pix.data.lat.degree, (len(energies) - 1, 1, 1))
+    coord_3d_center_pix = SkyCoord(lon, lat, unit="deg")
+    index_excluded_region = np.where(
+        (exclusion_region.center).separation(coord_3d_center_pix) < exclusion_region.radius)
+    sky_mask_cube.data[:] = 1
+    sky_mask_cube.data[index_excluded_region] = 0
+
+    sky_mask_cube.write("mask.fits", format="fermi-counts", clobber=True)
+
+
 if __name__ == '__main__':
     energy_true = [Energy(0.1, "TeV"), Energy(100, "TeV"), 20]
     energy_reco = [Energy(0.5, "TeV"), Energy(40, "TeV"), 5]
-    make_cubes(ereco=energy_reco, etrue=energy_true, use_etrue=True)
-    make_cubes(ereco=energy_reco, etrue=energy_reco, use_etrue=False)
+    center = SkyCoord(83.63, 22.01, unit='deg').galactic
+    make_cubes(ereco=energy_reco, etrue=energy_true, use_etrue=True, center=center)
+    make_cubes(ereco=energy_reco, etrue=energy_reco, use_etrue=False, center=center)
+
+    # This is just a test case for the test for the 3d Analysis if we want to exclude a region in the fit
+    exclude_region = CircleSkyRegion(SkyCoord(83.60, 21.88, unit='deg'), Angle(0.1, "deg"))
+    make_skymaskcube(ereco=energy_reco, center=center, exclusion_region=exclude_region)
