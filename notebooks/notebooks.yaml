@@ -38,7 +38,7 @@
   test: true
   requires: 
 - name: spectrum_analysis
-  test: false 
+  test: true 
   requires: sherpa
 - name: time_analysis
   test: true
