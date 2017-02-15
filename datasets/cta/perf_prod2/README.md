@@ -19,3 +19,7 @@ https://github.com/ctools/ctools) are also available:
  - South_0.5h
  - South_5h
  - South_50h
+
+# Deprecated set of performance:
+ - ./CTA-Performance-North-20150511/*.fits
+ - ./CTA-Performance-South-20150511/*.fits
