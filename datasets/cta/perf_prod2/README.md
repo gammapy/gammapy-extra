@@ -1,13 +1,18 @@
-# CTA prod2 performance files
+# CTA performance files
 
 This repository contains the official CTA's instrument response functions
 (IRF, https://portal.cta-observatory.org/CTA_Observatory/performance/SitePages/Home.aspx).
-You can find them in FITS and ROOT format in (point-like):
- - CTA-Performance-North-20150511
- - CTA-Performance-South-20150511
+
+Production 2 point-like IRF (non-smoothed) are available in ./point_like_non_smoothed:
+ - South_0.5h.fits.gz
+ - South_5h.fits.gz
+ - South_50h.fits.gz
+ - North_0.5h.fits.gz
+ - North_5h.fits.gz
+ - North_50h.fits.gz
 
 Additionally, the IRF from the ctools (full containment,
-https://github.com/ctools/ctools) are also available in:
+https://github.com/ctools/ctools) are also available:
  - North_0.5h
  - North_5h
  - North_50h
