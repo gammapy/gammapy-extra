@@ -1,12 +1,13 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 from __future__ import absolute_import, division, print_function, unicode_literals
 from numpy.testing import assert_allclose
+from astropy.table import Column
 import numpy as np
 from astropy.tests.helper import assert_quantity_allclose
 from astropy.coordinates import SkyCoord, Angle
 from gammapy.extern.pathlib import Path
 from gammapy.data import DataStore
-from gammapy.data import ObservationList
+from gammapy.data import ObservationList, ObservationGroupAxis, ObservationGroups
 from gammapy.utils.testing import requires_dependency, requires_data
 from gammapy.image import SkyMask
 from gammapy.cube import StackedObsCubeMaker
@@ -17,6 +18,7 @@ from gammapy.utils.energy import Energy, EnergyBounds
 from gammapy.irf import TablePSF
 from astropy.units import Quantity
 from gammapy.background import fill_acceptance_image
+from gammapy.catalog import load_catalog_tevcat
 from regions import CircleSkyRegion
 import astropy.units as u
 import os
@@ -128,20 +130,35 @@ def make_cubes(ereco, etrue, use_etrue, center):
     ds = DataStore.from_dir("$GAMMAPY_EXTRA/datasets/hess-crab4-hd-hap-prod2")
     ds.copy_obs(ds.obs_table, tmpdir)
     data_store = DataStore.from_dir(tmpdir)
-
     # Create a background model from the 4 crab run for the counts ouside the exclusion region. it's just for test, normaly you take 8000 thousands AGN runs to build this kind of model
-    bgmaker = OffDataBackgroundMaker(data_store, outdir=outdir2)
-    bgmaker.select_observations(selection='all')
-    bgmaker.group_observations()
+    axes = [ObservationGroupAxis('ZEN_PNT', [0, 49, 90], fmt='edges')]
+    obs_groups = ObservationGroups(axes)
+    obs_table_with_group_id = obs_groups.apply(data_store.obs_table)
+    obs_groups.obs_groups_table.write(outdir2 + "/group-def.fits", overwrite=True)
+    # Exclusion sources table
+    Tevcatsources = load_catalog_tevcat()
+    Tevcatsources.rename_column('coord_dec', 'DEC')
+    Tevcatsources.rename_column('coord_ra', 'RA')
+    radius = Tevcatsources["size_x"]
+    radius[np.where(Tevcatsources["size_x"] < Tevcatsources["size_y"])] = Tevcatsources["size_y"]
+    radius[np.isnan(radius)] = 0.3
+    c = Column(radius, name='Radius')
+    Tevcatsources.add_column(c)
+    bgmaker = OffDataBackgroundMaker(data_store, outdir2, run_list=None,
+                                     obs_table=obs_table_with_group_id
+                                     , ntot_group=obs_groups.n_groups, excluded_sources=Tevcatsources)
+
     bgmaker.make_model("2D")
+    bgmaker.smooth_models("2D")
     bgmaker.save_models("2D")
+    bgmaker.save_models(modeltype="2D", smooth=True)
 
     fn = outdir2 + '/group-def.fits'
     hdu_index_table = bgmaker.make_total_index_table(
         data_store=data_store,
         modeltype='2D',
         out_dir_background_model=outdir2,
-        filename_obs_group_table=fn
+        filename_obs_group_table=fn, smooth=True
     )
     fn = outdir + '/hdu-index.fits.gz'
     hdu_index_table.write(fn, overwrite=True)
