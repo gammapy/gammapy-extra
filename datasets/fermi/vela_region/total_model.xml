@@ -1,0 +1,22 @@
+<source_library title="source library">
+<source name="PowerLaw_source" type="PointSource">
+<!-- point source units are cm^-2 s^-1 MeV^-1 -->
+<spectrum type="PowerLaw">
+<parameter free="1" max="1000.0" min="0.001" name="Prefactor" scale="1e-09" value="1"/>
+<parameter free="1" max="-1.0" min="-5." name="Index" scale="1.0" value="-2.1"/>
+<parameter free="0" max="2000.0" min="30.0" name="Scale" scale="1.0" value="100.0"/>
+</spectrum>
+<spatialModel type="SkyDirFunction">
+<parameter free="0" max="360." min="-360." name="RA" scale="1.0" value="128.836063542"/>
+<parameter free="0" max="90." min="-90." name="DEC" scale="1.0" value="-45.176431806"/>
+</spatialModel>
+</source>
+<source name="gll_iem_v05_rev1_cutout" type="DiffuseSource">
+<spectrum type="ConstantValue">
+<parameter free="1" max="10.0" min="0.0" name="Value" scale="1.0" value= "1.0"/>
+</spectrum>
+<spatialModel file="gll_iem_v05_rev1_cutout.fits" type="MapCubeFunction">
+<parameter free="0" max="1000.0" min="0.001" name="Normalization" scale= "1.0" value="1.0"/>
+</spatialModel>
+</source>
+</source_library>
