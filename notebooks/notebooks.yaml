@@ -1,9 +1,21 @@
 # This is a list of available notebooks.
 # It's used for automatic testing.
 # Let's keep it alphabetical.
-- name: cube_analysis
+- name: astropy_introduction
   test: true
   requires:
+- name: background_model
+  test: true
+  requires:
+- name: cta_simulation
+  test: true
+  requires:
+- name: cube_analysis_part1
+  test: true
+  requires:
+- name: cube_analysis_part2
+  test: true
+  requires: sherpa
 - name: cwt
   test: true
   requires: 
@@ -25,6 +37,9 @@
 - name: image_analysis
   test: true
   requires:
+- name: image_pipe
+  test: true
+  requires:
 - name: nddata_demo
   test: true
   requires: 
@@ -40,15 +55,12 @@
 - name: spectrum_analysis
   test: true 
   requires: sherpa
+- name: spectrum_simulation_cta
+  test: true 
+  requires: sherpa
+- name: spectrum_simulation
+  test: true 
+  requires: sherpa
 - name: time_analysis
   test: true
   requires: 
-- name: spectrum_simulation
-  test: false
-  requires: sherpa
-- name: spectrum_simulation_cta
-  test: true
-  requires: sherpa
-- name: time_analysis 
-  test: false
-  requires:
