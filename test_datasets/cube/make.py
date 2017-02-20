@@ -152,12 +152,23 @@ def make_cubes(ereco, etrue, use_etrue, center):
     bgmaker.smooth_models("2D")
     bgmaker.save_models("2D")
     bgmaker.save_models(modeltype="2D", smooth=True)
+    
+    c = Column(radius, name='Radius')
+    Tevcatsources.add_column(c)
+    bgmaker = OffDataBackgroundMaker(data_store, outdir2, run_list=None,
+                                     obs_table=obs_table_with_group_id
+                                     , ntot_group=obs_groups.n_groups, excluded_sources=Tevcatsources)
 
-    fn = outdir2 + '/group-def.fits'
+    bgmaker.make_model("2D")
+    bgmaker.smooth_models("2D")
+    bgmaker.save_models("2D")
+    bgmaker.save_models(modeltype="2D", smooth=True)
+    shutil.move(str(scratch_dir), str(data_dir))
+    fn = outdir + 'background/group-def.fits'
     hdu_index_table = bgmaker.make_total_index_table(
         data_store=data_store,
         modeltype='2D',
-        out_dir_background_model="../background",
+        out_dir_background_model="background",
         filename_obs_group_table=fn, smooth=True
     )
     fn = outdir + '/hdu-index.fits.gz'
