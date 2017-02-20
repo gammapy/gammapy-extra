@@ -157,7 +157,7 @@ def make_cubes(ereco, etrue, use_etrue, center):
     hdu_index_table = bgmaker.make_total_index_table(
         data_store=data_store,
         modeltype='2D',
-        out_dir_background_model=outdir2,
+        out_dir_background_model="../background",
         filename_obs_group_table=fn, smooth=True
     )
     fn = outdir + '/hdu-index.fits.gz'
