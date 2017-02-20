@@ -1,7 +1,7 @@
 # Licensed under a 3-clause BSD style license - see LICENSE.rst
 from __future__ import absolute_import, division, print_function, unicode_literals
 from numpy.testing import assert_allclose
-from astropy.table import Column
+from astropy.table import Column, Table
 import numpy as np
 from astropy.tests.helper import assert_quantity_allclose
 from astropy.coordinates import SkyCoord, Angle
@@ -18,7 +18,7 @@ from gammapy.utils.energy import Energy, EnergyBounds
 from gammapy.irf import TablePSF
 from astropy.units import Quantity
 from gammapy.background import fill_acceptance_image
-from gammapy.catalog import load_catalog_tevcat
+from gammapy.catalog import load_catalog_tevcat, SourceCatalogGammaCat
 from regions import CircleSkyRegion
 import astropy.units as u
 import os
@@ -136,35 +136,25 @@ def make_cubes(ereco, etrue, use_etrue, center):
     obs_table_with_group_id = obs_groups.apply(data_store.obs_table)
     obs_groups.obs_groups_table.write(outdir2 + "/group-def.fits", overwrite=True)
     # Exclusion sources table
-    Tevcatsources = load_catalog_tevcat()
-    Tevcatsources.rename_column('coord_dec', 'DEC')
-    Tevcatsources.rename_column('coord_ra', 'RA')
-    radius = Tevcatsources["size_x"]
-    radius[np.where(Tevcatsources["size_x"] < Tevcatsources["size_y"])] = Tevcatsources["size_y"]
-    radius[np.isnan(radius)] = 0.3
-    c = Column(radius, name='Radius')
-    Tevcatsources.add_column(c)
+    cat = SourceCatalogGammaCat()
+    exclusion_table = cat.table
+    exclusion_table.rename_column('ra', 'RA')
+    exclusion_table.rename_column('dec', 'DEC')
+    radius = exclusion_table['morph_sigma']
+    radius.value[np.isnan(radius)] = 0.3
+    exclusion_table['Radius'] = radius
+    exclusion_table = Table(exclusion_table)
+    
     bgmaker = OffDataBackgroundMaker(data_store, outdir2, run_list=None,
                                      obs_table=obs_table_with_group_id
-                                     , ntot_group=obs_groups.n_groups, excluded_sources=Tevcatsources)
-
+                                     , ntot_group=obs_groups.n_groups, excluded_sources=exclusion_table)
     bgmaker.make_model("2D")
     bgmaker.smooth_models("2D")
     bgmaker.save_models("2D")
     bgmaker.save_models(modeltype="2D", smooth=True)
     
-    c = Column(radius, name='Radius')
-    Tevcatsources.add_column(c)
-    bgmaker = OffDataBackgroundMaker(data_store, outdir2, run_list=None,
-                                     obs_table=obs_table_with_group_id
-                                     , ntot_group=obs_groups.n_groups, excluded_sources=Tevcatsources)
-
-    bgmaker.make_model("2D")
-    bgmaker.smooth_models("2D")
-    bgmaker.save_models("2D")
-    bgmaker.save_models(modeltype="2D", smooth=True)
-    shutil.move(str(scratch_dir), str(data_dir))
-    fn = outdir + 'background/group-def.fits'
+    shutil.move(str(outdir2), str(outdir))
+    fn = outdir + '/background/group-def.fits'
     hdu_index_table = bgmaker.make_total_index_table(
         data_store=data_store,
         modeltype='2D',
