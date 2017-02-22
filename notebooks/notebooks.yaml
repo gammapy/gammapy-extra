@@ -18,22 +18,25 @@
   requires: sherpa
 - name: cwt
   test: true
-  requires: 
+  requires:
+- name: data_fermi_lat
+  test: false
+  requires:
 - name: data_iact
   test: true
-  requires: 
+  requires:
 - name: detect_ts
   test: true
-  requires: 
+  requires:
 - name: diffuse_model_computation
   test: false
-  requires: 
+  requires:
 - name: fermi_vela_model
   test: false
-  requires: 
+  requires:
 - name: first_steps
   test: true
-  requires: 
+  requires:
 - name: image_analysis
   test: true
   requires:
@@ -42,25 +45,25 @@
   requires:
 - name: nddata_demo
   test: true
-  requires: 
+  requires:
 - name: source_catalogs
   test: false
-  requires: 
+  requires:
 - name: source_diffuse_estimation
   test: false
-  requires: 
+  requires:
 - name: source_population_model
   test: true
-  requires: 
+  requires:
 - name: spectrum_analysis
-  test: true 
+  test: true
   requires: sherpa
 - name: spectrum_simulation_cta
-  test: true 
+  test: true
   requires: sherpa
 - name: spectrum_simulation
-  test: true 
+  test: true
   requires: sherpa
 - name: time_analysis
   test: true
-  requires: 
+  requires:
