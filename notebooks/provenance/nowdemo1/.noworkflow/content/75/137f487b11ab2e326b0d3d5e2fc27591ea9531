@@ -1,0 +1,2 @@
+def run_simulation(data_a, data_b):
+    return simulate(csv_read(data_a), csv_read(data_b))

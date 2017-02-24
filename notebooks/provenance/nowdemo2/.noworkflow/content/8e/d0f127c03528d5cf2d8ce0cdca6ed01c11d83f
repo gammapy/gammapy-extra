@@ -1,0 +1,4 @@
+[console_scripts]
+sherpa_smoke = sherpa:_smoke_cli
+sherpa_test = sherpa:clitest
+

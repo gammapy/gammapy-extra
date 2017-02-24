@@ -1,0 +1,9 @@
+def plot(data):
+    #GetTemperature
+    t = extract_column(data, 0)
+    #GetPrecipitation
+    p = extract_column(data, 1)
+    plt.scatter(t, p, marker='o')
+    plt.xlabel('Temperature')
+    plt.ylabel('Precipitation')
+    plt.savefig("output.png")

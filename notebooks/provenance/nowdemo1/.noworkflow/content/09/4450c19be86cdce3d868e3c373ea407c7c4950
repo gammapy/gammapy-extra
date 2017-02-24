@@ -1,0 +1,2 @@
+def extract_temperature(data):
+    return extract_column(data, 0)

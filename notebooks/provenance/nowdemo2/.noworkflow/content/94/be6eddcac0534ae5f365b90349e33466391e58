@@ -1,0 +1,4 @@
+def bar_graph(years):
+    global PREC, MONTHS
+    prepare(PREC, MONTHS, years, plt)
+    plt.savefig("out.png")

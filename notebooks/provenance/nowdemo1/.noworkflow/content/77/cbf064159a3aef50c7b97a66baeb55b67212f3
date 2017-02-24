@@ -1,0 +1,9 @@
+def mplScatter(x,y):
+    kwargs = {}
+    #kwargs['y'] = y
+    #kwargs['x'] = x
+    plt.scatter(x, y, s=20, c='b', marker='o', cmap=None, norm=None,
+                    vmin=None, vmax=None, alpha=None, linewidths=None, verts=None, **kwargs)
+    plt.xlabel('Temperature')
+    plt.ylabel('Precipitation')
+    plt.savefig("output.png")

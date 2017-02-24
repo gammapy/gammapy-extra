@@ -1,0 +1,2 @@
+arr = range(my_var)
+c = max(arr)
