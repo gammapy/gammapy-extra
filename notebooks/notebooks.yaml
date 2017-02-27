@@ -35,7 +35,7 @@
   test: false
   requires:
 - name: first_steps
-  test: true
+  test: false
   requires:
 - name: image_analysis
   test: true
