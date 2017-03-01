@@ -11,7 +11,7 @@
   test: true
   requires:
 - name: cube_analysis_part1
-  test: true
+  test: false
   requires:
 - name: cube_analysis_part2
   test: true
