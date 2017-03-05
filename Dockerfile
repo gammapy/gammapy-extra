@@ -29,7 +29,7 @@ RUN conda install -q -y regions
 RUN conda install -q -y reproject
 RUN conda install -q -y photutils
 RUN conda install -q -y aplpy
-RUN conda install -q -y naima
+#RUN conda install -q -y naima
 
 # RUN pip install --no-deps gammapy regions
 RUN pip install --no-deps uncertainties
