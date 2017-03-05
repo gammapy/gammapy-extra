@@ -4,7 +4,7 @@
 # - TODO: if possible, don't give users the option to
 #   select Python 2 kernel on Binder
 
-FROM andrewosh/binder-python-3.5
+FROM andrewosh/binder-python-2.7
 MAINTAINER Gammapy developers <gammapy@googlegroups.com>
 USER main
 
