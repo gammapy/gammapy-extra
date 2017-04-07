@@ -8,7 +8,7 @@
   test: true
   requires:
 - name: cta_simulation
-  test: true
+  test: false
   requires:
 - name: cube_analysis_part1
   test: false
