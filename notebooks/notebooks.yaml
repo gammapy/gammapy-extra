@@ -46,6 +46,9 @@
 - name: nddata_demo
   test: true
   requires:
+- name: sed_fitting_gammacat_fermi
+  test: true
+  requires: sherpa
 - name: source_catalogs
   test: false
   requires:
