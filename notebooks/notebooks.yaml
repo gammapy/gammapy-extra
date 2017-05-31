@@ -7,6 +7,9 @@
 - name: background_model
   test: true
   requires:
+- name: cta_data_analysis
+  test: true
+  requires: sherpa
 - name: cta_simulation
   test: false
   requires:
