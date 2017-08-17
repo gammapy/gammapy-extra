@@ -1,0 +1,642 @@
+# 2HWC source catalog
+# The values correspond to tables 2 and 3 of Abeysekara et al. 2017, ApJ, 843, 40:
+# http://iopscience.iop.org/article/10.3847/1538-4357/aa7556
+# Angles are in degrees.
+# Fluxes are reported at 7 TeV and are in TeV-1 cm-2 s-1.
+# Uncertainties are statistical only.
+# Please cite as Abeysekara et al. 2017, ApJ, 843, 40.
+   - name: 2HWC J0534+220
+     RA: 83.6279
+     Dec: 22.0243
+     l: 184.54655248643084
+     b: -5.783169029937807
+     position uncertainty: 0.05725810686362343
+     search radius: 0.0
+     TS: 11015.971849
+     flux measurements:
+        - flux: 1.84708e-13
+          tested radius: 0.0
+          index: -2.58468
+          index uncertainty: 0.0114
+          flux uncertainty: 2.377e-15
+   - name: 2HWC J0631+169
+     RA: 97.998
+     Dec: 16.9968
+     l: 195.6140652481228
+     b: 3.5065705185836418
+     position uncertainty: 0.11381489216654829
+     search radius: 0.0
+     TS: 29.559120448899996
+     flux measurements:
+        - flux: 6.7138e-15
+          tested radius: 0.0
+          index: -2.56525
+          index uncertainty: 0.150992
+          flux uncertainty: 1.47418e-15
+        - flux: 4.8704e-14
+          tested radius: 2.0
+          index: -2.22988
+          index uncertainty: 0.076689
+          flux uncertainty: 6.85213e-15
+   - name: 2HWC J0635+180
+     RA: 98.833
+     Dec: 18.053
+     l: 195.03664973251446
+     b: 4.69730506083273
+     position uncertainty: 0.1303114793903305
+     search radius: 0.0
+     TS: 27.4239695041
+     flux measurements:
+        - flux: 6.54401e-15
+          tested radius: 0.0
+          index: -2.56196
+          index uncertainty: 0.164861
+          flux uncertainty: 1.48945e-15
+   - name: 2HWC J0700+143
+     RA: 105.117
+     Dec: 14.3235
+     l: 201.10261657207784
+     b: 8.440166170077124
+     position uncertainty: 0.8039865162698738
+     search radius: 1.0
+     TS: 29.001025267599996
+     flux measurements:
+        - flux: 1.37969e-14
+          tested radius: 1.0
+          index: -2.1672
+          index uncertainty: 0.157216
+          flux uncertainty: 4.22204e-15
+        - flux: 2.30438e-14
+          tested radius: 2.0
+          index: -2.03051
+          index uncertainty: 0.139912
+          flux uncertainty: 7.26492e-15
+   - name: 2HWC J0819+157
+     RA: 124.98
+     Dec: 15.7914
+     l: 207.99671540593226
+     b: 26.523943268775447
+     position uncertainty: 0.17077470012216486
+     search radius: 0.5
+     TS: 30.654382489600003
+     flux measurements:
+        - flux: 1.57892e-15
+          tested radius: 0.5
+          index: -1.49618
+          index uncertainty: 0.671665
+          flux uncertainty: 3.13529e-15
+   - name: 2HWC J1040+308
+     RA: 160.225
+     Dec: 30.8653
+     l: 197.5935153542709
+     b: 61.314577321243625
+     position uncertainty: 0.21655359397317722
+     search radius: 0.5
+     TS: 26.285206148099995
+     flux measurements:
+        - flux: 6.64905e-15
+          tested radius: 0.5
+          index: -2.07849
+          index uncertainty: 0.246096
+          flux uncertainty: 3.48714e-15
+   - name: 2HWC J1104+381
+     RA: 166.113
+     Dec: 38.1585
+     l: 179.94535262389428
+     b: 65.04672823773045
+     position uncertainty: 0.05725810686362343
+     search radius: 0.0
+     TS: 1148.5117660899998
+     flux measurements:
+        - flux: 7.08464e-14
+          tested radius: 0.0
+          index: -3.03859
+          index uncertainty: 0.0260535
+          flux uncertainty: 2.85431e-15
+   - name: 2HWC J1309-054
+     RA: 197.314
+     Dec: -5.49179
+     l: 311.11400417951035
+     b: 57.09662097602321
+     position uncertainty: 0.21898655892374672
+     search radius: 0.0
+     TS: 25.310558521600004
+     flux measurements:
+        - flux: 1.22737e-14
+          tested radius: 0.0
+          index: -2.54821
+          index uncertainty: 0.178324
+          flux uncertainty: 3.46958e-15
+   - name: 2HWC J1653+397
+     RA: 253.477
+     Dec: 39.7899
+     l: 63.6389089904541
+     b: 38.85465046891967
+     position uncertainty: 0.06547722217471912
+     search radius: 0.0
+     TS: 555.5401860100001
+     flux measurements:
+        - flux: 5.65108e-14
+          tested radius: 0.0
+          index: -2.85683
+          index uncertainty: 0.0369638
+          flux uncertainty: 2.69839e-15
+   - name: 2HWC J1809-190
+     RA: 272.461
+     Dec: -19.0366
+     l: 11.333938177509259
+     b: 0.17889446010177978
+     position uncertainty: 0.1744407342609517
+     search radius: 0.0
+     TS: 85.46207448489999
+     flux measurements:
+        - flux: 8.0878e-14
+          tested radius: 0.0
+          index: -2.61295
+          index uncertainty: 0.107754
+          flux uncertainty: 1.514e-14
+   - name: 2HWC J1812-126
+     RA: 273.208
+     Dec: -12.6356
+     l: 17.29358429110629
+     b: 2.627965173780297
+     position uncertainty: 0.19165184674906105
+     search radius: 0.0
+     TS: 26.8133409856
+     flux measurements:
+        - flux: 2.74268e-14
+          tested radius: 0.0
+          index: -2.84262
+          index uncertainty: 0.163945
+          flux uncertainty: 5.74579e-15
+   - name: 2HWC J1814-173
+     RA: 273.516
+     Dec: -17.3091
+     l: 13.330589859645594
+     b: 0.13069800989468963
+     position uncertainty: 0.17850870942518404
+     search radius: 0.0
+     TS: 141.28650496
+     flux measurements:
+        - flux: 8.83643e-14
+          tested radius: 0.0
+          index: -2.60845
+          index uncertainty: 0.0901365
+          flux uncertainty: 1.30036e-14
+        - flux: 1.51575e-13
+          tested radius: 1.0
+          index: -2.54595
+          index uncertainty: 0.070104
+          flux uncertainty: 1.88049e-14
+   - name: 2HWC J1819-150*
+     RA: 274.834
+     Dec: -15.0562
+     l: 15.914329143405185
+     b: 0.08821053423097175
+     position uncertainty: 0.15765321855906406
+     search radius: 0.0
+     TS: 62.9226524644
+     flux measurements:
+        - flux: 5.89801e-14
+          tested radius: 0.0
+          index: -2.88486
+          index uncertainty: 0.104535
+          flux uncertainty: 7.8871e-15
+   - name: 2HWC J1825-134
+     RA: 276.46
+     Dec: -13.4014
+     l: 18.11538855267712
+     b: -0.5264015036122985
+     position uncertainty: 0.08563132645292917
+     search radius: 0.0
+     TS: 767.25676036
+     flux measurements:
+        - flux: 1.38012e-13
+          tested radius: 0.0
+          index: -2.5812
+          index uncertainty: 0.0419738
+          flux uncertainty: 8.09629e-15
+        - flux: 2.49236e-13
+          tested radius: 0.9
+          index: -2.55818
+          index uncertainty: 0.0311096
+          flux uncertainty: 1.14211e-14
+   - name: 2HWC J1829+070
+     RA: 277.339
+     Dec: 7.03039
+     l: 36.71919099359889
+     b: 8.093270821645314
+     position uncertainty: 0.10114155971423912
+     search radius: 0.0
+     TS: 25.293456147599997
+     flux measurements:
+        - flux: 8.05145e-15
+          tested radius: 0.0
+          index: -2.68713
+          index uncertainty: 0.165828
+          flux uncertainty: 1.74879e-15
+   - name: 2HWC J1831-098
+     RA: 277.866
+     Dec: -9.89685
+     l: 21.858528436413444
+     b: -0.11793442749984998
+     position uncertainty: 0.16791820093283846
+     search radius: 0.0
+     TS: 106.52510520999999
+     flux measurements:
+        - flux: 4.4207e-14
+          tested radius: 0.0
+          index: -2.8039
+          index uncertainty: 0.0937327
+          flux uncertainty: 4.70261e-15
+        - flux: 9.58435e-14
+          tested radius: 0.9
+          index: -2.63853
+          index uncertainty: 0.0628393
+          flux uncertainty: 7.97335e-15
+   - name: 2HWC J1837-065
+     RA: 279.36
+     Dec: -6.57959
+     l: 25.48385047361555
+     b: 0.09846028381471118
+     position uncertainty: 0.06423715168509214
+     search radius: 0.0
+     TS: 548.59945284
+     flux measurements:
+        - flux: 8.51951e-14
+          tested radius: 0.0
+          index: -2.90358
+          index uncertainty: 0.0401997
+          flux uncertainty: 4.0642e-15
+        - flux: 3.41327e-13
+          tested radius: 2.0
+          index: -2.66097
+          index uncertainty: 0.0254215
+          flux uncertainty: 1.12891e-14
+   - name: 2HWC J1844-032
+     RA: 281.074
+     Dec: -3.24701
+     l: 29.228376322314343
+     b: 0.1064546757158195
+     position uncertainty: 0.09781759321870971
+     search radius: 0.0
+     TS: 309.23574201
+     flux measurements:
+        - flux: 4.68264e-14
+          tested radius: 0.0
+          index: -2.6393
+          index uncertainty: 0.0560746
+          flux uncertainty: 3.19028e-15
+        - flux: 9.27662e-14
+          tested radius: 0.6
+          index: -2.50933
+          index uncertainty: 0.0411106
+          flux uncertainty: 5.18747e-15
+   - name: 2HWC J1847-018
+     RA: 281.953
+     Dec: -1.82811
+     l: 30.891662187898685
+     b: -0.027136883768947653
+     position uncertainty: 0.10703573819828857
+     search radius: 0.0
+     TS: 132.09364624
+     flux measurements:
+        - flux: 2.89355e-14
+          tested radius: 0.0
+          index: -2.95386
+          index uncertainty: 0.0764153
+          flux uncertainty: 2.82654e-15
+   - name: 2HWC J1849+001
+     RA: 282.393
+     Dec: 0.111906
+     l: 32.81881276535984
+     b: 0.46618681812087975
+     position uncertainty: 0.10492655032854188
+     search radius: 0.0
+     TS: 134.26088640999998
+     flux measurements:
+        - flux: 2.28313e-14
+          tested radius: 0.0
+          index: -2.53746
+          index uncertainty: 0.098708
+          flux uncertainty: 2.86432e-15
+        - flux: 6.07763e-14
+          tested radius: 0.8
+          index: -2.46661
+          index uncertainty: 0.0528366
+          flux uncertainty: 4.52121e-15
+   - name: 2HWC J1852+013*
+     RA: 283.008
+     Dec: 1.38031
+     l: 34.22812917398189
+     b: 0.4971999810211596
+     position uncertainty: 0.128364392037124
+     search radius: 0.0
+     TS: 71.4435729049
+     flux measurements:
+        - flux: 1.82119e-14
+          tested radius: 0.0
+          index: -2.90437
+          index uncertainty: 0.103159
+          flux uncertainty: 2.32766e-15
+   - name: 2HWC J1857+027
+     RA: 284.326
+     Dec: 2.79876
+     l: 36.09123867769586
+     b: -0.027806201113630243
+     position uncertainty: 0.060507261468842485
+     search radius: 0.0
+     TS: 302.83656484
+     flux measurements:
+        - flux: 3.55399e-14
+          tested radius: 0.0
+          index: -2.9329
+          index uncertainty: 0.0522914
+          flux uncertainty: 2.47024e-15
+        - flux: 9.7269e-14
+          tested radius: 0.9
+          index: -2.61402
+          index uncertainty: 0.0359644
+          flux uncertainty: 4.39552e-15
+   - name: 2HWC J1902+048*
+     RA: 285.513
+     Dec: 4.85506
+     l: 38.46148892481105
+     b: -0.14110819931480492
+     position uncertainty: 0.17863370901996065
+     search radius: 0.0
+     TS: 31.743758905599996
+     flux measurements:
+        - flux: 8.33578e-15
+          tested radius: 0.0
+          index: -3.22112
+          index uncertainty: 0.163255
+          flux uncertainty: 2.43412e-15
+   - name: 2HWC J1907+084*
+     RA: 286.787
+     Dec: 8.49867
+     l: 42.27941431625674
+     b: 0.4067060251000643
+     position uncertainty: 0.26536137988803354
+     search radius: 0.0
+     TS: 33.0894154756
+     flux measurements:
+        - flux: 7.28826e-15
+          tested radius: 0.0
+          index: -3.25433
+          index uncertainty: 0.183273
+          flux uncertainty: 2.51274e-15
+   - name: 2HWC J1908+063
+     RA: 287.051
+     Dec: 6.39188
+     l: 40.52949688877525
+     b: -0.7953831135183365
+     position uncertainty: 0.06269823871807552
+     search radius: 0.0
+     TS: 367.04045889
+     flux measurements:
+        - flux: 3.41359e-14
+          tested radius: 0.0
+          index: -2.52228
+          index uncertainty: 0.0527294
+          flux uncertainty: 2.24585e-15
+        - flux: 8.50531e-14
+          tested radius: 0.8
+          index: -2.3256
+          index uncertainty: 0.0324698
+          flux uncertainty: 4.22451e-15
+   - name: 2HWC J1912+099
+     RA: 288.105
+     Dec: 9.93472
+     l: 44.15380712958473
+     b: -0.0846214493605427
+     position uncertainty: 0.10421288115752131
+     search radius: 0.0
+     TS: 83.1862564225
+     flux measurements:
+        - flux: 1.45455e-14
+          tested radius: 0.0
+          index: -2.9297
+          index uncertainty: 0.0910364
+          flux uncertainty: 1.85914e-15
+        - flux: 3.66298e-14
+          tested radius: 0.7
+          index: -2.6417
+          index uncertainty: 0.0621055
+          flux uncertainty: 2.99494e-15
+   - name: 2HWC J1914+117*
+     RA: 288.677
+     Dec: 11.7198
+     l: 45.995775132725456
+     b: 0.24597016693533458
+     position uncertainty: 0.12581397434304845
+     search radius: 0.0
+     TS: 33.0172055236
+     flux measurements:
+        - flux: 8.49959e-15
+          tested radius: 0.0
+          index: -2.83131
+          index uncertainty: 0.151512
+          flux uncertainty: 1.56409e-15
+   - name: 2HWC J1921+131
+     RA: 290.303
+     Dec: 13.1331
+     l: 47.98742687123329
+     b: -0.4970719987564358
+     position uncertainty: 0.1237834024143672
+     search radius: 0.0
+     TS: 30.057915900100006
+     flux measurements:
+        - flux: 7.87235e-15
+          tested radius: 0.0
+          index: -2.75474
+          index uncertainty: 0.149771
+          flux uncertainty: 1.51717e-15
+   - name: 2HWC J1922+140
+     RA: 290.698
+     Dec: 14.0926
+     l: 49.01467490198752
+     b: -0.38374752875458623
+     position uncertainty: 0.10520830154984825
+     search radius: 0.0
+     TS: 48.9631869169
+     flux measurements:
+        - flux: 8.68833e-15
+          tested radius: 0.0
+          index: -2.4903
+          index uncertainty: 0.147212
+          flux uncertainty: 1.75812e-15
+        - flux: 2.61001e-14
+          tested radius: 0.9
+          index: -2.51414
+          index uncertainty: 0.0946499
+          flux uncertainty: 3.36764e-15
+   - name: 2HWC J1928+177
+     RA: 292.148
+     Dec: 17.7785
+     l: 52.920454264377156
+     b: 0.1397894120859716
+     position uncertainty: 0.06930980175443797
+     search radius: 0.0
+     TS: 65.6811372721
+     flux measurements:
+        - flux: 1.00218e-14
+          tested radius: 0.0
+          index: -2.55971
+          index uncertainty: 0.142667
+          flux uncertainty: 1.71198e-15
+   - name: 2HWC J1930+188
+     RA: 292.632
+     Dec: 18.8394
+     l: 54.071806644948985
+     b: 0.244871572367394
+     position uncertainty: 0.11868796886636028
+     search radius: 0.0
+     TS: 51.789612250000005
+     flux measurements:
+        - flux: 9.83193e-15
+          tested radius: 0.0
+          index: -2.73911
+          index uncertainty: 0.117083
+          flux uncertainty: 1.46787e-15
+   - name: 2HWC J1938+238
+     RA: 294.741
+     Dec: 23.8063
+     l: 59.36767217824402
+     b: 0.9401731395882185
+     position uncertainty: 0.13211978891729587
+     search radius: 0.0
+     TS: 30.466756908899995
+     flux measurements:
+        - flux: 7.43079e-15
+          tested radius: 0.0
+          index: -2.96442
+          index uncertainty: 0.150426
+          flux uncertainty: 1.58046e-15
+   - name: 2HWC J1949+244
+     RA: 297.422
+     Dec: 24.4603
+     l: 61.15619220087006
+     b: -0.8528943489114335
+     position uncertainty: 0.706979417051609
+     search radius: 1.0
+     TS: 34.872331878400004
+     flux measurements:
+        - flux: 1.94031e-14
+          tested radius: 1.0
+          index: -2.37726
+          index uncertainty: 0.158368
+          flux uncertainty: 4.18038e-15
+   - name: 2HWC J1953+294
+     RA: 298.257
+     Dec: 29.4845
+     l: 65.85599994707437
+     b: 1.0731677935641362
+     position uncertainty: 0.2399295823302209
+     search radius: 0.0
+     TS: 30.053201126399998
+     flux measurements:
+        - flux: 8.34589e-15
+          tested radius: 0.0
+          index: -2.77726
+          index uncertainty: 0.151048
+          flux uncertainty: 1.59986e-15
+   - name: 2HWC J1955+285
+     RA: 298.828
+     Dec: 28.5885
+     l: 65.34550356996095
+     b: 0.18352305661612323
+     position uncertainty: 0.13971398693227097
+     search radius: 0.0
+     TS: 25.373887562500002
+     flux measurements:
+        - flux: 5.74877e-15
+          tested radius: 0.0
+          index: -2.40428
+          index uncertainty: 0.241471
+          flux uncertainty: 2.14119e-15
+   - name: 2HWC J2006+341
+     RA: 301.553
+     Dec: 34.1838
+     l: 71.32578166440895
+     b: 1.1590110992625813
+     position uncertainty: 0.1331870840605045
+     search radius: 0.0
+     TS: 36.88618756
+     flux measurements:
+        - flux: 9.57398e-15
+          tested radius: 0.0
+          index: -2.63985
+          index uncertainty: 0.145723
+          flux uncertainty: 1.89184e-15
+        - flux: 2.45042e-14
+          tested radius: 0.9
+          index: -2.40314
+          index uncertainty: 0.110799
+          flux uncertainty: 4.2053e-15
+   - name: 2HWC J2019+367
+     RA: 304.937
+     Dec: 36.7953
+     l: 75.02350078427062
+     b: 0.3005041085526329
+     position uncertainty: 0.09086603763676881
+     search radius: 0.0
+     TS: 389.64786025
+     flux measurements:
+        - flux: 3.02084e-14
+          tested radius: 0.0
+          index: -2.29337
+          index uncertainty: 0.0627368
+          flux uncertainty: 3.10991e-15
+        - flux: 5.82244e-14
+          tested radius: 0.7
+          index: -2.24162
+          index uncertainty: 0.0444625
+          flux uncertainty: 4.55385e-15
+   - name: 2HWC J2020+403
+     RA: 305.156
+     Dec: 40.3749
+     l: 78.07198896706655
+     b: 2.185908259900182
+     position uncertainty: 0.11364261987668157
+     search radius: 0.0
+     TS: 59.6881401561
+     flux measurements:
+        - flux: 1.84893e-14
+          tested radius: 0.0
+          index: -2.95402
+          index uncertainty: 0.104911
+          flux uncertainty: 2.55004e-15
+   - name: 2HWC J2024+417*
+     RA: 306.035
+     Dec: 41.7603
+     l: 79.58918150968621
+     b: 2.4314856920345633
+     position uncertainty: 0.2039713491822449
+     search radius: 0.0
+     TS: 28.3836414169
+     flux measurements:
+        - flux: 1.23783e-14
+          tested radius: 0.0
+          index: -2.74006
+          index uncertainty: 0.174367
+          flux uncertainty: 2.56073e-15
+   - name: 2HWC J2031+415
+     RA: 307.925
+     Dec: 41.5107
+     l: 80.20977503863281
+     b: 1.1381215168860452
+     position uncertainty: 0.08809358415329883
+     search radius: 0.0
+     TS: 209.12630543999998
+     flux measurements:
+        - flux: 3.23703e-14
+          tested radius: 0.0
+          index: -2.56586
+          index uncertainty: 0.0745861
+          flux uncertainty: 3.17216e-15
+        - flux: 6.16027e-14
+          tested radius: 0.7
+          index: -2.5161
+          index uncertainty: 0.0518822
+          flux uncertainty: 4.40636e-15
