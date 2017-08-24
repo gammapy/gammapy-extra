@@ -34,7 +34,7 @@ def make_2hwc():
         description='Right Ascension (J2000)', unit='deg', format='.3f',
     )
     table['dec'] = Column(
-        data=[_['RA'] for _ in data],
+        data=[_['Dec'] for _ in data],
         description='Declination (J2000)', unit='deg', format='.3f',
     )
     table['glon'] = Column(
@@ -82,7 +82,7 @@ def add_flux_measurements(table, data, idx):
         description='Differential flux at 7 TeV', unit='cm-2 s-1 TeV-1', format='.3g',
     )
     table[f'spec{idx}_dnde_err'] = Column(
-        data=[_['flux'] for _ in flux_data],
+        data=[_['flux uncertainty'] for _ in flux_data],
         description=f'Statistical error on spec{idx}_dnde', unit='cm-2 s-1 TeV-1', format='.3g',
     )
     table[f'spec{idx}_index'] = Column(
@@ -90,7 +90,7 @@ def add_flux_measurements(table, data, idx):
         description='Spectral index', format='.2f',
     )
     table[f'spec{idx}_index_err'] = Column(
-        data=[_['index'] for _ in flux_data],
+        data=[_['index uncertainty'] for _ in flux_data],
         description=f'Statistical error on spec{idx}_index', format='.2f',
     )
     table[f'spec{idx}_radius'] = Column(
