@@ -1,0 +1,11 @@
+Changes from v17 to v18 of the extended sources archive:
+--------------------------------------------------------
+
+- Changed RX J1713-3946 template to match that used in both 3FHL and in the following publication:
+https://arxiv.org/abs/1609.08671
+
+The updated template file is named RXJ1713_2016_250GeV.fits
+
+  
+New sources added: None
+
