@@ -7,9 +7,13 @@
 - name: background_model
   test: true
   requires:
+- name: cta_1dc_introduction
+  test: false
 - name: cta_data_analysis
   test: true
   requires: sherpa
+- name: cta_sensitivity
+  test: true
 - name: cta_simulation
   test: false
   requires:
