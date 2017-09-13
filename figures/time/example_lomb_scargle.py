@@ -19,11 +19,4 @@ fig = plot_periodogram(time, flux, flux_err, result['pgrid'],
                        result['psd'], result['swf'], result['period'],
                        result['significance']
                        )
-fig.savefig('short_test', bbox_inches='tight')
-
-result = lomb_scargle(time, flux, flux_err, 0.001, 'None', 'boot')
-fig = plot_periodogram(time, flux, flux_err, result['pgrid'],
-                       result['psd'], result['swf'], result['period'],
-                       result['significance']
-                       )
-fig.savefig('long_test', bbox_inches='tight')
+fig.savefig('example_lomb_scargle', bbox_inches='tight')
