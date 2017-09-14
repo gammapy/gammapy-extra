@@ -19,7 +19,10 @@ fig = plot_periodogram(
     psd_data=result['psd'],
     psd_win=result['swf'],
     best_period=result['period'],
-    significance=result['significance'],
+    significance=result['fap'],
 )
+
+print(result['best_period'] + ' +/- ' + dt)
+print(result['fap'])
 
 fig.savefig('example_lomb_scargle.png', bbox_inches='tight')
