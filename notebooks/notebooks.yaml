@@ -10,7 +10,7 @@
 - name: cta_1dc_introduction
   test: false
 - name: cta_data_analysis
-  test: true
+  test: false
   requires: sherpa
 - name: cta_sensitivity
   test: true
