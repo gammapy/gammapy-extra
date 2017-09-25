@@ -9,11 +9,13 @@
   requires:
 - name: cta_1dc_introduction
   test: false
+  requires:
 - name: cta_data_analysis
   test: false
   requires: sherpa
 - name: cta_sensitivity
   test: true
+  requires:
 - name: cta_simulation
   test: false
   requires:
