@@ -49,6 +49,9 @@
 - name: image_analysis
   test: true
   requires:
+- name: image_fitting_with_sherpa
+  test: false
+  requires: sherpa
 - name: image_pipe
   test: true
   requires:
@@ -69,9 +72,12 @@
   requires:
 - name: spectrum_models
   test: true
-  requires: 
+  requires:
 - name: spectrum_analysis
   test: true
+  requires: sherpa
+- name: spectrum_fitting_with_sherpa
+  test: false
   requires: sherpa
 - name: spectrum_simulation_cta
   test: true
