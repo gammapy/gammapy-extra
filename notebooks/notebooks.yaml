@@ -55,6 +55,9 @@
 - name: image_pipe
   test: true
   requires:
+- name: light_curve
+  test: false
+  requires: sherpa
 - name: nddata_demo
   test: true
   requires:
