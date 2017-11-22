@@ -1,0 +1,15 @@
+def simulation(dataA, dataB):
+    time.sleep(2)
+
+    all_data = dataA.data + dataB.data
+
+    (f, name) = tempfile.mkstemp(prefix='vtweather')
+    os.close(f)
+
+    writer = csv.writer(open(name, 'w'), delimiter=':')
+    writer.writerows(all_data)
+
+    #res = registry.get_descriptor_by_name('edu.utah.sci.vistrails.basic',
+    #    'File').module()
+    #res.name = name
+    return name

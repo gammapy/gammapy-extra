@@ -1,0 +1,7 @@
+def plot(data):
+    t = extract_temperature(data)
+    p = extract_precipitation(data)
+    plt.scatter(t, p, marker='o')
+    plt.xlabel('Temperature')
+    plt.ylabel('Precipitation')
+    plt.savefig("output.png")

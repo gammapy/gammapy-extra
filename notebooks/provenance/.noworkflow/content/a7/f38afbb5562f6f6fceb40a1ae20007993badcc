@@ -1,0 +1,4 @@
+arr = range(my_var)
+for i in arr:
+    g = sum(arr)
+c = max(arr)

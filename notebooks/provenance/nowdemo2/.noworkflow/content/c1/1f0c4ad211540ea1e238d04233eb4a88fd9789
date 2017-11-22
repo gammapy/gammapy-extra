@@ -1,0 +1,3 @@
+def bar_graph(prec, months, years):
+    prepare(prec, months, years, plt)
+    plt.savefig("out.png")

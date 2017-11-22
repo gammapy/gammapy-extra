@@ -1,0 +1,2 @@
+def extract_precipitation(data):
+    return extract_column(dat, 1)

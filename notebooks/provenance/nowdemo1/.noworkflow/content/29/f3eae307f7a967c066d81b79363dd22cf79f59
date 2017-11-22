@@ -1,0 +1,2 @@
+def extract_column(data, column):
+    return [float(row[column]) for row in data]
