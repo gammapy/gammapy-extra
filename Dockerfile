@@ -1,44 +1,62 @@
 # This is the Dockerfile to run Gammapy on Binder
 #
-# - Installation is for Python 3 using Anaconda
-# - TODO: if possible, don't give users the option to
-#   select Python 2 kernel on Binder
 
-FROM andrewosh/binder-python-2.7
+FROM continuumio/miniconda3:4.3.27p0
 MAINTAINER Gammapy developers <gammapy@googlegroups.com>
-USER main
 
+# compilers
+RUN apt-get install -y build-essential
+
+# install dependencies
 RUN conda config --add channels conda-forge
 RUN conda config --add channels astropy
 RUN conda config --add channels sherpa
 
-# RUN conda create -y --name gammapy-env python=3 anaconda
-# RUN /bin/bash -c "source activate gammapy-env"
-
-# Check if we're using the right Python, pip and conda
-RUN which python
-RUN python --version
-RUN which pip
-RUN which conda
-
-RUN conda install -q -y pyyaml
-RUN conda install -q -y sherpa
+RUN conda install -q -y python==3.6
+RUN conda install -q -y cython>=0.27
+RUN conda install -q -y numpy>=1.13
+RUN conda install -q -y astropy
+RUN conda install -q -y uncertainties
+RUN conda install -q -y scipy>=0.19.1
+RUN conda install -q -y scikit-image
+RUN conda install -q -y matplotlib>=2.0
+RUN conda install -q -y astropy>=2.0
+RUN conda install -q -y regions>=0.2
+RUN conda install -q -y reproject
 RUN conda install -q -y iminuit
 RUN conda install -q -y healpy
-RUN conda install -q -y regions
-RUN conda install -q -y reproject
 RUN conda install -q -y photutils
 RUN conda install -q -y aplpy
-#RUN conda install -q -y naima
+RUN conda install -q -y pyyaml
+RUN conda install -q -y sherpa>=4.9.1
+RUN conda install -q -y click
 
-# RUN pip install --no-deps gammapy regions
-RUN pip install --no-deps uncertainties
-RUN pip install --no-deps git+https://github.com/gammapy/gammapy.git#egg=gammapy
+# install good version of Jupyter notebook
+RUN pip install --no-cache-dir notebook==5.*
 
-ENV GAMMAPY_EXTRA $HOME/notebooks
-#ENV OPTS= "$OPTS --NotebookApp.default_url=/notebooks/notebooks/index.ipynb "
+# install last version of gammapy
+RUN /bin/bash -c "git clone https://github.com/gammapy/gammapy.git && \
+                  cd gammapy && \
+                  python setup.py install"
 
-# Check if things look OK
-RUN which python
-RUN python --version
-RUN python -c 'import gammapy; print(gammapy.__version__)'
+# add gammapy user running the jupyter notebook process
+ENV NB_USER gammapy
+ENV NB_UID 1000
+ENV HOME /home/${NB_USER}
+
+RUN adduser --disabled-password \
+    --gecos "Default user" \
+    --uid ${NB_UID} \
+    ${NB_USER}
+
+# make sure the contents of our repo are in ${HOME}
+COPY . ${HOME}
+USER root
+RUN chown -R ${NB_UID} ${HOME}
+USER ${NB_USER}
+
+# start Jupyter server in home dir
+WORKDIR ${HOME}
+
+# env vars used in notebooks for gammapy user
+ENV GAMMAPY_EXTRA /home/${NB_USER}
