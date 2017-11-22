@@ -22,11 +22,9 @@ http://nbviewer.jupyter.org/github/gammapy/gammapy-extra/blob/master/index.ipynb
 Binder
 ------
 
-Try Gammapy online in the browser via http://mybinder.org/ :
+Try Gammapy online in MyBinder: http://mybinder.org/repo/gammapy/gammapy-extra
 
 .. image:: http://mybinder.org/badge.svg
     :target: http://mybinder.org/repo/gammapy/gammapy-extra
-
-Admin: http://mybinder.org/status/gammapy/gammapy-extra
 
 Controlled via ``Dockerfile`` in this gammapy-extra repo.
