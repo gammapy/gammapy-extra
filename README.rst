@@ -19,7 +19,7 @@ Currently we have the following folders:
 Jupyter notebooks stored in **notebooks** folder may be also found in the
 `Gammapy documentation website<http://docs.gammapy.org/en/latest/tutorials.html>`__
 as fixed-text Sphinx formatted files, as well as in the
-`Nbviewer platform<http://nbviewer.jupyter.org/github/gammapy/gammapy-extra/blob/master/index.ipynb>`__.
+`NBViewer platform<http://nbviewer.jupyter.org/github/gammapy/gammapy-extra/blob/master/index.ipynb>`__.
 
 
 Binder
