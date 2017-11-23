@@ -16,15 +16,18 @@ Currently we have the following folders:
 * `notebooks` : Gammapy IPython notebooks
 * `logo` : Gammapy logo and banner
 
-A static, rendered version of the notebooks is available online at
-http://nbviewer.jupyter.org/github/gammapy/gammapy-extra/blob/master/index.ipynb
+Jupyter notebooks stored in **notebooks** folder may be also found in the
+`Gammapy documentation website<http://docs.gammapy.org/en/latest/tutorials.html>`__
+as fixed-text Sphinx formatted files, as well as in the
+`Nbviewer platform<http://nbviewer.jupyter.org/github/gammapy/gammapy-extra/blob/master/index.ipynb>`__.
+
 
 Binder
 ------
 
 Try Gammapy online in MyBinder: http://mybinder.org/repo/gammapy/gammapy-extra
 
+Controlled via ``Dockerfile`` in this gammapy-extra repo.
+
 .. image:: http://mybinder.org/badge.svg
     :target: http://mybinder.org/repo/gammapy/gammapy-extra
-
-Controlled via ``Dockerfile`` in this gammapy-extra repo.
