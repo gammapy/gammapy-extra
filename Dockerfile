@@ -55,8 +55,8 @@ USER root
 RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
 
-# start Jupyter server in home dir
-WORKDIR ${HOME}
+# start Jupyter server in notebooks dir
+WORKDIR ${HOME}/notebooks
 
 # env vars used in notebooks for gammapy user
 ENV GAMMAPY_EXTRA /home/${NB_USER}
