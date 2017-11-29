@@ -1,0 +1,34 @@
+# Conda environment for Gammapy tutorials
+# Install:    conda env create -f environment.yml
+# Update:     conda env update -f environment.yml
+# Activate:   source activate gammapy-tutorial
+# Deactivate: source deactivate
+name: gammapy-tutorial
+
+channels:
+  - conda-forge
+  - sherpa
+
+dependencies:
+  - python==3.6
+  - cython>=0.27
+  - numpy>=1.13
+  - astropy>=2.0
+  - regions>=0.2
+  - sherpa>=4.9.1
+  - click
+  - pyyaml
+  - scipy>=0.19.1
+  - matplotlib>=2.0
+  - scikit-image
+  - uncertainties
+  - healpy
+  - reproject
+  - photutils
+  - aplpy
+  - ipython
+  - iminuit
+
+  - pip:
+    - git+https://github.com/gammapy/gammapy.git#egg=gammapy
+    - notebook==5.*
