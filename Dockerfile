@@ -24,8 +24,8 @@ RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
 
 # install dependencies, including the dev version of Gammapy
-RUN conda env create -f environment.yml
-RUN source activate gammapy-tutorial
+RUN conda env create -f ${HOME}/env.yml
+RUN RUN /bin/bash -c "source activate gammapy-tutorial"
 
 # start Jupyter server in notebooks dir
 WORKDIR ${HOME}/notebooks
