@@ -29,9 +29,9 @@ Try Gammapy online in Binder: http://mybinder.org/repo/gammapy/gammapy-extra
 
 Controlled via ``Dockerfile`` in this gammapy-extra repo.
 
-In case you would like to chek the Binder Gammapy with a modified Dockerfile
+In case you would like to chek the Binder Gammapy space with a modified ``Dockerfile``:
 
-- Check in yout desktop the Docker image is built successfully running the following command in your ``gammapy-extra`` local folder: ``docker build -t gammapy-tutorial``
+- Check in yout desktop the Docker image is built successfully running the following command in your ``gammapy-extra`` local folder: ``docker build -t gammapy-tutorial .``
 - Go to https://mybinder.org
 - Provide URL of your GitHub **fork and branch** 
 - Click on launch bouton
