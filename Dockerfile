@@ -7,10 +7,6 @@ MAINTAINER Gammapy developers <gammapy@googlegroups.com>
 # compilers
 RUN apt-get install -y build-essential
 
-# install dependencies, including the dev version of Gammapy
-RUN conda env create -f environment.yml
-RUN source activate gammapy-tutorial
-
 # add gammapy user running the jupyter notebook process
 ENV NB_USER gammapy
 ENV NB_UID 1000
@@ -26,6 +22,10 @@ COPY . ${HOME}
 USER root
 RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
+
+# install dependencies, including the dev version of Gammapy
+RUN conda env create -f environment.yml
+RUN source activate gammapy-tutorial
 
 # start Jupyter server in notebooks dir
 WORKDIR ${HOME}/notebooks
