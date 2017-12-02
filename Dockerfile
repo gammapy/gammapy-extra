@@ -1,7 +1,7 @@
 # This is the Dockerfile to run Gammapy on Binder
 #
 
-FROM continuumio/miniconda3:latest
+FROM continuumio/miniconda3
 MAINTAINER Gammapy developers <gammapy@googlegroups.com>
 
 # compilers
