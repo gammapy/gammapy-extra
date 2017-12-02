@@ -25,9 +25,9 @@ as fixed-text Sphinx formatted files, as well as in the
 Binder
 ------
 
-Try Gammapy online in Binder: http://mybinder.org/repo/gammapy/gammapy-extra
+Try Gammapy online in Binder: https://mybinder.org/v2/gh/gammapy/gammapy-extra.git/binder
 
-Controlled via ``Dockerfile`` in this gammapy-extra repo.
+Controlled via ``Dockerfile`` in ``binder`` branch of this gammapy-extra repo.
 
 In case you would like to chek the Binder Gammapy space with a modified ``Dockerfile``:
 
@@ -37,6 +37,5 @@ In case you would like to chek the Binder Gammapy space with a modified ``Docker
 - Click on launch bouton
 - Follow the logs clicking on 'Build logs'
 
-
 .. image:: http://mybinder.org/badge.svg
-    :target: http://mybinder.org/repo/gammapy/gammapy-extra
+    :target: https://mybinder.org/v2/gh/gammapy/gammapy-extra.git/binder
