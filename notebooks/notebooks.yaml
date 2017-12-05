@@ -37,9 +37,6 @@
 - name: detect_ts
   test: true
   requires:
-- name: diffuse_model_computation
-  test: false
-  requires:
 - name: fermi_vela_model
   test: false
   requires:
