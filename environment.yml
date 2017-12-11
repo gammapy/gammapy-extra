@@ -12,8 +12,11 @@ channels:
 
 dependencies:
   - python==3.6
+  - ipython
+  - jupyter
   - cython>=0.27
   - numpy>=1.13
+  - pandas
   - astropy>=2.0
   - regions>=0.2
   - sherpa>=4.9.1
@@ -27,7 +30,6 @@ dependencies:
   - reproject
   - photutils
   - aplpy
-  - ipython
   - iminuit
 
   - pip:
