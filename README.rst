@@ -17,9 +17,8 @@ Currently we have the following folders:
 * `logo` : Gammapy logo and banner
 
 Jupyter notebooks stored in **notebooks** folder may be also found in the
-`Gammapy documentation website <http://docs.gammapy.org/en/latest/tutorials.html>`__
-as fixed-text Sphinx formatted files, as well as in the
-`NBViewer platform <http://nbviewer.jupyter.org/github/gammapy/gammapy-extra/blob/master/index.ipynb>`__.
+`Gammapy documentation website <http://docs.gammapy.org/dev/tutorials.html>`__
+as fixed-text Sphinx formatted files.
 
 
 Binder
@@ -29,9 +28,10 @@ Try Gammapy online in Binder: http://mybinder.org/repo/gammapy/gammapy-extra
 
 Controlled via ``Dockerfile`` in this gammapy-extra repo.
 
-In case you would like to chek the Binder Gammapy space with a modified ``Dockerfile``:
+In case you would like use Binder with a different ``Dockerfile``:
 
-- Check in yout desktop the Docker image is built successfully running the following command in your ``gammapy-extra`` local folder: ``docker build -t gammapy-tutorial .``
+- Check in yout desktop that the Docker image is built successfully running the following command in your ``gammapy-extra`` local folder: ``docker build -t gammapy-tutorial .``
+- Push the modified ``Dockerfile`` to your forked repository.
 - Go to https://mybinder.org
 - Provide URL of your GitHub **fork and branch** 
 - Click on launch bouton
