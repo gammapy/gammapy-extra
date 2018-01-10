@@ -30,7 +30,7 @@ Controlled via ``Dockerfile`` in this gammapy-extra repo.
 
 In case you would like use Binder with a different ``Dockerfile``:
 
-- Check in yout desktop that the Docker image is built successfully running the following command in your ``gammapy-extra`` local folder: ``docker build -t gammapy-tutorial .``
+- Check in your desktop that the Docker image is built successfully running the following command in your ``gammapy-extra`` local folder: ``docker build -t gammapy-tutorial .``
 - Push the modified ``Dockerfile`` to your forked repository.
 - Go to https://mybinder.org
 - Provide URL of your GitHub **fork and branch** 
