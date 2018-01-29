@@ -67,4 +67,6 @@ datasets/source_diffuse_separation/diffuse_integral_flux_reprojected.fits
 datasets/source_diffuse_separation/exposure_10_GeV.fits
 datasets/source_diffuse_separation/gll_iem_v05.fits
 
+datasets/cta-1dc/CTA-Performance-prod3b-v1-FITS1.tar.gz
+
 notebooks/crab_analysis
