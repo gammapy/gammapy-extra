@@ -5,7 +5,7 @@ FROM continuumio/miniconda3
 MAINTAINER Gammapy developers <gammapy@googlegroups.com>
 
 # compilers
-RUN apt-get install -y build-essential
+RUN apt-get update && apt-get install -y build-essential
 
 # install good version of notebook for Binder
 RUN pip install --no-cache-dir notebook==5.*
