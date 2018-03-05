@@ -13,6 +13,7 @@ RUN pip install --no-cache-dir notebook==5.*
 # install dependencies - including the dev version of Gammapy
 COPY environment.yml binder.py tmp/
 WORKDIR tmp/
+RUN conda update conda
 RUN conda install -q -y pyyaml
 RUN python binder.py
 
