@@ -2,3 +2,4 @@
 
 * 2 out of 8 Vela fits file with an added phase column
 * Vela phasecurve that was used for the simulations
+* Python code to add a phase column to the Vela observations
