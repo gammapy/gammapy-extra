@@ -11,14 +11,11 @@ ATNF
 
 The ``ATNF_v51.fits.gz`` file was created with the ``make_atnf.py`` script on 2015-02-08.
 
-HESS Galactic
--------------
+HGPS
+----
 
-The ``hess_galactic_catalog.fits.gz`` file was created
-by assembling information from papers and proceedings
-and computing uniform columns with a script.
-
-* Version 01 from 2015-02-08: initial version
+The ``hgps_catalog_v1.fits.gz`` file is a copy of the HESS Galactic plane survey catalog file
+from https://www.mpi-hd.mpg.de/hfm/HESS/hgps/data/hgps_catalog_v1.fits.gz
 
 Green
 -----
