@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<source_library title="source library">
+  <source type="PointSource" name="TeV_J1224+2122" tscalc="1">
+    <spectrum type="PowerLaw">
+      <parameter scale="1e-16" name="Prefactor" min="1e-7" max="1000" free="1" value="7.80000" />
+      <parameter scale="-1.0" name="Index" min="0.0" max="+10.0" free="1" value="3.75" />
+      <parameter scale="1.0" name="Scale" min="0.0" max="+10000000.0" free="0" value="200000.0" />
+    </spectrum>
+    <spatialModel type="SkyDirFunction">
+      <parameter scale="1.0" name="RA" min="-360" max="360" free="0" value="186.227" />
+      <parameter scale="1.0" name="DEC" min="-90" max="90" free="0" value="21.3796" />
+    </spatialModel>
+    <temporal type="LightCurve" file="lightcrv_PKSB1222+216.fits">
+      <parameter scale="1e+01" name="Normalization" min="0.0" max="1000.0" free="0" value="6.44664" />
+    </temporal>
+  </source>
+</source_library>
