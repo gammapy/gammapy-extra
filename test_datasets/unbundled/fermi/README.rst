@@ -18,6 +18,7 @@ Files
 * ``psf.fits`` -- Galactic center PSF
 * ``gll_iem_v02_cutout.fits`` -- Galactic center diffuse model cube
 * ``fermi_exposure.fits.gz`` -- Galactic center exposure cube
+* ``isotropic_iem_v02.txt`` -- Isotropic Spectral Template
 
 
 Details
