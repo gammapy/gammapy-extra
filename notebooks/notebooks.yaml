@@ -37,9 +37,6 @@
 - name: detect_ts
   test: true
   requires:
-- name: fermi_vela_model
-  test: false
-  requires:
 - name: first_steps
   test: false
   requires:
