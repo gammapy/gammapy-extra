@@ -25,12 +25,6 @@
 - name: simulate_3d
   test: true
   requires: iminuit
-- name: cube_analysis_part1
-  test: false
-  requires:
-- name: cube_analysis_part2
-  test: true
-  requires: sherpa
 - name: cwt
   test: true
   requires:
