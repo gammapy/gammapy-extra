@@ -55,9 +55,6 @@
 - name: image_fitting_with_sherpa
   test: false
   requires: sherpa
-- name: image_pipe
-  test: true
-  requires:
 - name: light_curve
   test: false
   requires: sherpa
