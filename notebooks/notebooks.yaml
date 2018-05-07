@@ -79,6 +79,3 @@
 - name: spectrum_pipe
   test: true
   requires: sherpa
-- name: time_analysis
-  test: true
-  requires:
