@@ -6,9 +6,10 @@ MAINTAINER Gammapy developers <gammapy@googlegroups.com>
 
 # compilers
 RUN apt-get update && apt-get install -y build-essential
+#RUN pip install --upgrade pip 
 
 # install good version of notebook for Binder
-RUN pip install --no-cache-dir notebook==5.*
+# RUN pip install --no-cache-dir notebook==5.*
 
 # install dependencies - including the dev version of Gammapy
 COPY environment.yml binder.py tmp/
@@ -34,7 +35,7 @@ COPY . ${HOME}
 USER root
 RUN chown -R ${NB_UID} ${HOME}
 
-# start Jupyter server in notebooks dir
+# start JupyterLab server in notebooks dir
 USER ${NB_USER}
 WORKDIR ${HOME}/notebooks
 
