@@ -58,9 +58,6 @@
 - name: source_catalogs
   test: false
   requires:
-- name: source_diffuse_estimation
-  test: false
-  requires:
 - name: source_population_model
   test: true
   requires:
