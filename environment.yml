@@ -34,3 +34,4 @@ dependencies:
 
   - pip:
     - git+https://github.com/gammapy/gammapy.git#egg=gammapy
+    - jupyterlab_launcher>=0.5.0
