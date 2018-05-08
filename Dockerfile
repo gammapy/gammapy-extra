@@ -41,3 +41,4 @@ WORKDIR ${HOME}/notebooks
 
 # env vars used in notebooks
 ENV GAMMAPY_EXTRA /home/${NB_USER}
+ENV CTADATA /home/${NB_USER}/datasets/cta-1dc
