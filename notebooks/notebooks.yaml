@@ -55,9 +55,6 @@
 - name: sed_fitting_gammacat_fermi
   test: true
   requires: sherpa
-- name: source_catalogs
-  test: false
-  requires:
 - name: source_population_model
   test: true
   requires:
