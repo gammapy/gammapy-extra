@@ -31,9 +31,6 @@
 - name: data_fermi_lat
   test: false
   requires:
-- name: data_iact
-  test: true
-  requires:
 - name: detect_ts
   test: true
   requires:
