@@ -37,9 +37,6 @@
 - name: first_steps
   test: false
   requires:
-- name: image_analysis
-  test: true
-  requires:
 - name: image_fitting_with_sherpa
   test: false
   requires: sherpa
