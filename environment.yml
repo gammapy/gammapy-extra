@@ -16,22 +16,21 @@ dependencies:
   - jupyter
   - jupyterlab
   - jupyterlab_launcher
-  - cython>=0.27
+  - cython
   - numpy==1.13
   - pandas
-  - astropy>=2.0
-  - regions>=0.2
-  - sherpa>=4.9.1
+  - astropy
+  - regions
   - click
   - pyyaml
-  - scipy>=0.19.1
-  - matplotlib>=2.0
+  - scipy
+  - matplotlib
   - scikit-image
   - uncertainties
   - healpy
   - reproject
   - photutils
-  - aplpy
+  - sherpa
   - iminuit
 
   - pip:
