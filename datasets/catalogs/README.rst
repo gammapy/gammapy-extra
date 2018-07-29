@@ -26,12 +26,3 @@ SNRCat
 ------
 
 This is a dump of http://www.physics.umanitoba.ca/snr/SNRcat/SNRlist.php?textonly from 2015-02-08.
-
-TeVCat
-------
-
-The ``tevcat.fits.gz`` file was created with the
-code from https://github.com/astropy/astroquery/pull/41 .
-
-It is a version of TeVCat (http://tevcat.uchicago.edu/) as of 2014-09-24.
-
