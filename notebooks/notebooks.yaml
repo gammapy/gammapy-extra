@@ -1,58 +1,67 @@
 # This is a list of available notebooks.
 # It's used for automatic testing.
 # Let's keep it alphabetical.
+- name: analysis_3d
+  test: true
+  requires: iminuit
+- name: astro_dark_matter
+  test: true
+  requires:
 - name: astropy_introduction
   test: true
   requires:
 - name: background_model
   test: true
   requires:
-- name: cta_1dc_introduction
+- name: cta_1dc_analysis_msh15-52
   test: false
+  requires:
+- name: cta_1dc_introduction
+  test: true
   requires:
 - name: cta_data_analysis
-  test: false
+  test: true
   requires: sherpa
 - name: cta_sensitivity
-  test: true
-  requires:
-- name: cta_simulation
   test: false
   requires:
-- name: analysis_3d
+- name: cta_simulation
   test: true
-  requires: iminuit
-- name: simulate_3d
-  test: true
-  requires: iminuit
+  requires:
 - name: cwt
   test: true
   requires:
 - name: data_fermi_lat
-  test: false
+  test: true
   requires:
 - name: detect_ts
   test: true
   requires:
 - name: first_steps
-  test: false
+  test: true
+  requires:
+- name: hgps
+  test: true
   requires:
 - name: image_fitting_with_sherpa
-  test: false
+  test: true
   requires: sherpa
+- name: intro_maps
+  test: true
+  requires:
 - name: light_curve
-  test: false
+  test: true
   requires: sherpa
 - name: nddata_demo
-  test: true
+  test: false
   requires:
 - name: sed_fitting_gammacat_fermi
   test: true
   requires: sherpa
-- name: source_population_model
+- name: simulate_3d
   test: true
-  requires:
-- name: spectrum_models
+  requires: iminuit
+- name: source_population_model
   test: true
   requires:
 - name: spectrum_analysis
@@ -61,12 +70,15 @@
 - name: spectrum_fitting_with_sherpa
   test: false
   requires: sherpa
-- name: spectrum_simulation_cta
+- name: spectrum_models
+  test: true
+  requires:
+- name: spectrum_pipe
   test: true
   requires: sherpa
 - name: spectrum_simulation
-  test: true
+  test: false
   requires: sherpa
-- name: spectrum_pipe
-  test: true
+- name: spectrum_simulation_cta
+  test: false
   requires: sherpa
