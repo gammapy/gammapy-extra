@@ -15,7 +15,7 @@ dependencies:
   - ipython
   - jupyter
   - jupyterlab
-  - jupyterlab_launcher
+  - jupyterlab_launcher==0.11.2
   - cython
   - numpy==1.13
   - pandas
