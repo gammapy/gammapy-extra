@@ -13,9 +13,6 @@
 - name: background_model
   test: false
   requires:
-- name: cta_1dc_analysis_msh15-52
-  test: false
-  requires:
 - name: cta_1dc_introduction
   test: true
   requires:
