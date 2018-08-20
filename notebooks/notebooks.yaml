@@ -22,9 +22,6 @@
 - name: cta_sensitivity
   test: false
   requires:
-- name: cta_simulation
-  test: true
-  requires:
 - name: cwt
   test: true
   requires:
