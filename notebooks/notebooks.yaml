@@ -11,7 +11,7 @@
   test: true
   requires:
 - name: background_model
-  test: false
+  test: true
   requires:
 - name: cta_1dc_introduction
   test: true
@@ -20,7 +20,7 @@
   test: true
   requires: sherpa
 - name: cta_sensitivity
-  test: false
+  test: true
   requires:
 - name: cwt
   test: true
@@ -44,10 +44,10 @@
   test: true
   requires:
 - name: light_curve
-  test: false
+  test: true
   requires: sherpa
 - name: nddata_demo
-  test: false
+  test: true
   requires:
 - name: sed_fitting_gammacat_fermi
   test: true
@@ -62,7 +62,7 @@
   test: true
   requires: sherpa
 - name: spectrum_fitting_with_sherpa
-  test: false
+  test: true
   requires: sherpa
 - name: spectrum_models
   test: true
@@ -71,8 +71,8 @@
   test: true
   requires: sherpa
 - name: spectrum_simulation
-  test: false
+  test: true
   requires: sherpa
 - name: spectrum_simulation_cta
-  test: false
+  test: true
   requires: sherpa
