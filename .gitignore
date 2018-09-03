@@ -74,3 +74,4 @@ notebooks/data
 notebooks/hgps_data
 notebooks/analysis_3d
 notebooks/simulate_3d
+notebooks/*.fits
