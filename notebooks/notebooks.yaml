@@ -44,14 +44,14 @@
   test: true
   requires:
 - name: light_curve
-  test: false
-  requires: sherpa
+  test: true
+  requires: iminuit
 - name: nddata_demo
   test: false
   requires:
 - name: sed_fitting_gammacat_fermi
   test: true
-  requires: sherpa
+  requires: iminuit
 - name: simulate_3d
   test: true
   requires: iminuit
@@ -60,7 +60,7 @@
   requires:
 - name: spectrum_analysis
   test: true
-  requires: sherpa
+  requires: iminuit
 - name: spectrum_fitting_with_sherpa
   test: true
   requires: sherpa
@@ -69,10 +69,10 @@
   requires:
 - name: spectrum_pipe
   test: true
-  requires: sherpa
+  requires: iminuit
 - name: spectrum_simulation
   test: false
-  requires: sherpa
+  requires: iminuit
 - name: spectrum_simulation_cta
   test: false
-  requires: sherpa
+  requires: iminuit
