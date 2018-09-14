@@ -75,3 +75,4 @@ notebooks/hgps_data
 notebooks/analysis_3d
 notebooks/simulate_3d
 notebooks/*.fits
+notebooks/fit_result_LogParabola.yaml
