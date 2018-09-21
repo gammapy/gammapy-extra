@@ -3,6 +3,8 @@ H.E.S.S. DL3 public test data release 1 (HESS DL3 DR1)
 
 H.E.S.S. collaboration, 2018
 
+Webpage: https://www.mpi-hd.mpg.de/hfm/HESS/pages/dl3-dr1/
+
 The data and documentation is publicly released by the H.E.S.S. collaboration
 as a contribution to the ongoing efforts to define a common open format for
 data level 3 of imaging atmospheric Cherenkov telescopes (IACTs) and IACT
