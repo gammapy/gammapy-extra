@@ -7,7 +7,8 @@ import numpy as np
 from astropy.table import Table
 
 CTADATA = Path(os.environ['CTADATA'])
-obs_ids = [110380, 111140, 111159]
+# OBS_ID=111630 is for Vela PSR with PHASE
+obs_ids = [110380, 111140, 111159, 111630]
 
 
 def make_obs_index():
@@ -46,6 +47,13 @@ def copy_data():
     path.mkdir(exist_ok=True, parents=True)
 
     for obs_id in obs_ids:
+        # Don't copy / replace the Vela PSR file
+        # It was added by Marion here:
+        # https://github.com/gammapy/gammapy-extra/pull/107
+        # and I don't have the script to re-create it
+        if obs_id == 111630:
+            continue
+
         filename = path / f'gps_baseline_{obs_id:06d}.fits'
         src = CTADATA / filename
         dst = filename
