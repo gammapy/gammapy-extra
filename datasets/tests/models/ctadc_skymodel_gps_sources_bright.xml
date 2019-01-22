@@ -1,0 +1,634 @@
+<?xml version="1.0" ?>
+
+<!-- Bright sources for CTA-1DC from gamma-cat -->
+
+<source_library title="gammacat">
+
+<source name="HESS J0632+057" type="PointSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="9.100000484055237e-13" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.5299999713897705" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Point">
+        <parameter name="GLON" value="205.66653442382812" unit="deg"/>
+        <parameter name="GLAT" value="-1.4395283460617065" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="Vela X" type="ExtendedSource">
+    <spectrum type="ExpCutoff">
+        <parameter name="Prefactor" value="1.4600000028397453e-11" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="1.3200000524520874" unit=""/>
+        <parameter name="Cutoff" value="14.0" unit="1 / TeV"/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="263.3319396972656" unit="deg"/>
+        <parameter name="GLAT" value="-3.1061031818389893" unit="deg"/>
+        <parameter name="Sigma" value="0.47999998927116394" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="Vela Junior" type="ExtendedSource">
+    <spectrum type="ExpCutoff">
+        <parameter name="Prefactor" value="3.2163001428830995e-11" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="1.8118000030517578" unit=""/>
+        <parameter name="Cutoff" value="6.68002986907959" unit="1 / TeV"/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Shell">
+        <parameter name="GLON" value="266.2588806152344" unit="deg"/>
+        <parameter name="GLAT" value="-1.219645380973816" unit="deg"/>
+        <parameter name="Radius" value="1.0" unit="deg"/>
+        <parameter name="Width" value="0" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1018-589 B" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="4.19999999405965e-13" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.9000000953674316" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="284.079345703125" unit="deg"/>
+        <parameter name="GLAT" value="-1.8798760175704956" unit="deg"/>
+        <parameter name="Sigma" value="0.15000000596046448" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="Westerlund 2" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="3.250000095433858e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.5799999237060547" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="284.0162658691406" unit="deg"/>
+        <parameter name="GLAT" value="-0.1847057342529297" unit="deg"/>
+        <parameter name="Sigma" value="0.18000000715255737" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1026-582" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="9.899999656864944e-13" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-1.940000057220459" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="285.0734558105469" unit="deg"/>
+        <parameter name="GLAT" value="-0.45973488688468933" unit="deg"/>
+        <parameter name="Sigma" value="0.14000000059604645" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1303-631" type="ExtendedSource">
+    <spectrum type="ExpCutoff">
+        <parameter name="Prefactor" value="5.600000064359678e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="1.5" unit=""/>
+        <parameter name="Cutoff" value="7.699999809265137" unit="1 / TeV"/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="304.235595703125" unit="deg"/>
+        <parameter name="GLAT" value="-0.356149822473526" unit="deg"/>
+        <parameter name="Sigma" value="0.1940000057220459" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1418-609" type="ExtendedSource">
+    <spectrum type="PowerLaw2">
+        <parameter name="Integral" value="2.170000073728473e-12" unit="1 / (cm2 s)"/>
+        <parameter name="Index" value="-2.2200000286102295" unit=""/>
+        <parameter name="LowerLimit" value="1.0" unit="TeV"/>
+        <parameter name="UpperLimit" value="10000000000.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="313.2469482421875" unit="deg"/>
+        <parameter name="GLAT" value="0.14962416887283325" unit="deg"/>
+        <parameter name="Sigma" value="0.08166666328907013" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1420-607" type="ExtendedSource">
+    <spectrum type="PowerLaw2">
+        <parameter name="Integral" value="2.969999897059483e-12" unit="1 / (cm2 s)"/>
+        <parameter name="Index" value="-2.1700000762939453" unit=""/>
+        <parameter name="LowerLimit" value="1.0" unit="TeV"/>
+        <parameter name="UpperLimit" value="10000000000.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="313.32611083984375" unit="deg"/>
+        <parameter name="GLAT" value="0.11877414584159851" unit="deg"/>
+        <parameter name="Sigma" value="0.054999999701976776" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1427-608" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="1.3000000381735433e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.1600000858306885" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="314.4076843261719" unit="deg"/>
+        <parameter name="GLAT" value="-0.1450013965368271" unit="deg"/>
+        <parameter name="Sigma" value="0.03999999910593033" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="RCW 86" type="ExtendedSource">
+    <spectrum type="ExpCutoff">
+        <parameter name="Prefactor" value="2.9999999880125916e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="1.590000033378601" unit=""/>
+        <parameter name="Cutoff" value="3.4700000286102295" unit="1 / TeV"/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Shell">
+        <parameter name="GLON" value="315.09271240234375" unit="deg"/>
+        <parameter name="GLAT" value="-2.376516580581665" unit="deg"/>
+        <parameter name="Radius" value="0.1899999976158142" unit="deg"/>
+        <parameter name="Width" value="0" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1503-582" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="1.599999971922672e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.4000000953674316" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="319.5602111816406" unit="deg"/>
+        <parameter name="GLAT" value="0.3594426214694977" unit="deg"/>
+        <parameter name="Sigma" value="0.25999999046325684" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1507-622" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="3.100000074349185e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.490000009536743" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="317.97454833984375" unit="deg"/>
+        <parameter name="GLAT" value="-3.5878143310546875" unit="deg"/>
+        <parameter name="Sigma" value="0.15000000596046448" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="SNR G327.1-1.1" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="1.700000004049157e-13" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.0999999046325684" unit=""/>
+        <parameter name="Scale" value="1.3899999856948853" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="327.1656799316406" unit="deg"/>
+        <parameter name="GLAT" value="-1.0492522716522217" unit="deg"/>
+        <parameter name="Sigma" value="0.029999999329447746" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1616-508" type="ExtendedSource">
+    <spectrum type="PowerLaw2">
+        <parameter name="Integral" value="4.329999900298809e-11" unit="1 / (cm2 s)"/>
+        <parameter name="Index" value="-2.3499999046325684" unit=""/>
+        <parameter name="LowerLimit" value="0.20000000298023224" unit="TeV"/>
+        <parameter name="UpperLimit" value="10000000000.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="332.3651428222656" unit="deg"/>
+        <parameter name="GLAT" value="-0.1309431493282318" unit="deg"/>
+        <parameter name="Sigma" value="0.13600000739097595" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1626-490" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="4.900000110524827e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.180000066757202" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="334.77020263671875" unit="deg"/>
+        <parameter name="GLAT" value="0.04730600491166115" unit="deg"/>
+        <parameter name="Sigma" value="0.07000000029802322" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1632-478" type="ExtendedSource">
+    <spectrum type="PowerLaw2">
+        <parameter name="Integral" value="2.870000070931411e-11" unit="1 / (cm2 s)"/>
+        <parameter name="Index" value="-2.119999885559082" unit=""/>
+        <parameter name="LowerLimit" value="0.20000000298023224" unit="TeV"/>
+        <parameter name="UpperLimit" value="10000000000.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="336.3296813964844" unit="deg"/>
+        <parameter name="GLAT" value="0.16875746846199036" unit="deg"/>
+        <parameter name="Sigma" value="0.20999999344348907" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1634-472" type="ExtendedSource">
+    <spectrum type="PowerLaw2">
+        <parameter name="Integral" value="1.3399999859720069e-11" unit="1 / (cm2 s)"/>
+        <parameter name="Index" value="-2.380000114440918" unit=""/>
+        <parameter name="LowerLimit" value="0.20000000298023224" unit="TeV"/>
+        <parameter name="UpperLimit" value="10000000000.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="337.04998779296875" unit="deg"/>
+        <parameter name="GLAT" value="0.3844934105873108" unit="deg"/>
+        <parameter name="Sigma" value="0.10999999940395355" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1641-463" type="PointSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="3.9100000364181153e-13" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.069999933242798" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Point">
+        <parameter name="GLON" value="338.5224304199219" unit="deg"/>
+        <parameter name="GLAT" value="0.09183607995510101" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1702-420" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="9.100000267214803e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.069999933242798" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="344.303955078125" unit="deg"/>
+        <parameter name="GLAT" value="-0.1837134063243866" unit="deg"/>
+        <parameter name="Sigma" value="0.30000001192092896" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1708-443" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="4.200000156689976e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.0" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="343.0646667480469" unit="deg"/>
+        <parameter name="GLAT" value="-2.3295421600341797" unit="deg"/>
+        <parameter name="Sigma" value="0.28999999165534973" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1708-410" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="2.6999999458432455e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.4600000381469727" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="345.6822509765625" unit="deg"/>
+        <parameter name="GLAT" value="-0.4688045084476471" unit="deg"/>
+        <parameter name="Sigma" value="0.05999999865889549" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="RX J1713.7-3946" type="ExtendedSource">
+    <spectrum type="ExpCutoff">
+        <parameter name="Prefactor" value="2.0199999659076262e-11" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="2.319999933242798" unit=""/>
+        <parameter name="Cutoff" value="12.899999618530273" unit="1 / TeV"/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Shell">
+        <parameter name="GLON" value="347.2694396972656" unit="deg"/>
+        <parameter name="GLAT" value="-0.25691288709640503" unit="deg"/>
+        <parameter name="Radius" value="0.5" unit="deg"/>
+        <parameter name="Width" value="0" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="SNR G349.7+0.2" type="PointSource">
+    <spectrum type="PowerLaw2">
+        <parameter name="Integral" value="6.500000190867716e-13" unit="1 / (cm2 s)"/>
+        <parameter name="Index" value="-2.799999952316284" unit=""/>
+        <parameter name="LowerLimit" value="0.4000000059604645" unit="TeV"/>
+        <parameter name="UpperLimit" value="10000000000.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Point">
+        <parameter name="GLON" value="349.7361755371094" unit="deg"/>
+        <parameter name="GLAT" value="0.1806182712316513" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1718-385" type="ExtendedSource">
+    <spectrum type="ExpCutoff">
+        <parameter name="Prefactor" value="2.9999998795923744e-13" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="0.699999988079071" unit=""/>
+        <parameter name="Cutoff" value="6.0" unit="1 / TeV"/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="348.8336181640625" unit="deg"/>
+        <parameter name="GLAT" value="-0.4881265461444855" unit="deg"/>
+        <parameter name="Sigma" value="0.15000000596046448" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1729-345" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="4.40000005831262e-13" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.240000009536743" unit=""/>
+        <parameter name="Scale" value="0.8610000014305115" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="353.4101867675781" unit="deg"/>
+        <parameter name="GLAT" value="-0.005492465104907751" unit="deg"/>
+        <parameter name="Sigma" value="0.11999999731779099" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1731-347" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="4.670000063738966e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.319999933242798" unit=""/>
+        <parameter name="Scale" value="0.7829999923706055" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Shell">
+        <parameter name="GLON" value="353.5650634765625" unit="deg"/>
+        <parameter name="GLAT" value="-0.6221904158592224" unit="deg"/>
+        <parameter name="Radius" value="0.27000001072883606" unit="deg"/>
+        <parameter name="Width" value="0" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1745-303" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="2.8399999366102158e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.7100000381469727" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="358.8734130859375" unit="deg"/>
+        <parameter name="GLAT" value="-0.5782836079597473" unit="deg"/>
+        <parameter name="Sigma" value="nan" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="Galactic Centre" type="PointSource">
+    <spectrum type="ExpCutoff">
+        <parameter name="Prefactor" value="2.5499999247585725e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="2.140000104904175" unit=""/>
+        <parameter name="Cutoff" value="10.699999809265137" unit="1 / TeV"/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Point">
+        <parameter name="GLON" value="359.9442443847656" unit="deg"/>
+        <parameter name="GLAT" value="-0.04616236314177513" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="SNR G0.9+0.1" type="PointSource">
+    <spectrum type="PowerLaw2">
+        <parameter name="Integral" value="5.699999933855837e-12" unit="1 / (cm2 s)"/>
+        <parameter name="Index" value="-2.4000000953674316" unit=""/>
+        <parameter name="LowerLimit" value="0.20000000298023224" unit="TeV"/>
+        <parameter name="UpperLimit" value="10000000000.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Point">
+        <parameter name="GLON" value="0.8634368777275085" unit="deg"/>
+        <parameter name="GLAT" value="0.09317801892757416" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1800-240B" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="7.579999995732667e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.5" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="5.901831150054932" unit="deg"/>
+        <parameter name="GLAT" value="-0.3634890019893646" unit="deg"/>
+        <parameter name="Sigma" value="0.15000000596046448" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="W28" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="7.499999753191045e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.6600000858306885" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="6.659957408905029" unit="deg"/>
+        <parameter name="GLAT" value="-0.1798943430185318" unit="deg"/>
+        <parameter name="Sigma" value="0.17000000178813934" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1804-216" type="ExtendedSource">
+    <spectrum type="PowerLaw2">
+        <parameter name="Integral" value="5.319999996089564e-11" unit="1 / (cm2 s)"/>
+        <parameter name="Index" value="-2.7200000286102295" unit=""/>
+        <parameter name="LowerLimit" value="0.20000000298023224" unit="TeV"/>
+        <parameter name="UpperLimit" value="10000000000.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="8.368892669677734" unit="deg"/>
+        <parameter name="GLAT" value="-0.03919975832104683" unit="deg"/>
+        <parameter name="Sigma" value="0.20000000298023224" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1809-193" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="4.600000068355481e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.200000047683716" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="11.18004322052002" unit="deg"/>
+        <parameter name="GLAT" value="-0.08744583278894424" unit="deg"/>
+        <parameter name="Sigma" value="0.5333333611488342" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1813-178" type="ExtendedSource">
+    <spectrum type="PowerLaw2">
+        <parameter name="Integral" value="1.4199999683051079e-11" unit="1 / (cm2 s)"/>
+        <parameter name="Index" value="-2.0899999141693115" unit=""/>
+        <parameter name="LowerLimit" value="0.20000000298023224" unit="TeV"/>
+        <parameter name="UpperLimit" value="10000000000.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="12.786806106567383" unit="deg"/>
+        <parameter name="GLAT" value="0.0004344825283624232" unit="deg"/>
+        <parameter name="Sigma" value="0.035999998450279236" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1825-137" type="ExtendedSource">
+    <spectrum type="ExpCutoff">
+        <parameter name="Prefactor" value="2.100000034976901e-11" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="2.259999990463257" unit=""/>
+        <parameter name="Cutoff" value="24.799999237060547" unit="1 / TeV"/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="18.000179290771484" unit="deg"/>
+        <parameter name="GLAT" value="-0.6909274458885193" unit="deg"/>
+        <parameter name="Sigma" value="0.23999999463558197" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1831-098" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="1.0999999739205735e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.0999999046325684" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="21.848445892333984" unit="deg"/>
+        <parameter name="GLAT" value="-0.10541696101427078" unit="deg"/>
+        <parameter name="Sigma" value="0.15000000596046448" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1834-087" type="ExtendedSource">
+    <spectrum type="PowerLaw2">
+        <parameter name="Integral" value="1.86999998819104e-11" unit="1 / (cm2 s)"/>
+        <parameter name="Index" value="-2.450000047683716" unit=""/>
+        <parameter name="LowerLimit" value="0.20000000298023224" unit="TeV"/>
+        <parameter name="UpperLimit" value="10000000000.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="23.268333435058594" unit="deg"/>
+        <parameter name="GLAT" value="-0.3298832178115845" unit="deg"/>
+        <parameter name="Sigma" value="0.09000000357627869" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1837-069" type="ExtendedSource">
+    <spectrum type="PowerLaw2">
+        <parameter name="Integral" value="3.0399998490748814e-11" unit="1 / (cm2 s)"/>
+        <parameter name="Index" value="-2.2699999809265137" unit=""/>
+        <parameter name="LowerLimit" value="0.20000000298023224" unit="TeV"/>
+        <parameter name="UpperLimit" value="10000000000.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="25.20574951171875" unit="deg"/>
+        <parameter name="GLAT" value="-0.12119973450899124" unit="deg"/>
+        <parameter name="Sigma" value="0.11999999731779099" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1841-055" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="1.2799999775381377e-11" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.4100000858306885" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="26.79511260986328" unit="deg"/>
+        <parameter name="GLAT" value="-0.19760440289974213" unit="deg"/>
+        <parameter name="Sigma" value="0.4099999964237213" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1848-018" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="3.699999941847443e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.799999952316284" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="30.999937057495117" unit="deg"/>
+        <parameter name="GLAT" value="-0.15920360386371613" unit="deg"/>
+        <parameter name="Sigma" value="0.3199999928474426" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1857+026" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="6.099999845521342e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.390000104904175" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="35.9599609375" unit="deg"/>
+        <parameter name="GLAT" value="-0.06129879131913185" unit="deg"/>
+        <parameter name="Sigma" value="0.10999999940395355" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1858+020" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="5.999999759184749e-13" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.1700000762939453" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="35.57807159423828" unit="deg"/>
+        <parameter name="GLAT" value="-0.5801709890365601" unit="deg"/>
+        <parameter name="Sigma" value="0.07999999821186066" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="W 49B" type="PointSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="3.1500000633073733e-13" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-3.140000104904175" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Point">
+        <parameter name="GLON" value="43.251407623291016" unit="deg"/>
+        <parameter name="GLAT" value="-0.15601561963558197" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1912+101" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="3.49999998601469e-12" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.700000047683716" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="44.48461151123047" unit="deg"/>
+        <parameter name="GLAT" value="-0.1668851673603058" unit="deg"/>
+        <parameter name="Sigma" value="0.25999999046325684" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="SNR G054.1+00.3" type="ExtendedSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="7.499999970031479e-13" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-2.390000104904175" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Gauss">
+        <parameter name="GLON" value="54.09474182128906" unit="deg"/>
+        <parameter name="GLAT" value="0.26045286655426025" unit="deg"/>
+        <parameter name="Sigma" value="0.054999999701976776" unit="deg"/>
+    </spatialModel>
+</source>
+
+<source name="HESS J1943+213" type="PointSource">
+    <spectrum type="PowerLaw">
+        <parameter name="Prefactor" value="5.600000172779895e-13" unit="1 / (cm2 s TeV)"/>
+        <parameter name="Index" value="-3.0999999046325684" unit=""/>
+        <parameter name="Scale" value="1.0" unit="TeV"/>
+    </spectrum>
+    <spatialModel type="Point">
+        <parameter name="GLON" value="57.75760269165039" unit="deg"/>
+        <parameter name="GLAT" value="-1.292697787284851" unit="deg"/>
+    </spatialModel>
+</source>
+
+</source_library>

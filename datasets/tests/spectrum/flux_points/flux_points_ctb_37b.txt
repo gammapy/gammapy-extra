@@ -1,0 +1,6 @@
+# flux points copied from https://www.mpi-hd.mpg.de/hfm/HESS/pages/publications/auxiliary/AA486_829.html
+E   Differential_Flux     lower_error    upper_error
+0.369172    6.97602e-12        2.86219e-12   2.89857e-12
+0.701728    2.42214e-12        4.79872e-13   4.87388e-13
+1.35682     2.46466e-13        1.06991e-13   1.09009e-13
+3.65763     2.46519e-14        1.09545e-14   1.11579e-14
