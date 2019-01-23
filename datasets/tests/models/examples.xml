@@ -67,7 +67,7 @@
             <parameter name="PivotEnergy" scale="1e6" value="1.0" min="0.01" max="1000.0" free="0"/>
             <parameter name="CutoffEnergy" scale="1e6" value="12.9" min="0.01" max="1000.0" free="1"/>
         </spectrum>
-        <spatialModel type="DiffuseMap" file="$GAMMAPY_EXTRA/datasets/catalogs/fermi/Extended_archive_v18/Templates/RXJ1713_2016_250GeV.fits">
+        <spatialModel type="DiffuseMap" file="$GAMMAPY_DATA/catalogs/fermi/Extended_archive_v18/Templates/RXJ1713_2016_250GeV.fits">
             <parameter name="Prefactor" value="1" scale="1" min="0.001" max="1000" free="0"/>
         </spatialModel>
     </source>
@@ -75,7 +75,7 @@
         <spectrum type="ConstantValue">
             <parameter name="Value" value="1" error="0" scale="1" min="1e-05" max="100000" free="1" />
         </spectrum>
-        <spatialModel type="MapCubeFunction" file="$GAMMAPY_EXTRA/datasets/vela_region/gll_iem_v05_rev1_cutout.fits">
+        <spatialModel type="MapCubeFunction" file="$GAMMAPY_DATA/catalogs/fermi/gll_iem_v05_rev1_cutout.fits">
             <parameter name="Normalization" value="1" scale="1" min="0.001" max="1000" free="0" />
         </spatialModel>
     </source>                            
