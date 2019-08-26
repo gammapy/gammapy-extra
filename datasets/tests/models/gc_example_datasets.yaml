@@ -1,0 +1,17 @@
+datasets:
+- backgrounds:
+  - background_irf_gc
+  - gll_iem_v06_cutout
+  filename: $GAMMAPY_DATA/tests/models/gc_example_data_gc.fits
+  models:
+  - gc
+  - g09
+  name: gc
+- backgrounds:
+  - background_irf_g09
+  - gll_iem_v06_cutout
+  filename: $GAMMAPY_DATA/tests/models/gc_example_data_g09.fits
+  models:
+  - gc
+  - g09
+  name: g09
