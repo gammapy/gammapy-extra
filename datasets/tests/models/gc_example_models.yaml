@@ -22,7 +22,7 @@ components:
       unit: cm-2 s-1 TeV-1
       value: 3.0e-12
     - frozen: true
-      name: reference
+      name: reference@shared_0
       unit: TeV
       value: 1.0
     - frozen: false
@@ -53,7 +53,7 @@ components:
       unit: cm-2 s-1 TeV-1
       value: 3.0e-12
     - frozen: true
-      name: reference
+      name: reference@shared_0
       unit: TeV
       value: 1.0
     - frozen: false
@@ -81,15 +81,15 @@ components:
   model:
     parameters:
     - frozen: false
-      name: norm
+      name: norm@shared_1
       unit: ''
       value: 1.0
     - frozen: true
-      name: tilt
+      name: tilt@shared_2
       unit: ''
       value: 0.0
     - frozen: true
-      name: reference
+      name: reference@shared_3
       unit: TeV
       value: 1.0
     type: BackgroundModel
