@@ -1,5 +1,6 @@
 components:
 - name: gc
+  type: SkyModel
   spatial:
     parameters:
     - frozen: false
@@ -31,6 +32,7 @@ components:
       value: 0.1
     type: ExponentialCutoffPowerLaw
 - name: g09
+  type: SkyModel
   spatial:
     parameters:
     - frozen: false
@@ -61,52 +63,49 @@ components:
       unit: TeV-1
       value: 0.1
     type: ExponentialCutoffPowerLaw
-- model:
-    parameters:
-    - frozen: false
-      name: norm
-      unit: ''
-      value: 1.0
-    - frozen: true
-      name: tilt
-      unit: ''
-      value: 0.0
-    - frozen: true
-      name: reference
-      unit: TeV
-      value: 1.0
-    type: BackgroundModel
-  name: background_irf_gc
-- filename: $GAMMAPY_DATA/fermi_3fhl/gll_iem_v06_cutout.fits
-  model:
-    parameters:
-    - frozen: false
-      name: norm@shared_1
-      unit: ''
-      value: 1.0
-    - frozen: true
-      name: tilt@shared_2
-      unit: ''
-      value: 0.0
-    - frozen: true
-      name: reference@shared_3
-      unit: TeV
-      value: 1.0
-    type: BackgroundModel
-  name: gll_iem_v06_cutout
-- model:
-    parameters:
-    - frozen: false
-      name: norm
-      unit: ''
-      value: 1.0
-    - frozen: true
-      name: tilt
-      unit: ''
-      value: 0.0
-    - frozen: true
-      name: reference
-      unit: TeV
-      value: 1.0
-    type: BackgroundModel
-  name: background_irf_g09
+- name: background_irf_gc
+  type: BackgroundModel
+  parameters:
+  - frozen: false
+    name: norm
+    unit: ''
+    value: 1.0
+  - frozen: true
+    name: tilt
+    unit: ''
+    value: 0.0
+  - frozen: true
+    name: reference
+    unit: TeV
+    value: 1.0
+- name: gll_iem_v06_cutout
+  type: BackgroundModel
+  filename: $GAMMAPY_DATA/fermi_3fhl/gll_iem_v06_cutout.fits
+  parameters:
+  - frozen: false
+    name: norm@shared_1
+    unit: ''
+    value: 1.0
+  - frozen: true
+    name: tilt@shared_2
+    unit: ''
+    value: 0.0
+  - frozen: true
+    name: reference@shared_3
+    unit: TeV
+    value: 1.0
+- name: background_irf_g09
+  type: BackgroundModel
+  parameters:
+  - frozen: false
+    name: norm
+    unit: ''
+    value: 1.0
+  - frozen: true
+    name: tilt
+    unit: ''
+    value: 0.0
+  - frozen: true
+    name: reference
+    unit: TeV
+    value: 1.0
