@@ -2,110 +2,110 @@ components:
 - name: gc
   type: SkyModel
   spatial:
-    parameters:
-    - frozen: false
-      name: lon_0
-      unit: deg
-      value: 0.0
-    - frozen: false
-      name: lat_0
-      unit: deg
-      value: 0.0
     type: SkyPointSource
-  spectral:
     parameters:
-    - frozen: false
-      name: index
-      unit: ''
-      value: 2.0
-    - frozen: false
-      name: amplitude
-      unit: cm-2 s-1 TeV-1
-      value: 3.0e-12
-    - frozen: true
-      name: reference@shared_0
-      unit: TeV
-      value: 1.0
-    - frozen: false
-      name: lambda_
-      unit: TeV-1
-      value: 0.1
+    - name: lon_0
+      value: 0.0
+      unit: deg
+      frozen: false
+    - name: lat_0
+      value: 0.0
+      unit: deg
+      frozen: false
+  spectral:
     type: ExponentialCutoffPowerLaw
+    parameters:
+    - name: index
+      value: 2.0
+      unit: ''
+      frozen: false
+    - name: amplitude
+      value: 3.0e-12
+      unit: cm-2 s-1 TeV-1
+      frozen: false
+    - name: reference@shared_0
+      value: 1.0
+      unit: TeV
+      frozen: true
+    - name: lambda_
+      value: 0.1
+      unit: TeV-1
+      frozen: false
+- name: gll_iem_v06_cutout
+  type: SkyDiffuseCube
+  filename: $GAMMAPY_DATA/fermi_3fhl/gll_iem_v06_cutout.fits
+  parameters:
+  - name: norm
+    value: 1.0
+    unit: ''
+    frozen: false
+  - name: tilt
+    value: 0.0
+    unit: ''
+    frozen: true
+  - name: reference
+    value: 1.0
+    unit: TeV
+    frozen: true
 - name: g09
   type: SkyModel
   spatial:
-    parameters:
-    - frozen: false
-      name: lon_0
-      unit: deg
-      value: 0.9000000000000057
-    - frozen: false
-      name: lat_0
-      unit: deg
-      value: 0.1
     type: SkyPointSource
-  spectral:
     parameters:
-    - frozen: false
-      name: index
-      unit: ''
-      value: 2.0
-    - frozen: false
-      name: amplitude
-      unit: cm-2 s-1 TeV-1
-      value: 3.0e-12
-    - frozen: true
-      name: reference@shared_0
-      unit: TeV
-      value: 1.0
-    - frozen: false
-      name: lambda_
-      unit: TeV-1
+    - name: lon_0
+      value: 0.9000000000000057
+      unit: deg
+      frozen: false
+    - name: lat_0
       value: 0.1
+      unit: deg
+      frozen: false
+  spectral:
     type: ExponentialCutoffPowerLaw
+    parameters:
+    - name: index
+      value: 2.0
+      unit: ''
+      frozen: false
+    - name: amplitude
+      value: 3.0e-12
+      unit: cm-2 s-1 TeV-1
+      frozen: false
+    - name: reference@shared_0
+      value: 1.0
+      unit: TeV
+      frozen: true
+    - name: lambda_
+      value: 0.1
+      unit: TeV-1
+      frozen: false
 - name: background_irf_gc
   type: BackgroundModel
   parameters:
-  - frozen: false
-    name: norm
-    unit: ''
+  - name: norm
     value: 1.0
-  - frozen: true
-    name: tilt
     unit: ''
+    frozen: false
+  - name: tilt
     value: 0.0
-  - frozen: true
-    name: reference
-    unit: TeV
-    value: 1.0
-- name: gll_iem_v06_cutout
-  type: BackgroundModel
-  filename: $GAMMAPY_DATA/fermi_3fhl/gll_iem_v06_cutout.fits
-  parameters:
-  - frozen: false
-    name: norm@shared_1
     unit: ''
+    frozen: true
+  - name: reference
     value: 1.0
-  - frozen: true
-    name: tilt@shared_2
-    unit: ''
-    value: 0.0
-  - frozen: true
-    name: reference@shared_3
     unit: TeV
-    value: 1.0
+    frozen: true
 - name: background_irf_g09
   type: BackgroundModel
   parameters:
-  - frozen: false
-    name: norm
-    unit: ''
+  - name: norm
     value: 1.0
-  - frozen: true
-    name: tilt
     unit: ''
+    frozen: false
+  - name: tilt
     value: 0.0
-  - frozen: true
-    name: reference
-    unit: TeV
+    unit: ''
+    frozen: true
+  - name: reference
     value: 1.0
+    unit: TeV
+    frozen: true
