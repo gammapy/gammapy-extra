@@ -3,6 +3,7 @@ components:
   type: SkyModel
   spatial:
     type: SkyPointSource
+    frame: galactic
     parameters:
     - name: lon_0
       value: 0.0
@@ -51,9 +52,10 @@ components:
   type: SkyModel
   spatial:
     type: SkyPointSource
+    frame: galactic
     parameters:
     - name: lon_0
-      value: 0.9000000000000057
+      value: 0.9
       unit: deg
       frozen: false
     - name: lat_0
