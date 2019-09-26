@@ -2,7 +2,7 @@ components:
 - name: gc
   type: SkyModel
   spatial:
-    type: SkyPointSource
+    type: PointSpatialModel
     frame: galactic
     parameters:
     - name: lon_0
@@ -51,7 +51,7 @@ components:
 - name: g09
   type: SkyModel
   spatial:
-    type: SkyPointSource
+    type: PointSpatialModel
     frame: galactic
     parameters:
     - name: lon_0
