@@ -1,11 +1,13 @@
 datasets:
 - name: gc
+  type: MapDataset
   models:
   - gc
   - gll_iem_v06_cutout
   background: background_irf_gc
   filename: $GAMMAPY_DATA/tests/models/gc_example_data_gc.fits
 - name: g09
+  type: MapDataset
   models:
   - g09
   - gll_iem_v06_cutout
