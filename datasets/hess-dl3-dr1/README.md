@@ -6,8 +6,16 @@ H.E.S.S. first public test data release.
 - https://www.mpi-hd.mpg.de/hfm/HESS/pages/dl3-dr1/
 - https://zenodo.org/record/1421099
 
-The file `hess-dl3-dr3-with-background.fits.gz` contains
-a background model and new HDU index file produced with
-the Gammapy `background_model.ipynb` tutorial notebook.
-We use it in the `hess.ipynb` tutorial notebook to do a
-H.E.S.S. analysis.
+The background model IRF for this dataset was released
+a bit later here: 
+
+- https://github.com/lmohrmann/hess_ost_paper_material
+- https://doi.org/10.1051/0004-6361/201936452
+- https://ui.adsabs.harvard.edu/abs/2019arXiv191008088M
+
+The files here contain a copy of the full first public test
+data release, with background models included, and HDU index
+file updated.
+
+It was generated with the `make.py` script in this folder.
+You can run `pytest test.py` to check if the files are OK.
