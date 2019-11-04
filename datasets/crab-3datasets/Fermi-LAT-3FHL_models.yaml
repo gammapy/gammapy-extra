@@ -1,0 +1,67 @@
+components:
+- name: Crab Nebula
+  type: SkyModel
+  spatial:
+    type: PointSpatialModel
+    frame: icrs
+    parameters:
+    - name: lon_0
+      value: 83.63310241699219
+      unit: deg
+      min: .nan
+      max: .nan
+      frozen: true
+    - name: lat_0
+      value: 22.019899368286133
+      unit: deg
+      min: -90.0
+      max: 90.0
+      frozen: true
+  spectral:
+    type: LogParabolaSpectralModel
+    parameters:
+    - name: amplitude
+      value: 0.3415498620816483
+      unit: cm-2 s-1 TeV-1
+      min: .nan
+      max: .nan
+      frozen: false
+    - name: reference
+      value: 5.054833602905273e-05
+      unit: TeV
+      min: .nan
+      max: .nan
+      frozen: true
+    - name: alpha
+      value: 2.510798031388936
+      unit: ''
+      min: .nan
+      max: .nan
+      frozen: false
+    - name: beta
+      value: -0.022476498188855533
+      unit: ''
+      min: .nan
+      max: .nan
+      frozen: false
+- name: background
+  type: BackgroundModel
+  parameters:
+  - name: norm
+    value: 0.9544383244743555
+    unit: ''
+    min: 0.0
+    max: .nan
+    frozen: false
+  - name: tilt
+    value: 0.0
+    unit: ''
+    min: .nan
+    max: .nan
+    frozen: true
+  - name: reference
+    value: 1.0
+    unit: TeV
+    min: .nan
+    max: .nan
+    frozen: true
