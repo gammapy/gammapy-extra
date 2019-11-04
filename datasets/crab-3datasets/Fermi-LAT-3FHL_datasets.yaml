@@ -1,0 +1,8 @@
+datasets:
+- name: Fermi-LAT
+  type: MapDataset
+  likelihood: cash
+  models:
+  - Crab Nebula
+  background: background
+  filename: /Users/qremy/Work/Data/gammapy-tutorials/datasets/crab-3datasets/Fermi-LAT-3FHL_data_Fermi-LAT.fits
