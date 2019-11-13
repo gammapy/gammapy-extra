@@ -1,9 +1,0 @@
-<observation_list title="observation library">
-    <observation name="Crab" id="023523" instrument="HESS">
-        <parameter name="EventList" file="hess_events_023523_empty.fits"/>
-        <parameter name="EffectiveArea" file="hess_aeff_023523_temp.fits"/>
-        <parameter name="EnergyDispersion" file="hess_edisp_023523_temp.fits"/>
-        <parameter name="PointSpreadFunction" file="hess_psf_023523_temp.fits"/>
-        <!--<parameter name="Background" file="hess_bkg_offruns_023523.fits.gz"/>-->
-    </observation>
-</observation_list>
