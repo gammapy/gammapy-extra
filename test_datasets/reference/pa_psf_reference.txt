@@ -1,7 +1,0 @@
-
-Summary PSFKing info
----------------------
-offset         : size =     6, min =  0.125 deg, max =  2.500 deg
-energy         : size =    15, min =  0.125 TeV, max = 80.000 TeV
-gamma          : size =    90, min =  1.050, max =  3.500
-sigma          : size =    90, min =  0.005 deg, max =  0.100 deg
