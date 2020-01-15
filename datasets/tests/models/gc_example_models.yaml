@@ -24,10 +24,11 @@ components:
       value: 3.0e-12
       unit: cm-2 s-1 TeV-1
       frozen: false
-    - name: reference@shared_0
+    - name: reference
       value: 1.0
       unit: TeV
       frozen: true
+      linkage: reference@shared_0
     - name: lambda_
       value: 0.1
       unit: TeV-1
@@ -73,10 +74,11 @@ components:
       value: 3.0e-12
       unit: cm-2 s-1 TeV-1
       frozen: false
-    - name: reference@shared_0
+    - name: reference
       value: 1.0
       unit: TeV
       frozen: true
+      linkage: reference@shared_0
     - name: lambda_
       value: 0.1
       unit: TeV-1
