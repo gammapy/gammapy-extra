@@ -28,7 +28,7 @@ components:
       value: 1.0
       unit: TeV
       frozen: true
-      linkage: reference@shared_0
+      link: reference@shared_0
     - name: lambda_
       value: 0.1
       unit: TeV-1
@@ -78,7 +78,7 @@ components:
       value: 1.0
       unit: TeV
       frozen: true
-      linkage: reference@shared_0
+      link: reference@shared_0
     - name: lambda_
       value: 0.1
       unit: TeV-1
