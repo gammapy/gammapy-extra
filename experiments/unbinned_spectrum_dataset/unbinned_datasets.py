@@ -1,141 +1,16 @@
 import numpy as np
 from astropy.io import fits
 from gammapy.spectrum import (
-    CountsSpectrum,
-    ReflectedRegionsBackgroundMaker,
     SpectrumDatasetMaker,
-    SpectrumDataset,
     SpectrumDatasetOnOff,
+    ReflectedRegionsBackgroundMaker,
 )
 from gammapy.utils.regions import list_to_compound_region
 
 
-class UnbinnedSpectrumDatasetMaker(SpectrumDatasetMaker):
-    """Inheriting SpectrumDatasetMaker but replacing "counts" with "events".
-
-    The irfs and background are computed at a single fixed offset,
-    which is recommend only for point-sources.
-
-    Parameters
-    ----------
-    containment_correction : bool
-        Apply containment correction for point sources and circular on regions.
-    selection : list
-        List of str, selecting which maps to make.
-        Available: 'events', 'aeff', 'background', 'edisp'
-        By default, all spectra are made.
-    """
-
-    available_selection = ["events", "background", "aeff", "edisp"]
-
-    def __init__(self, containment_correction=False, selection=None):
-        SpectrumDatasetMaker.__init__(
-            self, containment_correction=containment_correction, selection=selection
-        )
-
-        if selection is None:
-            selection = self.available_selection
-
-        self.selection = selection
-
-    def make_events(self, region, observation):
-        """Make list of events in the ON  region.
-
-        Parameters
-        ----------
-        region : `~regions.SkyRegion`
-            Region to compute counts spectrum for.
-        observation: `~gammapy.data.DataStoreObservation`
-            Observation to compute effective area for.
-
-        Returns
-        -------
-        events : `~gammapy.data.event_list.EventList`
-            list of ON events
-        """
-        events = observation.events.select_region(region, wcs=self.geom_ref(region).wcs)
-        return events
-
-    def run(self, dataset, observation):
-        """Make unbinned spectrum dataset.
-
-        Parameters
-        ----------
-        dataset : `~gammapy.spectrum.SpectrumDataset`
-            Spectrum dataset.
-        observation: `~gammapy.data.DataStoreObservation`
-            Observation to reduce.
-
-        Returns
-        -------
-        dataset : `~gammapy.spectrum.SpectrumDataset`
-            Spectrum dataset.
-        """
-        kwargs = {
-            "name": f"{observation.obs_id}",
-            "gti": observation.gti,
-            "livetime": observation.observation_live_time_duration,
-        }
-        energy_axis = dataset.counts.energy
-        energy_axis_true = dataset.aeff.data.axis("energy")
-        region = dataset.counts.region
-
-        if "events" in self.selection:
-            kwargs["events"] = self.make_events(region, observation)
-            # array of dummy counts, not filled, the on region will be searched
-            # in here by the ReflectedRegionsBackgroundMaker, so we keep it
-            kwargs["counts"] = self.make_counts(region, energy_axis, observation)
-
-        if "aeff" in self.selection:
-            kwargs["aeff"] = self.make_aeff(region, energy_axis_true, observation)
-
-        if "edisp" in self.selection:
-            kwargs["edisp"] = self.make_edisp(
-                region.center, energy_axis, energy_axis_true, observation
-            )
-
-        return UnbinnedSpectrumDataset(**kwargs)
-
-
-class UnbinnedSpectrumDataset(SpectrumDataset):
-    """Unbinned pectrum dataset for on-off likelihood fitting."""
-
-    def __init__(
-        self,
-        models=None,
-        events=None,
-        counts=None,
-        livetime=None,
-        aeff=None,
-        edisp=None,
-        background=None,
-        mask_safe=None,
-        mask_fit=None,
-        name="",
-        gti=None,
-    ):
-        SpectrumDataset.__init__(
-            self,
-            models=models,
-            counts=counts,
-            livetime=livetime,
-            aeff=aeff,
-            edisp=edisp,
-            background=background,
-            mask_safe=mask_safe,
-            mask_fit=mask_fit,
-            name="",
-            gti=gti,
-        )
-        # events in the signal region
-        self.events = events
-
-
-class UnbinnedSpectrumDatasetOnOff(UnbinnedSpectrumDataset):
-    """The UnbinnedSpectrumDatasetOnOff has the events_off property
-    compared to the UnbinnedSpectrumDataset, as the SpectrumDatasetOnOff has 
-    the counts_off property compared to the SpectrumDataset
-    """
+class UnbinnedSpectrumDatasetOnOff(SpectrumDatasetOnOff):
+    """The UnbinnedSpectrumDatasetOnOff has the events and events_off 
+    attritubutes compared to the SpectrumDatasetOnOff from which it inherits."""
 
     def __init__(
         self,
@@ -145,38 +20,40 @@ class UnbinnedSpectrumDatasetOnOff(UnbinnedSpectrumDataset):
         livetime=None,
         aeff=None,
         edisp=None,
-        acceptance=None,
-        acceptance_off=None,
         mask_safe=None,
         mask_fit=None,
+        acceptance=None,
+        acceptance_off=None,
         name="",
         gti=None,
     ):
-        UnbinnedSpectrumDataset.__init__(
+        SpectrumDatasetOnOff.__init__(
             self,
             models=models,
-            events=events,
+            counts=None,
+            counts_off=None,
             livetime=livetime,
             aeff=aeff,
             edisp=edisp,
-            background=None,  # we have off events, so we do need the bkg
             mask_safe=mask_safe,
             mask_fit=mask_fit,
-            name="",
+            acceptance=acceptance,
+            acceptance_off=acceptance_off,
+            name=name,
             gti=gti,
         )
-        # events in the background region
+        # events in the ON and OFF regions
+        self.events = events
         self.events_off = events_off
-        self.acceptance = acceptance
-        self.acceptance_off = acceptance_off
 
     def write(self, datapath, overwrite):
         """write the ON / OFF event lists and the IRFs in a single HDUList"""
         hdr = fits.Header()
         hdr["TEFF"] = self.livetime.to("s").value
         hdr["TEFF_U"] = "s"
-        hdr["ACC"] = self.acceptance
-        hdr["ACC_OFF"] = self.acceptance_off
+        # acceptance and acceptance_off are arrays in SpectrumDatasetOnOff
+        hdr["ACC"] = self.acceptance[0]
+        hdr["ACC_OFF"] = self.acceptance_off[0]
         primary_hdu = fits.PrimaryHDU(header=hdr)
         col_energy_on = fits.Column(
             name="ENERGY",
@@ -225,10 +102,33 @@ class UnbinnedSpectrumDatasetOnOff(UnbinnedSpectrumDataset):
 
 
 class UnbinnedReflectedRegionsBackgroundMaker(ReflectedRegionsBackgroundMaker):
-    """add functions to generate list of off_events"""
+    """Inheriting from ReflectedRegionsBackgroundMaker and 
+    adding functions to generate list of events in the ON and OFF region"""
+
+    def make_events(self, dataset, observation):
+        """Make list of ON events.
+
+        Parameters
+        ----------
+        dataset : `UnbinnedSpectrumDataset`
+            Spectrum dataset.
+        observation : `DatastoreObservation`
+            Data store observation.
+
+
+        Returns
+        -------
+        events : `EventList`
+            list of events in the ON region.
+        """
+        # the on region is stored in the Counts of the SpectrumDatasetOnOff
+        region = dataset.counts.region
+        wcs = SpectrumDatasetMaker.geom_ref(region).wcs
+        events = observation.events.select_region(region, wcs)
+        return events
 
     def make_events_off(self, dataset, observation):
-        """Make list of off events.
+        """Make list of OFF events.
 
         Parameters
         ----------
@@ -241,14 +141,15 @@ class UnbinnedReflectedRegionsBackgroundMaker(ReflectedRegionsBackgroundMaker):
         Returns
         -------
         events_off : `EventList`
-            Off counts.
+            list of events in the OFF region
+        acceptance_off : int
+            number of OFF regions used
         """
         finder = self._get_finder(dataset, observation)
         finder.run()
 
         if len(finder.reflected_regions) > 0:
             region_union = list_to_compound_region(finder.reflected_regions)
-
             wcs = finder.reference_map.geom.wcs
             events_off = observation.events.select_region(region_union, wcs)
             acceptance_off = len(finder.reflected_regions)
@@ -271,21 +172,22 @@ class UnbinnedReflectedRegionsBackgroundMaker(ReflectedRegionsBackgroundMaker):
 
         Returns
         -------
-        dataset_on_off : `SpectrumDatasetOnOff`
-            On off dataset.
+        dataset_on_off : `UnbinnedSpectrumDatasetOnOff`
+            unbinned ON OFF dataset
         """
+        events = self.make_events(dataset, observation)
         events_off, acceptance_off = self.make_events_off(dataset, observation)
 
         return UnbinnedSpectrumDatasetOnOff(
-            events=dataset.events,
+            events=events,
             events_off=events_off,
-            gti=dataset.gti,
-            name=dataset.name,
             livetime=dataset.livetime,
-            edisp=dataset.edisp,
             aeff=dataset.aeff,
-            acceptance=1,
-            acceptance_off=acceptance_off,
+            edisp=dataset.edisp,
             mask_safe=dataset.mask_safe,
             mask_fit=dataset.mask_fit,
+            acceptance=1,
+            acceptance_off=acceptance_off,
+            name="",
+            gti=dataset.gti,
         )
