@@ -31,7 +31,9 @@ class UnbinnedSpectrumDatasetOnOff(SpectrumDatasetOnOff):
         hdu_aeff = self.aeff.to_hdulist()[1]
         # we'll use the primary of the edisp hdulist for the final hdu_list
         hdu_edisp = self.edisp.to_hdulist()
-        hdu_list = fits.HDUList([hdu_edisp[0], hdu, hdu_off, hdu_aeff, hdu_edisp[1]])
+        hdu_list = fits.HDUList(
+            [hdu_edisp[0], hdu, hdu_off, hdu_aeff, hdu_edisp[1], hdu_edisp[2]]
+        )
         hdu_list.writeto(datapath, overwrite=overwrite)
 
 
