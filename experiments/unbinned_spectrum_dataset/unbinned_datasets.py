@@ -12,39 +12,10 @@ class UnbinnedSpectrumDatasetOnOff(SpectrumDatasetOnOff):
     """The UnbinnedSpectrumDatasetOnOff has the events and events_off 
     attritubutes compared to the SpectrumDatasetOnOff from which it inherits."""
 
-    def __init__(
-        self,
-        models=None,
-        events=None,
-        events_off=None,
-        livetime=None,
-        aeff=None,
-        edisp=None,
-        mask_safe=None,
-        mask_fit=None,
-        acceptance=None,
-        acceptance_off=None,
-        name="",
-        gti=None,
-    ):
-        SpectrumDatasetOnOff.__init__(
-            self,
-            models=models,
-            counts=None,
-            counts_off=None,
-            livetime=livetime,
-            aeff=aeff,
-            edisp=edisp,
-            mask_safe=mask_safe,
-            mask_fit=mask_fit,
-            acceptance=acceptance,
-            acceptance_off=acceptance_off,
-            name=name,
-            gti=gti,
-        )
-        # events in the ON and OFF regions
+    def __init__(self, events, events_off, **kwargs):
         self.events = events
         self.events_off = events_off
+        super().__init__(**kwargs)
 
     def write(self, datapath, overwrite):
         """write the ON / OFF event lists and the IRFs in a single HDUList"""
@@ -54,50 +25,13 @@ class UnbinnedSpectrumDatasetOnOff(SpectrumDatasetOnOff):
         # acceptance and acceptance_off are arrays in SpectrumDatasetOnOff
         hdr["ACC"] = self.acceptance[0]
         hdr["ACC_OFF"] = self.acceptance_off[0]
-        primary_hdu = fits.PrimaryHDU(header=hdr)
-        col_energy_on = fits.Column(
-            name="ENERGY",
-            format="D",
-            array=np.asarray(self.events.energy.to("TeV").value),
-            unit="TeV",
-        )
-        col_time_on = fits.Column(
-            name="TIME",
-            format="D",
-            array=np.asarray(self.events.time.value),
-            unit="MJD",
-        )
-        hdu_on = fits.BinTableHDU.from_columns([col_energy_on, col_time_on])
-        col_energy_off = fits.Column(
-            name="ENERGY",
-            format="D",
-            array=np.asarray(self.events_off.energy.to("TeV").value),
-            unit="TeV",
-        )
-        col_time_off = fits.Column(
-            name="TIME",
-            format="D",
-            array=np.asarray(self.events_off.time.value),
-            unit="MJD",
-        )
-        hdu_off = fits.BinTableHDU.from_columns([col_energy_off, col_time_off])
+        hdu = fits.BinTableHDU(self.events.table)
+        hdu_off = fits.BinTableHDU(self.events_off.table)
         # the effective area can be dumped directly in a HDU table
         hdu_aeff = self.aeff.to_hdulist()[1]
-        hdu_aeff.data.columns[2].name = "AEFF"
-        # for the energy migration we store bias and resolution
-        # such that we have simple 1d columns
-        e_true = self.edisp.e_true.center
-        bias = self.edisp.get_bias(e_true)
-        resolution = self.edisp.get_resolution(e_true)
-        col_energy_edisp = fits.Column(
-            name="E_TRUE", format="D", array=e_true.value, unit="TeV"
-        )
-        col_bias_edisp = fits.Column(name="BIAS", format="D", array=bias, unit="")
-        col_res_edisp = fits.Column(name="RES", format="D", array=resolution, unit="")
-        hdu_edisp = fits.BinTableHDU.from_columns(
-            [col_energy_edisp, col_bias_edisp, col_res_edisp]
-        )
-        hdu_list = fits.HDUList([primary_hdu, hdu_on, hdu_off, hdu_aeff, hdu_edisp])
+        # we'll use the primary of the edisp hdulist for the final hdu_list
+        hdu_edisp = self.edisp.to_hdulist()
+        hdu_list = fits.HDUList([hdu_edisp[0], hdu, hdu_off, hdu_aeff, hdu_edisp[1]])
         hdu_list.writeto(datapath, overwrite=overwrite)
 
 
