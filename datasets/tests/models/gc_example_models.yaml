@@ -33,6 +33,8 @@ components:
       value: 0.1
       unit: TeV-1
       frozen: false
+  datasets_names:
+  - gc
 - name: gll_iem_v06_cutout
   type: SkyDiffuseCube
   filename: $GAMMAPY_DATA/fermi_3fhl/gll_iem_v06_cutout.fits
@@ -83,6 +85,8 @@ components:
       value: 0.1
       unit: TeV-1
       frozen: false
+  datasets_names:
+  - g09
 - name: background_irf_gc
   type: BackgroundModel
   parameters:
@@ -98,6 +102,8 @@ components:
     value: 1.0
     unit: TeV
     frozen: true
+  datasets_names:
+  - gc
 - name: background_irf_g09
   type: BackgroundModel
   parameters:
@@ -113,3 +119,5 @@ components:
     value: 1.0
     unit: TeV
     frozen: true
+  datasets_names:
+  - g09
