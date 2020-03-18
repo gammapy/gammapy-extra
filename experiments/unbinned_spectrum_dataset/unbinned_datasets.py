@@ -19,14 +19,12 @@ class UnbinnedSpectrumDatasetOnOff(SpectrumDatasetOnOff):
 
     def write(self, datapath, overwrite):
         """write the ON / OFF event lists and the IRFs in a single HDUList"""
-        hdr = fits.Header()
-        hdr["TEFF"] = self.livetime.to("s").value
-        hdr["TEFF_U"] = "s"
-        # acceptance and acceptance_off are arrays in SpectrumDatasetOnOff
-        hdr["ACC"] = self.acceptance[0]
-        hdr["ACC_OFF"] = self.acceptance_off[0]
         hdu = fits.BinTableHDU(self.events.table)
         hdu_off = fits.BinTableHDU(self.events_off.table)
+        # add the ON and OFF acceptances on the respective header of the events
+        # acceptance and acceptance_off are arrays in SpectrumDatasetOnOff
+        hdu.header["ACC"] = self.acceptance[0]
+        hdu_off.header["ACC"] = self.acceptance_off[0]
         # the effective area can be dumped directly in a HDU table
         hdu_aeff = self.aeff.to_hdulist()[1]
         # we'll use the primary of the edisp hdulist for the final hdu_list
