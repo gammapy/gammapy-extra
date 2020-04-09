@@ -94,6 +94,7 @@ components:
     value: 1.0
     unit: ''
     frozen: false
+    link: norm@shared_1
   - name: tilt
     value: 0.0
     unit: ''
@@ -111,6 +112,7 @@ components:
     value: 1.0
     unit: ''
     frozen: false
+    link: norm@shared_1
   - name: tilt
     value: 0.0
     unit: ''
