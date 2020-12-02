@@ -359,7 +359,11 @@ def main(draft=True):
         fig, ax, p1, p2, k_r=0.025, bool_auto=True, color=color, lw=2, int_line_num=1
     )
 
-    filename = "overview.pdf"
+    filename = "data-flow-gammapy.pdf"
+    log.info(f"Writing {filename}")
+    plt.savefig(filename, dpi=300)
+
+    filename = "data-flow-gammapy.png"
     log.info(f"Writing {filename}")
     plt.savefig(filename, dpi=300)
 
