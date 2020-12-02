@@ -87,7 +87,7 @@ def plot_arrow(ax, offset, dx=10, dy=0, **kwargs):
 
 
 def plot_curved_arrow(ax, posA, posB, **kwargs):
-    kwargs.setdefault("connectionstyle", "bar,angle=90,fraction=-0.3")
+    kwargs.setdefault("connectionstyle", "bar,angle=90,fraction=-0.25")
     kwargs.setdefault("fc", "#3D3D3D")
     kwargs.setdefault("ec", "gray")
     kwargs.setdefault("lw", 3)
@@ -207,8 +207,10 @@ def main(draft=True):
 
     plot_curved_arrow(ax, posA=(91, 56), posB=(105, 82))
 
-    connectionstyle = "bar,angle=-90,fraction=-0.259"
+    connectionstyle = "bar,angle=-90,fraction=-0.335"
     plot_curved_arrow(ax, posA=(91, 56), posB=(105, 42), connectionstyle=connectionstyle)
+
+    ax.text(95, 72, "join or stack", rotation=90, size=12, transform=ax.transData, va="center", ha="center", color="gray")
 
     if draft:
         plt.grid(alpha=0.2, lw=0.5)
