@@ -4,12 +4,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
 import matplotlib.transforms as mtrans
-from matplotlib.patches import Polygon, FancyArrow, PathPatch
+from matplotlib.patches import Polygon, FancyArrow, PathPatch, FancyArrowPatch
 from matplotlib.text import TextPath
 from matplotlib.ticker import MultipleLocator
 from astropy import units as u
 from gammapy.estimators import LightCurve, FluxPoints
 from gammapy.maps import Map
+from curly_brace import curlyBrace
 
 u.imperial.enable()
 
@@ -58,7 +59,7 @@ def plot_sub_package_icon(ax, offset=(0.5, 0.5), name=".makers", size=(22, 14), 
     ax.text(offset[0] + 1, offset[1] + 1, s=name, size=12, color=color)
 
     for idx, cls in enumerate(classes):
-        ax.text(offset[0] + 1, offset[1] - 5 - 5 * idx, s=cls, size=8, color=color)
+        ax.text(offset[0], offset[1] - 4 - 4.2 * idx, s=cls, size=8, color=color)
 
 
 def plot_brace(ax, x, y, scale):
@@ -73,7 +74,7 @@ def plot_brace(ax, x, y, scale):
     ax.add_artist(pp)
 
 
-def plot_arrow(ax, offset, length=10, **kwargs):
+def plot_arrow(ax, offset, dx=10, dy=0, **kwargs):
     kwargs.setdefault("fc", "#3D3D3D")
     kwargs.setdefault("ec", "None")
     kwargs.setdefault("head_width", 3)
@@ -81,7 +82,20 @@ def plot_arrow(ax, offset, length=10, **kwargs):
     kwargs.setdefault("length_includes_head", True)
     kwargs.setdefault("width", 1)
 
-    arrow = FancyArrow(offset[0], offset[1], length, 0, transform=ax.transData, **kwargs)
+    arrow = FancyArrow(offset[0], offset[1], dx=dx, dy=dy, transform=ax.transData, **kwargs)
+    ax.add_artist(arrow)
+
+
+def plot_curved_arrow(ax, posA, posB, **kwargs):
+    kwargs.setdefault("connectionstyle", "bar,angle=90,fraction=-0.3")
+    kwargs.setdefault("fc", "#3D3D3D")
+    kwargs.setdefault("ec", "gray")
+    kwargs.setdefault("lw", 3)
+    kwargs.setdefault("arrowstyle", "-|>, head_length=3.5, head_width=2")
+    kwargs.setdefault("capstyle", "butt")
+    kwargs.setdefault("joinstyle", "miter")
+
+    arrow = FancyArrowPatch(posA=posA, posB=posB, transform=ax.transData, **kwargs)
     ax.add_artist(arrow)
 
 
@@ -159,19 +173,26 @@ def main(draft=True):
         "etc."
     ]
     plot_sub_package_icon(ax, offset=(37.5, 50), name=".makers", color="gray", classes=classes)
-    plot_sub_package_icon(ax, offset=(70, 50), name=".datasets")
 
-    plot_sub_package_icon(ax, offset=(105, 35), name=".estimators", color="gray")
-    plot_sub_package_icon(ax, offset=(105, 65), name=".modeling", color="gray")
+    classes = ["Datasets", "MapDataset", "MapDatasetOnOff"]
+    plot_sub_package_icon(ax, offset=(70, 50), name=".datasets", classes=classes)
+
+    classes = ["FluxPointsEstimator", "FluxMapEstimator"]
+    plot_sub_package_icon(ax, offset=(105, 35), name=".estimators", color="gray", classes=classes)
+
+    classes = ["Fit", "Models", "SkyModel", "FoVBackgroundModel"]
+    plot_sub_package_icon(ax, offset=(105, 75), name=".modeling", color="gray", classes=classes)
+
+    plot_sub_package_icon(ax, offset=(55, 2), name=".analysis")
 
     # data levels
     color = "#3D3D3D"
     ypos = 105
     ax.text(15, ypos, "DL3", size=24, transform=ax.transData, va="center", ha="center", color=color)
     ax.text(80, ypos, "DL4", size=24, transform=ax.transData, va="center", ha="center", color=color)
-    ax.text(155, ypos, "DL5", size=24, transform=ax.transData, va="center", ha="center", color=color)
-    plot_arrow(ax, offset=(27.5, ypos), length=40, fc="gray")
-    plot_arrow(ax, offset=(92.5, ypos), length=50, fc="gray")
+    ax.text(160, ypos, "DL5", size=24, transform=ax.transData, va="center", ha="center", color=color)
+    plot_arrow(ax, offset=(27.5, ypos), dx=40, fc="gray")
+    plot_arrow(ax, offset=(92.5, ypos), dx=55, fc="gray")
 
     ypos = 100
     ax.text(47.5, ypos, "Data reduction", size=12, transform=ax.transData, va="center", ha="center", color="gray")
@@ -179,28 +200,33 @@ def main(draft=True):
 
     ax.text(15, ypos, "$\gamma$-like events", size=12, transform=ax.transData, va="center", ha="center", color=color)
     ax.text(80, ypos, "Binned datasets ", size=12, transform=ax.transData, va="center", ha="center", color=color)
-    ax.text(155, ypos, "Science products", size=12, transform=ax.transData, va="center", ha="center", color=color)
+    ax.text(160, ypos, "Science products", size=12, transform=ax.transData, va="center", ha="center", color=color)
 
-    plot_arrow(ax, offset=(26, 56))
-    plot_arrow(ax, offset=(61, 56))
-    # plot_arrow(ax, offset=(91, 56))
-    # plot_arrow(ax, offset=(121, 56))
+    plot_arrow(ax, offset=(27, 56), fc="gray")
+    plot_arrow(ax, offset=(59, 56))
+
+    plot_curved_arrow(ax, posA=(91, 56), posB=(105, 82))
+
+    connectionstyle = "bar,angle=-90,fraction=-0.259"
+    plot_curved_arrow(ax, posA=(91, 56), posB=(105, 42), connectionstyle=connectionstyle)
 
     if draft:
         plt.grid(alpha=0.2, lw=0.5)
     else:
         ax.set_axis_off()
 
-    ax_image = add_sub_axes(ax, [140, 68, 30, 20])
+    ax_image = add_sub_axes(ax, [145, 58, 30, 20])
     plot_image(ax=ax_image)
 
-    ax_fp = add_sub_axes(ax, [140, 35, 30, 20])
+    ax_fp = add_sub_axes(ax, [145, 30, 30, 20])
     plot_sed(ax=ax_fp)
 
-    ax_lc = add_sub_axes(ax, [140, 8, 30, 20])
+    ax_lc = add_sub_axes(ax, [145, 2, 30, 20])
     plot_lightcurve(ax=ax_lc)
 
-    plot_brace(ax, 20, 20, scale=10)
+    p2 = (5, 25)
+    p1 = (125, 25)
+    curlyBrace(fig, ax, p1, p2, k_r=0.03, bool_auto=True, color=color, lw=2, int_line_num=1)
 
     filename = "overview.pdf"
     log.info(f"Writing {filename}")
