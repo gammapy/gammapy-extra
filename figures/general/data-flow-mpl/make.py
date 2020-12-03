@@ -3,6 +3,7 @@ import click
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
+import matplotlib.lines as mlines
 import matplotlib.transforms as mtrans
 from matplotlib.patches import Polygon, FancyArrow, PathPatch, FancyArrowPatch
 from matplotlib.text import TextPath
@@ -229,12 +230,20 @@ def plot_data_levels(ax, ypos=123):
 
 
 def plot_high_level_interface(fig, ax, ypos=24):
-    color = GRAY
-    p2 = (5, ypos + 0.5)
-    p1 = (135, ypos + 0.5)
-    curlyBrace(
-        fig, ax, p1, p2, k_r=0.025, bool_auto=True, color=color, lw=2, int_line_num=1
-    )
+    # color = GRAY
+    # p2 = (5, ypos + 0.5)
+    # p1 = (135, ypos + 0.5)
+    # curlyBrace(
+    #     fig, ax, p1, p2, k_r=0.025, bool_auto=True, color=color, lw=2, int_line_num=1
+    # )
+
+    x, y = np.array([[5, 5, 135, 135], [ypos, ypos - 2, ypos - 2, ypos]])
+    line = mlines.Line2D(x, y, lw=3, color=GRAY)
+    ax.add_line(line)
+
+    x, y = np.array([[68, 68], [ypos - 4, ypos - 2]])
+    line = mlines.Line2D(x, y, lw=3, color=GRAY)
+    ax.add_line(line)
 
     offset = (40, ypos - 21.5)
     plot_sub_package_icon(ax, offset=(offset[0] + 22, ypos - 21.5), name=".analysis")
