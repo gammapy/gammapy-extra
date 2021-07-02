@@ -11,7 +11,6 @@ from matplotlib.ticker import MultipleLocator
 from astropy import units as u
 from gammapy.estimators import LightCurve, FluxPoints
 from gammapy.maps import Map
-from curly_brace import curlyBrace
 
 u.imperial.enable()
 
@@ -177,7 +176,7 @@ def plot_lightcurve(ax):
 def plot_sed(ax):
     filename = "data/flux_points.fits"
     log.info(f"Reading: {filename}")
-    flux_points = FluxPoints.read(filename)
+    flux_points = FluxPoints.read(filename, sed_type="likelihood")
     flux_points.table["is_ul"] = flux_points.table["ts"] < 4
     flux_points.plot(
         ax=ax,
@@ -188,7 +187,7 @@ def plot_sed(ax):
         markeredgewidth=1,
     )
 
-    flux_points.to_sed_type("e2dnde").plot_ts_profiles(ax=ax, add_cbar=False)
+    flux_points.plot_ts_profiles(ax=ax, sed_type="e2dnde", add_cbar=False)
     format_dl5_ax(ax=ax)
     ax.set_title("SEDs \& Lightcurves", color=GP_GRAY, pad=4)
 
@@ -213,12 +212,12 @@ def plot_data_levels(ax, ypos=123):
 
     ax.text(15, ypos, "DL3", **kwargs)
     ax.text(80, ypos, "DL4", **kwargs)
-    ax.text(160, ypos, "DL5", **kwargs)
+    ax.text(160, ypos, "DL5/6", **kwargs)
 
     kwargs["size"] = 12
-    ax.text(15, ypos - 5, "$\gamma$-like events", **kwargs)
-    ax.text(80, ypos - 5, "Binned data", **kwargs)
-    ax.text(160, ypos - 5, "Science products", **kwargs)
+    ax.text(15, ypos - 7, "$\gamma$-like events", **kwargs)
+    ax.text(80, ypos - 7, "Binned data", **kwargs)
+    ax.text(160, ypos - 7, "Science products", **kwargs)
 
     # Arrows
     plot_arrow(ax, offset=(27.5, ypos), dx=41.5, fc=GRAY)
@@ -230,6 +229,7 @@ def plot_data_levels(ax, ypos=123):
 
 
 def plot_high_level_interface(fig, ax, ypos=24):
+    # from curly_brace import curlyBrace
     # color = GRAY
     # p2 = (5, ypos + 0.5)
     # p1 = (135, ypos + 0.5)
@@ -302,6 +302,10 @@ def main(draft=True):
     classes = ["DataStore", "Observations", "Observation", "GTI"]
     plot_sub_package_icon(ax, offset=(5, 50), name=".data", classes=classes)
 
+    classes = ["PSF", "EnergyDispersion", "EffectiveArea"]
+    plot_sub_package_icon(ax, offset=(5, 90), name=".irf", classes=classes, color=GRAY)
+
+
     classes = [
         "MapDatasetMaker",
         "SafeMaskMaker",
@@ -312,6 +316,9 @@ def main(draft=True):
     plot_sub_package_icon(
         ax, offset=(34, 50), name=".makers", color=GRAY, classes=classes
     )
+
+    classes = ["WcsNDMap", "HpxNDMap", "RegionNDMap", "etc."]
+    plot_sub_package_icon(ax, offset=(70, 90), name=".maps", classes=classes, color=GRAY,)
 
     classes = ["Datasets", "MapDataset", "MapDatasetOnOff", "etc."]
     plot_sub_package_icon(ax, offset=(70, 50), name=".datasets", classes=classes)
