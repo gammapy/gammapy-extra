@@ -11,79 +11,63 @@ from matplotlib.animation import FuncAnimation
 import matplotlib.pyplot as plt
 import numpy as np
 
-from scipy.ndimage import imread
-from scipy.ndimage.filters import gaussian_filter
-from scipy.stats import rv_discrete
-
-from gammapy.image import SkyMap, SkyMapCollection
-
-
-EVENTS_PER_TIME_INTERVAL = 100
-
-def create_gammapy_skymap(smooth=3):
-	"""
-	Parameters
-	----------
-	smooth : 3
-		 Gaussian smoothing width in pixel.
-	"""
-	# create logo cutout
-	filename = os.environ.get('GAMMAPY_EXTRA') + '/logo/gammapy_logo.png'
-	gammapy_logo = (imread(filename, flatten=True) > 1).astype('float')
-
-	shape = gammapy_logo.shape
-	gammapy_cutout = SkyMap.empty(nxpix=shape[1], nypix=shape[0], binsz=0.02)
-	
-	# flip upside down
-	gammapy_cutout.data = np.flipud(gammapy_logo)
-
-	# reproject to larger sky map
-	gammapy_skymap = SkyMap.empty(nxpix=320, nypix=180, binsz=0.08)
-	gammapy_skymap = gammapy_cutout.reproject(gammapy_skymap)
-	gammapy_skymap.name = 'gp_logo'
-
-	gammapy_skymap.data = np.nan_to_num(gammapy_skymap.data)
-	gammapy_skymap.data = gaussian_filter(gammapy_skymap.data, smooth)
-	
-	# normalize
-	gammapy_skymap.data /= gammapy_skymap.data.sum()
-	return gammapy_skymap
+import imageio
+import tqdm
+from gammapy.maps import Map, WcsGeom
+from gammapy.utils.scripts import make_path
 
 
-def animate(n, image, counts, bins, counts_generator):
-	idx = counts_generator.rvs(size=EVENTS_PER_TIME_INTERVAL)
-	sample, _ = np.histogram(idx, bins)
-	counts += sample.reshape(counts.shape)
-	image.set_data(counts)
-	return image
+EVENTS_PER_TIME_INTERVAL = 6_000
+DPI = 100
+
+
+def get_gp_logo_map():
+    data = imageio.imread("/Users/adonath/github/adonath/gammapy-extra/logo/gammapy_logo.png")
+    data = np.flipud(data.sum(axis=-1))
+
+    gp_map = Map.create(npix=(527, 369), binsz=0.02)
+    gp_map.data = data > 1
+    
+    geom = WcsGeom.create(npix=(1920, 1080), binsz=0.01)
+
+    gp_map_large = gp_map.interp_to_geom(geom=geom)
+    gp_map_large = gp_map_large.smooth("0.15 deg")
+    gp_map_large.data = gp_map_large.data / gp_map_large.data.sum()
+    return gp_map_large
+
+def animate(n, image, counts, npred):
+    events = npred.sample_coord(n_events=EVENTS_PER_TIME_INTERVAL, random_state=n)
+    counts.fill_by_coord(events)
+    image.set_data(counts.data)
+    return image
 
 def main():
-	fig = plt.figure(figsize=(3.2, 1.8))
-	ax = fig.add_axes([0, 0, 1, 1])
+    fig = plt.figure(figsize=(6.4, 3.6))
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.axis("off")
 
-	signal = create_gammapy_skymap().data
-	background = np.ones(signal.shape)
-	background /= background.sum()
+    signal = get_gp_logo_map()
+    background = Map.from_geom(signal.geom, data=1)
+    background /= background.data.sum()
 
-	data = (1 * signal + background) / 2.
+    npred = (signal + (background * 10)) / 2.
+    
+    counts = Map.from_geom(geom=npred.geom)
 
-	# setup counts generator
-	pdf = data.copy().flatten()
-	x = np.arange(pdf.size)
-	counts_generator = rv_discrete(name='counts', values=(x, pdf))
+    image = ax.imshow(
+        counts.data,
+        cmap='afmhot',
+        origin='lower',
+        vmin=0,
+        vmax=7,
+        interpolation='None'
+    )
 
-	counts = np.zeros_like(data)
-
-	image = ax.imshow(counts, cmap='afmhot', origin='lower', vmin=0, vmax=9,
-					  interpolation='None')
-	bins = np.arange(counts.size + 1) - 0.5
-
-	anim = FuncAnimation(fig, animate, fargs=[image, counts, bins, counts_generator],
+    anim = FuncAnimation(fig, animate, fargs=[image, counts, npred],
                          frames=200, interval=50)
-	
-	filename = 'gammapy_logo.gif'
-	anim.save(filename, writer='imagemagick')
-		
+
+    filename = "gammapy_logo.gif"
+    anim.save(filename, writer="ffmpeg", dpi=DPI)
 	
 
 if __name__ == '__main__':
