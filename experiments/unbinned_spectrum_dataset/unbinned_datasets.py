@@ -1,11 +1,8 @@
 import numpy as np
 from astropy.io import fits
-from gammapy.spectrum import (
-    SpectrumDatasetMaker,
-    SpectrumDatasetOnOff,
-    ReflectedRegionsBackgroundMaker,
-)
-from gammapy.utils.regions import list_to_compound_region
+from gammapy.datasets import SpectrumDatasetOnOff
+from gammapy.makers import ReflectedRegionsFinder, ReflectedRegionsBackgroundMaker
+from gammapy.utils.regions import regions_to_compound_region
 
 
 class UnbinnedSpectrumDatasetOnOff(SpectrumDatasetOnOff):
@@ -23,12 +20,14 @@ class UnbinnedSpectrumDatasetOnOff(SpectrumDatasetOnOff):
         hdu_off = fits.BinTableHDU(self.events_off.table)
         # add the ON and OFF acceptances on the respective header of the events
         # acceptance and acceptance_off are arrays in SpectrumDatasetOnOff
-        hdu.header["ACC"] = self.acceptance[0]
-        hdu_off.header["ACC"] = self.acceptance_off[0]
+        hdu.header["ACC"] = self.acceptance
+        hdu_off.header["ACC"] = self.acceptance_off
         # the effective area can be dumped directly in a HDU table
-        hdu_aeff = self.aeff.to_hdulist()[1]
+        # self.exposure.geom.axes["energy_true"]._name = "energy"
+        aeff = self.exposure / self.exposure.meta["livetime"]
+        hdu_aeff = aeff.to_hdulist(format="ogip-arf")[1]
         # we'll use the primary of the edisp hdulist for the final hdu_list
-        hdu_edisp = self.edisp.to_hdulist()
+        hdu_edisp = self.edisp.get_edisp_kernel().to_hdulist()
         hdu_list = fits.HDUList(
             [hdu_edisp[0], hdu, hdu_off, hdu_aeff, hdu_edisp[1], hdu_edisp[2]]
         )
@@ -36,8 +35,19 @@ class UnbinnedSpectrumDatasetOnOff(SpectrumDatasetOnOff):
 
 
 class UnbinnedReflectedRegionsBackgroundMaker(ReflectedRegionsBackgroundMaker):
-    """Inheriting from ReflectedRegionsBackgroundMaker and 
+    """Inheriting from ReflectedRegionsBackgroundMaker and
     adding functions to generate list of events in the ON and OFF region"""
+
+    def __init__(self, finder=None):
+        """Initialiser
+
+        Parameters
+        ----------
+        finder : ~`gammapy.makers.RegionsFinder`
+            finder to be used to extract the OFF counts
+        """
+        if finder is None:
+            self.finder = ReflectedRegionsFinder()
 
     def make_events(self, dataset, observation):
         """Make list of ON events.
@@ -56,9 +66,9 @@ class UnbinnedReflectedRegionsBackgroundMaker(ReflectedRegionsBackgroundMaker):
             list of events in the ON region.
         """
         # the on region is stored in the Counts of the SpectrumDatasetOnOff
-        region = dataset.counts.region
-        wcs = SpectrumDatasetMaker.geom_ref(region).wcs
-        events = observation.events.select_region(region, wcs)
+        region = dataset.counts.geom.region
+        # wcs = SpectrumDatasetMaker.geom_ref(region).wcs
+        events = observation.events.select_region(region)  # , wcs)
         return events
 
     def make_events_off(self, dataset, observation):
@@ -71,7 +81,6 @@ class UnbinnedReflectedRegionsBackgroundMaker(ReflectedRegionsBackgroundMaker):
         observation : `DatastoreObservation`
             Data store observation.
 
-
         Returns
         -------
         events_off : `EventList`
@@ -79,14 +88,14 @@ class UnbinnedReflectedRegionsBackgroundMaker(ReflectedRegionsBackgroundMaker):
         acceptance_off : int
             number of OFF regions used
         """
-        finder = self._get_finder(dataset, observation)
-        finder.run()
+        regions, wcs = self.finder.run(
+            region=dataset._geom.region, center=observation.pointing_radec
+        )
 
-        if len(finder.reflected_regions) > 0:
-            region_union = list_to_compound_region(finder.reflected_regions)
-            wcs = finder.reference_map.geom.wcs
+        if len(regions) > 0:
+            region_union = regions_to_compound_region(regions)
             events_off = observation.events.select_region(region_union, wcs)
-            acceptance_off = len(finder.reflected_regions)
+            acceptance_off = len(regions)
         else:
             # if no OFF regions are found, off is set to None and acceptance_off to zero
             counts_off = None
@@ -115,8 +124,7 @@ class UnbinnedReflectedRegionsBackgroundMaker(ReflectedRegionsBackgroundMaker):
         return UnbinnedSpectrumDatasetOnOff(
             events=events,
             events_off=events_off,
-            livetime=dataset.livetime,
-            aeff=dataset.aeff,
+            exposure=dataset.exposure,
             edisp=dataset.edisp,
             mask_safe=dataset.mask_safe,
             mask_fit=dataset.mask_fit,
